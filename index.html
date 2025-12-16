@@ -7,11 +7,22 @@
     <meta name="description" content="Encanador 24h Curitiba e Região. Serviços de desentupimento urgente, caça-vazamentos, hidrojateamento e conserto de encanamento. Atendimento imediato.">
     <meta name="keywords" content="encanador curitiba, encanador 24h, desentupimento, caça vazamento, hidrojateamento">
     <meta name="author" content="ADP Encanador Curitiba">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1e3c72">
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://desentope.aloanuncio.com.br">
     
     <!-- Open Graph -->
     <meta property="og:title" content="ADP Encanador Curitiba 24h">
     <meta property="og:description" content="Serviços de encanador e desentupidora 24h em Curitiba.">
     <meta property="og:image" content="https://desentope.aloanuncio.com.br/images/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -57,7 +68,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Schema Markup -->
+    <!-- Schema Markup Base -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -96,6 +107,17 @@
     "react-markdown": "https://esm.sh/react-markdown@^10.1.0"
   }
 }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(registration => {
+        console.log('SW registered: ', registration);
+      }).catch(registrationError => {
+        console.log('SW registration failed: ', registrationError);
+      });
+    });
+  }
 </script>
 </head>
   <body class="bg-gray-50 text-gray-800 antialiased">

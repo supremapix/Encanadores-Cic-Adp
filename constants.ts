@@ -7,7 +7,9 @@ export const CONTACT_INFO = {
   email: "contato@desentopeadp.com.br",
   whatsappLink: "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F",
   officialSite: "https://desentopeadp.com.br/",
-  phoneLink: "tel:+554133451194"
+  phoneLink: "tel:+554133451194",
+  // New unified social link
+  socialLink: "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F"
 };
 
 export const IMAGES: ImageData[] = [

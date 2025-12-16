@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants';
 
 const Footer: React.FC = () => {
@@ -36,6 +37,7 @@ const Footer: React.FC = () => {
               <li><a href="#bairros" className="hover:text-accent transition-colors">Bairros Atendidos</a></li>
               <li><a href="#cidades" className="hover:text-accent transition-colors">Cidades</a></li>
               <li><a href="#servicos" className="hover:text-accent transition-colors">Serviços</a></li>
+              <li><Link to="/sitemap" className="hover:text-accent transition-colors">Mapa do Site</Link></li>
             </ul>
           </div>
 
@@ -52,13 +54,13 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-bold text-white mb-4">Siga-nos</h4>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary transition-all">
+              <a href={CONTACT_INFO.socialLink} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary transition-all" aria-label="Facebook">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary transition-all">
+              <a href={CONTACT_INFO.socialLink} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary transition-all" aria-label="Instagram">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary transition-all">
+              <a href={CONTACT_INFO.socialLink} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary transition-all" aria-label="YouTube">
                 <i className="fab fa-youtube"></i>
               </a>
             </div>

@@ -13,22 +13,80 @@ interface Props {
 const DynamicPage: React.FC<Props> = ({ type }) => {
   const { name } = useParams<{ name: string }>();
   
-  // Convert URL slug back to readable Title Case (basic implementation)
+  // Convert URL slug back to readable Title Case
   const formatName = (slug: string = '') => {
     return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
   const titleName = formatName(name);
   
+  // Construct SEO Data
+  const getPageTitle = () => {
+    if (type === 'servico') return `${titleName} em Curitiba 24h | Atendimento Imediato`;
+    return `Encanador em ${titleName} - Atendimento 24h | ADP Curitiba`;
+  };
+
+  const getPageDescription = () => {
+    if (type === 'servico') return `Serviço especializado de ${titleName} em Curitiba. Atendimento 24h, preço justo e garantia. Chegamos em 30 minutos.`;
+    return `Encanador 24h em ${titleName}. Desentupimento, caça-vazamentos e reparos hidráulicos com atendimento imediato no bairro ${titleName}.`;
+  };
+
+  // SEO & Scroll Effect
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [name]);
 
-  // Construct Dynamic Content
-  const getPageTitle = () => {
-    if (type === 'servico') return `${titleName} em Curitiba 24h`;
-    return `Encanador em ${titleName} - Atendimento 24h | ADP`;
-  };
+    // Update Title
+    document.title = getPageTitle();
+
+    // Update Meta Description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', getPageDescription());
+
+    // Update Meta Keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.setAttribute('name', 'keywords');
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.setAttribute('content', `encanador ${titleName}, desentupidora ${titleName}, vazamento ${titleName}, encanador 24h`);
+
+    // Inject JSON-LD Schema
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": `ADP Encanador - ${titleName}`,
+      "image": "https://desentope.aloanuncio.com.br/images/logo.png",
+      "telephone": "+55-41-3345-1194",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Luiz Maltaca, 36",
+        "addressLocality": type === 'cidade' ? titleName : "Curitiba",
+        "addressRegion": "PR",
+        "addressCountry": "BR"
+      },
+      "priceRange": "$$",
+      "areaServed": titleName,
+      "description": getPageDescription()
+    };
+
+    let scriptTag = document.getElementById('dynamic-schema') as HTMLScriptElement | null;
+    if (scriptTag) {
+      scriptTag.textContent = JSON.stringify(schemaData);
+    } else {
+      scriptTag = document.createElement('script');
+      scriptTag.id = 'dynamic-schema';
+      scriptTag.type = 'application/ld+json';
+      scriptTag.textContent = JSON.stringify(schemaData);
+      document.head.appendChild(scriptTag);
+    }
+
+  }, [name, type]);
 
   const getIntroText = () => {
     if (type === 'servico') {
@@ -42,7 +100,10 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
       {/* Page Header */}
       <div className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 capitalize">{getPageTitle()}</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 capitalize">{titleName}</h1>
+             <h2 className="text-xl md:text-2xl text-accent font-medium mb-4">
+              {type === 'servico' ? 'Serviço Especializado' : 'Atendimento 24 Horas no Local'}
+            </h2>
             <div className="flex justify-center gap-2 text-sm text-gray-300">
                 <Link to="/" className="hover:text-white">Home</Link> / 
                 <span className="capitalize">{type}</span> / 

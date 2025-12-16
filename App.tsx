@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import FixedButtons from './components/FixedButtons';
 import Home from './pages/Home';
 import DynamicPage from './pages/DynamicPage';
+import Sitemap from './pages/Sitemap';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/sitemap" element={<Sitemap />} />
             {/* Dynamic routes for Locations and Services */}
             <Route path="/bairro/:name" element={<DynamicPage type="bairro" />} />
             <Route path="/cidade/:name" element={<DynamicPage type="cidade" />} />

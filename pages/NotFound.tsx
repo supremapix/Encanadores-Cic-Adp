@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants';
+import { SITE_URL, updateMetaTags, injectSchema, generateBreadcrumbSchema } from '../utils/seo';
 
 const NotFound: React.FC = () => {
+  useEffect(() => {
+    updateMetaTags({
+      title: 'Página não encontrada | ADP Encanador Curitiba 24h',
+      description: 'A página que você está procurando não existe. Volte para a página inicial ou entre em contato conosco. ADP Encanador Curitiba 24h.',
+      canonical: `${SITE_URL}/404`,
+      keywords: 'página não encontrada, 404, encanador curitiba, ADP encanador'
+    });
+
+    injectSchema('schema-breadcrumb', generateBreadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Página não encontrada', url: `${SITE_URL}/404` }
+    ]));
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-16">
       <div className="text-center px-4">

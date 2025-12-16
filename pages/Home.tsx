@@ -1,12 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import VideoSection from '../components/VideoSection';
 import FAQ from '../components/FAQ';
 import ContactForm from '../components/ContactForm';
 import { MAIN_SERVICES, BAIRROS, CIDADES, GENERAL_FAQ, CONTACT_INFO } from '../constants';
+import { 
+  SITE_URL, 
+  SEO_CONFIG, 
+  updateMetaTags, 
+  injectSchema, 
+  generateLocalBusinessSchema,
+  generateFAQSchema,
+  generateVideoSchema
+} from '../utils/seo';
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    updateMetaTags({
+      title: 'Encanador Curitiba 24h | Desentupimento Urgente | ADP Encanador',
+      description: `Encanador 24h em Curitiba e Região Metropolitana. Desentupimento urgente, caça-vazamentos, hidrojateamento e reparos hidráulicos. Atendimento imediato. ${SEO_CONFIG.phoneDisplay}`,
+      canonical: SITE_URL,
+      keywords: 'encanador curitiba, encanador 24h, desentupimento curitiba, desentupidora curitiba, caça vazamento, hidrojateamento, encanador urgente, desentupimento 24h'
+    });
+
+    injectSchema('schema-local-business', generateLocalBusinessSchema());
+    injectSchema('schema-faq', generateFAQSchema(GENERAL_FAQ));
+    injectSchema('schema-video', generateVideoSchema(
+      'Desentupimento Profissional em Curitiba - ADP',
+      'Veja como realizamos desentupimento de esgoto com equipamentos modernos e atendimento 24h em Curitiba e região metropolitana.'
+    ));
+  }, []);
+
   return (
     <>
       <Hero />

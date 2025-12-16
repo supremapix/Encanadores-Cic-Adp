@@ -3,6 +3,17 @@ import { useParams, Link } from 'react-router-dom';
 import ContactForm from '../components/ContactForm';
 import FAQ from '../components/FAQ';
 import { IMAGES, SERVICE_TABLE_DATA, CONTACT_INFO, GENERAL_FAQ } from '../constants';
+import { 
+  SITE_URL, 
+  SEO_CONFIG,
+  updateMetaTags, 
+  injectSchema,
+  generateLocalBusinessSchema,
+  generateServiceSchema,
+  generateBreadcrumbSchema,
+  generateFAQSchema,
+  generateVideoSchema
+} from '../utils/seo';
 
 type PageType = 'bairro' | 'cidade' | 'servico';
 
@@ -13,78 +24,78 @@ interface Props {
 const DynamicPage: React.FC<Props> = ({ type }) => {
   const { name } = useParams<{ name: string }>();
   
-  // Convert URL slug back to readable Title Case
   const formatName = (slug: string = '') => {
     return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
   const titleName = formatName(name);
   
-  // Construct SEO Data
   const getPageTitle = () => {
-    if (type === 'servico') return `${titleName} em Curitiba 24h | Atendimento Imediato`;
-    return `Encanador em ${titleName} - Atendimento 24h | ADP Curitiba`;
+    if (type === 'servico') return `${titleName} em Curitiba 24h | Atendimento Imediato | ADP`;
+    if (type === 'cidade') return `Encanador em ${titleName} 24h | Desentupimento Urgente | ADP`;
+    return `Encanador em ${titleName} 24h | Desentupimento Urgente | ADP Curitiba`;
   };
 
   const getPageDescription = () => {
-    if (type === 'servico') return `Serviço especializado de ${titleName} em Curitiba. Atendimento 24h, preço justo e garantia. Chegamos em 30 minutos.`;
-    return `Encanador 24h em ${titleName}. Desentupimento, caça-vazamentos e reparos hidráulicos com atendimento imediato no bairro ${titleName}.`;
+    if (type === 'servico') return `Serviço especializado de ${titleName} em Curitiba e região. Atendimento 24h, orçamento grátis e garantia. Chegamos em 30 minutos. ☎ ${SEO_CONFIG.phoneDisplay}`;
+    if (type === 'cidade') return `Encanador 24h em ${titleName}. Desentupimento urgente, caça-vazamentos e reparos hidráulicos. Atendimento imediato em toda ${titleName}. ☎ ${SEO_CONFIG.phoneDisplay}`;
+    return `Encanador 24h no bairro ${titleName}, Curitiba. Desentupimento, caça-vazamentos e reparos hidráulicos com atendimento imediato. ☎ ${SEO_CONFIG.phoneDisplay}`;
   };
 
-  // SEO & Scroll Effect
+  const getCanonicalUrl = () => {
+    const pathType = type === 'bairro' ? 'bairro' : type === 'cidade' ? 'cidade' : 'servico';
+    return `${SITE_URL}/${pathType}/${name}`;
+  };
+
+  const getKeywords = () => {
+    const base = `encanador ${titleName}, desentupidora ${titleName}, desentupimento ${titleName}, vazamento ${titleName}, encanador 24h`;
+    if (type === 'servico') return `${titleName} curitiba, ${titleName} 24h, ${base}`;
+    if (type === 'cidade') return `encanador ${titleName}, desentupidora ${titleName}, ${base}`;
+    return `${base}, hidrojateamento ${titleName}, caça vazamentos ${titleName}`;
+  };
+
+  const getFAQItems = () => [
+    { question: `Qual o tempo de chegada em ${titleName}?`, answer: `Normalmente chegamos em ${titleName} entre 30 a 40 minutos após o chamado. Atendimento 24h.` },
+    { question: `Atendem ${titleName} aos sábados e domingos?`, answer: `Sim, nossa equipe de plantão atende 24 horas em ${titleName} todos os dias, incluindo feriados.` },
+    { question: `Quanto custa o serviço de desentupimento em ${titleName}?`, answer: `O valor varia de R$ 150 a R$ 800 dependendo da complexidade. Oferecemos orçamento gratuito. Ligue: ${SEO_CONFIG.phoneDisplay}.` },
+    ...GENERAL_FAQ.slice(0, 2)
+  ];
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Update Title
-    document.title = getPageTitle();
+    updateMetaTags({
+      title: getPageTitle(),
+      description: getPageDescription(),
+      canonical: getCanonicalUrl(),
+      keywords: getKeywords(),
+      type: type === 'servico' ? 'service' : 'website',
+      image: IMAGES[0].url
+    });
 
-    // Update Meta Description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
+    const localBusiness = generateLocalBusinessSchema() as any;
+    localBusiness.name = `ADP Encanador - ${titleName}`;
+    localBusiness.areaServed = { "@type": "Place", "name": titleName };
+    injectSchema('schema-local-business', localBusiness);
+
+    if (type === 'servico') {
+      injectSchema('schema-service', generateServiceSchema(titleName, getPageDescription()));
     }
-    metaDescription.setAttribute('content', getPageDescription());
 
-    // Update Meta Keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (!metaKeywords) {
-      metaKeywords = document.createElement('meta');
-      metaKeywords.setAttribute('name', 'keywords');
-      document.head.appendChild(metaKeywords);
-    }
-    metaKeywords.setAttribute('content', `encanador ${titleName}, desentupidora ${titleName}, vazamento ${titleName}, encanador 24h`);
+    const breadcrumbItems = [
+      { name: 'Home', url: SITE_URL },
+      { name: type === 'bairro' ? 'Bairros' : type === 'cidade' ? 'Cidades' : 'Serviços', url: `${SITE_URL}/#${type === 'bairro' ? 'bairros' : type === 'cidade' ? 'cidades' : 'servicos'}` },
+      { name: titleName, url: getCanonicalUrl() }
+    ];
+    injectSchema('schema-breadcrumb', generateBreadcrumbSchema(breadcrumbItems));
 
-    // Inject JSON-LD Schema
-    const schemaData = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": `ADP Encanador - ${titleName}`,
-      "image": "https://desentope.aloanuncio.com.br/images/logo.png",
-      "telephone": "+55-41-3345-1194",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Rua Luiz Maltaca, 36",
-        "addressLocality": type === 'cidade' ? titleName : "Curitiba",
-        "addressRegion": "PR",
-        "addressCountry": "BR"
-      },
-      "priceRange": "$$",
-      "areaServed": titleName,
-      "description": getPageDescription()
-    };
+    const faqItems = getFAQItems();
+    injectSchema('schema-faq', generateFAQSchema(faqItems));
 
-    let scriptTag = document.getElementById('dynamic-schema') as HTMLScriptElement | null;
-    if (scriptTag) {
-      scriptTag.textContent = JSON.stringify(schemaData);
-    } else {
-      scriptTag = document.createElement('script');
-      scriptTag.id = 'dynamic-schema';
-      scriptTag.type = 'application/ld+json';
-      scriptTag.textContent = JSON.stringify(schemaData);
-      document.head.appendChild(scriptTag);
-    }
+    injectSchema('schema-video', generateVideoSchema(
+      `${type === 'servico' ? titleName : 'Encanador'} em ${type === 'servico' ? 'Curitiba' : titleName} - ADP`,
+      `Veja como realizamos ${type === 'servico' ? titleName.toLowerCase() : 'desentupimento'} com equipamentos modernos e atendimento 24h em ${type === 'servico' ? 'Curitiba' : titleName}.`
+    ));
 
   }, [name, type]);
 
@@ -194,11 +205,7 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
 
                 {/* FAQ Specific */}
                 <FAQ 
-                    items={[
-                        { question: `Qual o tempo de chegada em ${titleName}?`, answer: `Normalmente chegamos em ${titleName} entre 30 a 40 minutos após o chamado.` },
-                        { question: `Atendem ${titleName} aos sábados e domingos?`, answer: `Sim, nossa equipe de plantão atende **24 horas** em ${titleName} todos os dias.` },
-                        ...GENERAL_FAQ.slice(0, 3)
-                    ]} 
+                    items={getFAQItems()} 
                     title={`Perguntas Frequentes em ${titleName}`}
                 />
 

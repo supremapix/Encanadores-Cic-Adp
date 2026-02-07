@@ -15,29 +15,39 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Fecha o menu ao mudar de rota ou redimensionar
   useEffect(() => {
     setIsMenuOpen(false);
     window.scrollTo(0, 0);
   }, [location]);
 
+  // Bloqueia o scroll do body quando o menu está aberto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMenuOpen]);
+
   const isSolid = !isHome || scrolled || isMenuOpen;
   
   const headerClasses = isSolid 
-    ? 'bg-primary/95 backdrop-blur-2xl py-3 shadow-2xl border-b border-accent/20' 
+    ? 'bg-[#051125] py-3 shadow-2xl border-b border-accent/20' 
     : 'bg-transparent py-5';
 
   const linkClasses = "text-white hover:text-accent font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-300";
 
   return (
-    <header className={`fixed top-0 w-full z-[100] transition-all duration-500 ${headerClasses}`}>
+    <header className={`fixed top-0 w-full z-[1000] transition-all duration-500 ${headerClasses}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group relative z-[110]">
+        <Link to="/" className="flex items-center gap-3 group relative z-[1100]">
           <div className="bg-white rounded-full p-1.5 shadow-xl transition-transform group-hover:rotate-6 group-hover:scale-110">
             <img 
               src={CONTACT_INFO.logoUrl} 
               alt="ADP Logo" 
-              className="h-9 md:h-12 w-auto object-contain"
+              className="h-10 md:h-12 w-auto object-contain"
             />
           </div>
           <div className="leading-none">
@@ -64,35 +74,50 @@ const Header: React.FC = () => {
         </nav>
 
         {/* Mobile Interaction */}
-        <div className="flex items-center gap-3 lg:hidden relative z-[110]">
+        <div className="flex items-center gap-3 lg:hidden relative z-[1100]">
           <a href={CONTACT_INFO.phoneLink} className="text-accent text-xl p-2.5 bg-white/5 rounded-full border border-white/10 active:scale-90 transition-all">
-            <i className="fas fa-phone"></i>
+            <i className="fa-solid fa-phone"></i>
           </a>
           <button 
-            className="text-white text-3xl p-1"
+            className="text-white text-3xl p-2 flex items-center justify-center min-w-[44px] min-h-[44px]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Abrir Menu"
+            aria-label={isMenuOpen ? "Fechar Menu" : "Abrir Menu"}
           >
-            <i className={`fas ${isMenuOpen ? 'fa-xmark' : 'fa-bars'} transition-transform duration-300`}></i>
+            <i className={`fa-solid ${isMenuOpen ? 'fa-xmark' : 'fa-bars'} transition-all duration-300`}></i>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-primary z-[105] transition-all duration-500 ease-in-out lg:hidden ${
-        isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+      {/* Mobile Menu Overlay - Cor sólida e Z-index ajustado */}
+      <div className={`fixed inset-0 bg-[#051125] z-[1050] transition-all duration-500 ease-in-out lg:hidden ${
+        isMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-full invisible pointer-events-none'
       }`}>
-        <div className="flex flex-col h-full pt-32 px-10 gap-6 overflow-y-auto">
-          <Link to="/" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">INÍCIO</Link>
-          <Link to="/servicos" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">SERVIÇOS</Link>
-          <Link to="/sobre" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">SOBRE</Link>
-          <Link to="/contato" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">CONTATO</Link>
+        <div className="flex flex-col h-full pt-32 pb-10 px-8 gap-4 overflow-y-auto">
+          <Link to="/" className="text-3xl font-black text-white tracking-tighter border-b border-white/5 pb-5 uppercase italic active:text-accent">
+            INÍCIO
+          </Link>
+          <Link to="/servicos" className="text-3xl font-black text-white tracking-tighter border-b border-white/5 pb-5 uppercase italic active:text-accent">
+            SERVIÇOS
+          </Link>
+          <Link to="/sobre" className="text-3xl font-black text-white tracking-tighter border-b border-white/5 pb-5 uppercase italic active:text-accent">
+            SOBRE
+          </Link>
+          <Link to="/contato" className="text-3xl font-black text-white tracking-tighter border-b border-white/5 pb-5 uppercase italic active:text-accent">
+            CONTATO
+          </Link>
           
-          <div className="mt-auto pb-12 space-y-6">
-            <a href={CONTACT_INFO.whatsappLink} className="w-full bg-accent text-primary flex items-center justify-center gap-4 py-6 rounded-2xl font-black text-xl shadow-2xl active:scale-95 transition-transform uppercase italic">
-              <i className="fab fa-whatsapp text-3xl"></i> WHATSAPP 24H
+          <div className="mt-auto space-y-6">
+            <a 
+              href={CONTACT_INFO.whatsappLink} 
+              target="_blank"
+              className="w-full bg-accent text-primary flex items-center justify-center gap-4 py-6 rounded-2xl font-black text-xl shadow-2xl active:scale-95 transition-transform uppercase italic"
+            >
+              <i className="fa-brands fa-whatsapp text-3xl"></i> WHATSAPP 24H
             </a>
-            <p className="text-center text-white/30 text-[9px] font-black uppercase tracking-[0.4em]">Curitiba • CIC • RMC</p>
+            <div className="text-center">
+              <p className="text-white/30 text-[9px] font-black uppercase tracking-[0.4em] mb-2">Curitiba • CIC • RMC</p>
+              <p className="text-white/20 text-[8px] font-bold">{CONTACT_INFO.phone}</p>
+            </div>
           </div>
         </div>
       </div>

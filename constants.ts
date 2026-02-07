@@ -13,30 +13,30 @@ export const CONTACT_INFO = {
 };
 
 export const TRUST_BADGES = [
-  { icon: 'fa-certificate', text: 'Garantia de 90 dias' },
-  { icon: 'fa-user-shield', text: 'Técnicos Certificados' },
-  { icon: 'fa-clock', text: 'Chegada em 30 min' },
-  { icon: 'fa-credit-card', text: 'Parcelamos no Cartão' }
+  { icon: 'fa-user-check', text: 'Engenheiros Certificados' },
+  { icon: 'fa-microscope', text: 'Tecnologia Não-Invasiva' },
+  { icon: 'fa-file-signature', text: 'Laudo Técnico Oficial' },
+  { icon: 'fa-shield-halved', text: 'Garantia Premium 90 dias' }
 ];
 
 export const IMAGES: ImageData[] = [
-  { url: "https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=1200&q=80", alt: "Encanador profissional em serviço" },
-  { url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80", alt: "Manutenção hidráulica residencial" },
-  { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80", alt: "Reparo de vazamento em pia" },
-  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1200&q=80", alt: "Tubulações de cobre de alta precisão" },
-  { url: "https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=1200&q=80", alt: "Instalação de conexões hidráulicas" },
-  { url: "https://images.unsplash.com/photo-1595467793429-079717871f76?auto=format&fit=crop&w=1200&q=80", alt: "Limpeza técnica de esgoto" },
-  { url: "https://images.unsplash.com/photo-1624266324687-0971fd306775?auto=format&fit=crop&w=1200&q=80", alt: "Geofone digital para caça vazamento" },
-  { url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", alt: "Acabamentos hidráulicos modernos" }
+  { url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80", alt: "Engenharia Hidráulica de Precisão" },
+  { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80", alt: "Detecção Digital de Vazamentos" },
+  { url: "https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=1200&q=80", alt: "Reparos Hidráulicos Profissionais" },
+  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1200&q=80", alt: "Infraestrutura Hidráulica" },
+  { url: "https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=1200&q=80", alt: "Conexões Técnicas" },
+  { url: "https://images.unsplash.com/photo-1595467793429-079717871f76?auto=format&fit=crop&w=1200&q=80", alt: "Desentupimento Industrial" },
+  { url: "https://images.unsplash.com/photo-1624266324687-0971fd306775?auto=format&fit=crop&w=1200&q=80", alt: "Geofone Digital Avançado" },
+  { url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", alt: "Acabamento em Engenharia" }
 ];
 
 export const MAIN_SERVICES: Service[] = [
-  { id: 'esgoto', title: 'Desentupimento de Esgoto', description: 'Limpeza técnica de canos de esgoto com máquinas rotativas K-500.', icon: 'fa-faucet' },
-  { id: 'vaso', title: 'Desentupimento de Vaso', description: 'Desobstrução higiênica sem necessidade de remover o vaso em 90% dos casos.', icon: 'fa-toilet' },
-  { id: 'pia', title: 'Desentupimento de Pia', description: 'Remoção de gordura em tubulações de cozinha com sondas flexíveis.', icon: 'fa-sink' },
-  { id: 'ralo', title: 'Desentupimento de Ralo', description: 'Desobstrução de ralos de banheiro e áreas externas com rapidez.', icon: 'fa-circle-notch' },
-  { id: 'hidro', title: 'Hidrojateamento', description: 'Lavagem interna de tubulações com alta pressão para condomínios.', icon: 'fa-water' },
-  { id: 'caca-vazamento', title: 'Caça-Vazamentos', description: 'Detecção por ultrassom (Geofone) para achar vazamentos invisíveis.', icon: 'fa-search-location' },
+  { id: 'esgoto', title: 'Engenharia de Esgoto', description: 'Desobstrução técnica com maquinário K-500 de alta performance. Sem danos estruturais.', icon: 'fa-vial-circle-check' },
+  { id: 'caca-vazamento', title: 'Caça-Vazamento Digital', description: 'Localização exata com Ultrassom Geofônico. Evitamos quebra-quebra desnecessário.', icon: 'fa-crosshairs' },
+  { id: 'vaso', title: 'Desentupimento de Vaso', description: 'Técnica higiênica de pressurização. Restabelecemos o fluxo sem remoção da louça.', icon: 'fa-toilet-paper' },
+  { id: 'pia', title: 'Desentupimento de Pia', description: 'Remoção de incrustações e gordura solidificada em tubulações de alta pressão.', icon: 'fa-sink' },
+  { id: 'hidro', title: 'Hidrojateamento', description: 'Limpeza profunda por jato de água em alta pressão. Ideal para condomínios e indústrias.', icon: 'fa-faucet-drip' },
+  { id: 'ralo', title: 'Desentupimento de Ralos', description: 'Desobstrução de sistemas de drenagem pluvial e residencial com rapidez total.', icon: 'fa-droplet' },
 ];
 
 export const BAIRROS: string[] = [
@@ -64,17 +64,15 @@ export const CIDADES: string[] = [
 ];
 
 export const GENERAL_FAQ: FAQItem[] = [
-  { question: "Qual o preço do desentupimento?", answer: "O preço é calculado após avaliação técnica gratuita. Trabalhamos com **preço por metro linear** ou valor fixo para pequenos reparos. Garantimos o melhor custo-benefício de Curitiba." },
-  { question: "Vocês quebram o piso para achar vazamento?", answer: "Não! Usamos tecnologia de **Geofone Ultrassônico**. Localizamos o ponto exato do vazamento e abrimos apenas onde é necessário, economizando sua reforma." },
-  { question: "Atendem emergências na madrugada?", answer: "Sim, somos **Encanador 24h Curitiba**. Temos equipes de prontidão para vazamentos graves e entupimentos de esgoto a qualquer hora." },
-  { question: "Quais as formas de pagamento?", answer: "Aceitamos Dinheiro, PIX, Cartões de Débito e Crédito (com parcelamento em até 12x para serviços maiores)." }
+  { question: "O orçamento tem custo?", answer: "Não. Oferecemos **Visita Técnica e Orçamento 100% Gratuitos** em toda Curitiba. Transparência total antes de qualquer execução." },
+  { question: "Como funciona o Caça-Vazamento?", answer: "Utilizamos **Geofone Ultrassônico Digital**. Ele capta o ruído da água saindo do cano dentro da parede ou piso. Localizamos o ponto exato com margem de erro mínima." },
+  { question: "Vocês emitem Laudo para a Sanepar?", answer: "Sim. Nossos serviços de Caça-Vazamento incluem **Laudo Técnico Credenciado** para solicitação de abatimento na conta de água por vazamento oculto." },
+  { question: "Qual a garantia dos serviços?", answer: "Todos os serviços ADP possuem **Certificado de Garantia de 90 dias**, conforme o Código de Defesa do Consumidor, com suporte imediato." }
 ];
 
 export const SERVICE_TABLE_DATA: TableRow[] = [
-  { service: "Desentupimento de Esgoto", description: "Maquinário rotativo industrial", price: "Sob Orçamento", availability: "24h Imediato" },
-  { service: "Caça Vazamento Digital", description: "Geofone eletrônico de alta precisão", price: "R$ 149,90 (Base)", availability: "Agendado/Urgente" },
-  { service: "Pia e Sifão", description: "Limpeza e vedação técnica", price: "R$ 80,00 - R$ 150,00", availability: "24h" },
-  { service: "Limpeza de Fossa", description: "Caminhão auto-vácuo 10m³", price: "Por M³", availability: "Sob Agendamento" },
-  { service: "Vaso Sanitário", description: "Desobstrução com mola de aço", price: "Valor Fixo", availability: "Imediato" },
-  { service: "Troca de Reparos", description: "Válvulas Hydra, Docol e Deca", price: "Mão de obra fixa", availability: "Comercial/Plantão" },
+  { service: "Engenharia de Esgoto", description: "Sondas rotativas alemãs", price: "Sob Consulta", availability: "Imediato 24h" },
+  { service: "Caça Vazamento", description: "Geofone Digital Nível 1", price: "A partir de R$ 149", availability: "Urgente" },
+  { service: "Pia e Sifão", description: "Higiene e desobstrução", price: "Valor Fixo", availability: "24h" },
+  { service: "Hidrojateamento", description: "Alta pressão industrial", price: "Por metro/hora", availability: "Agendado" },
 ];

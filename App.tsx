@@ -6,7 +6,6 @@ import FixedButtons from './components/FixedButtons';
 import Home from './pages/Home';
 import DynamicPage from './pages/DynamicPage';
 import Sitemap from './pages/Sitemap';
-import ImageGenerator from './pages/ImageGenerator';
 
 const App: React.FC = () => {
   return (
@@ -18,7 +17,6 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/sitemap" element={<Sitemap />} />
-            <Route path="/gerador-de-imagens" element={<ImageGenerator />} />
             {/* Dynamic routes for Locations and Services */}
             <Route path="/bairro/:name" element={<DynamicPage type="bairro" />} />
             <Route path="/cidade/:name" element={<DynamicPage type="cidade" />} />

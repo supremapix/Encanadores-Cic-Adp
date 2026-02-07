@@ -33,6 +33,22 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
     return args[index];
   }, [name]);
   
+  // Deterministic image selection based on location name to ensure variation across pages
+  const locationImage = useMemo(() => {
+    const idx = (name?.length || 0) % IMAGES.length;
+    return IMAGES[idx];
+  }, [name]);
+
+  const secondaryImage = useMemo(() => {
+    const idx = ((name?.length || 0) + 2) % IMAGES.length;
+    return IMAGES[idx];
+  }, [name]);
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = CONTACT_INFO.logoUrl;
+    e.currentTarget.className = "rounded-xl p-8 object-contain bg-gray-100 w-full h-64";
+  };
+
   const getPageTitle = () => {
     if (type === 'servico') return `${titleName} em Curitiba 24h | Atendimento Imediato`;
     return `Encanador em ${titleName} - Atendimento 24h | ADP Curitiba`;
@@ -54,7 +70,7 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": `ADP Encanador - ${titleName}`,
-      "image": "https://desentope.aloanuncio.com.br/images/logo.png",
+      "image": locationImage.url,
       "telephone": "+55-41-3345-1194",
       "address": {
         "@type": "PostalAddress",
@@ -78,7 +94,7 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
       scriptTag.textContent = JSON.stringify(schemaData);
       document.head.appendChild(scriptTag);
     }
-  }, [name, type, uniqueArguments]);
+  }, [name, type, uniqueArguments, locationImage]);
 
   const getIntroText = () => {
     if (type === 'servico') {
@@ -117,13 +133,21 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
                       <p>Muitos moradores de **{titleName}** tentam resolver problemas de encanamento com soluções caseiras (como soda cáustica ou arames), o que pode corroer os canos ou causar entupimentos ainda piores. Nossa recomendação é sempre chamar um profissional que possua as ferramentas certas para cada tipo de obstrução ou vazamento.</p>
                     </div>
                     
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                      {TRUST_BADGES.map((b, i) => (
-                        <div key={i} className="bg-gray-50 p-3 rounded text-center">
-                          <i className={`fas ${b.icon} text-primary mb-2`}></i>
-                          <p className="text-[10px] font-bold uppercase text-gray-500">{b.text}</p>
-                        </div>
-                      ))}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                      <img 
+                        src={locationImage.url} 
+                        alt={locationImage.alt} 
+                        onError={handleImageError}
+                        className="rounded-xl shadow-md w-full h-64 object-cover" 
+                      />
+                      <div className="grid grid-cols-2 gap-4">
+                        {TRUST_BADGES.map((b, i) => (
+                          <div key={i} className="bg-gray-50 p-3 rounded text-center flex flex-col items-center justify-center">
+                            <i className={`fas ${b.icon} text-primary mb-2 text-xl`}></i>
+                            <p className="text-[10px] font-bold uppercase text-gray-500">{b.text}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                 </div>
 
@@ -170,7 +194,12 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
                         <p>Emitimos laudos técnicos detalhados e nota fiscal para condomínios e empresas.</p>
                       </div>
                       <div className="relative group">
-                         <img src={IMAGES[3].url} alt={`Equipe ADP em ${titleName}`} className="rounded-xl shadow-lg w-full h-64 object-cover" />
+                         <img 
+                          src={secondaryImage.url} 
+                          alt={secondaryImage.alt} 
+                          onError={handleImageError}
+                          className="rounded-xl shadow-lg w-full h-64 object-cover" 
+                         />
                          <div className="absolute inset-0 bg-primary/20 rounded-xl group-hover:bg-transparent transition-all"></div>
                       </div>
                     </div>

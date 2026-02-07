@@ -8,7 +8,8 @@ export const CONTACT_INFO = {
   whatsappLink: "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F",
   officialSite: "https://desentopeadp.com.br/",
   phoneLink: "tel:+554133451194",
-  socialLink: "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F"
+  socialLink: "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F",
+  logoUrl: "https://desentope.aloanuncio.com.br/images/logo.png"
 };
 
 export const TRUST_BADGES = [
@@ -19,10 +20,12 @@ export const TRUST_BADGES = [
 ];
 
 export const IMAGES: ImageData[] = [
-  { url: "https://desentope.aloanuncio.com.br/images/adp-desentupidora-1.webp", alt: "Caminhão Desentupidora ADP Atendimento 24h" },
-  { url: "https://desentope.aloanuncio.com.br/images/hidrojateamento.jpg", alt: "Serviço de Hidrojateamento de Alta Pressão" },
-  { url: "https://desentope.aloanuncio.com.br/images/vaso-sanitario.jpg", alt: "Desentupimento de Vaso Sanitário Profissional" },
-  { url: "https://desentopeadp.com.br/assets/images/caminhao-desentupimento-cidade-industrial-em-curitiba-890x890.png", alt: "Equipe ADP pronta para atendimento emergencial" }
+  { url: "https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=800&q=80", alt: "Encanador profissional trabalhando em tubulação de cobre" },
+  { url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80", alt: "Manutenção de sistema hidráulico residencial" },
+  { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80", alt: "Técnico encanador consertando vazamento em pia" },
+  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=80", alt: "Tubulações industriais e válvulas hidráulicas" },
+  { url: "https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=800&q=80", alt: "Reparo profissional em encanamento de banheiro" },
+  { url: "https://images.unsplash.com/photo-1595467793429-079717871f76?auto=format&fit=crop&w=800&q=80", alt: "Encanador limpando ralo e esgoto" }
 ];
 
 export const MAIN_SERVICES: Service[] = [

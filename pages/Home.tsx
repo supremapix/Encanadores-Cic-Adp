@@ -5,9 +5,14 @@ import TrustBar from '../components/TrustBar';
 import VideoSection from '../components/VideoSection';
 import FAQ from '../components/FAQ';
 import ContactForm from '../components/ContactForm';
-import { MAIN_SERVICES, BAIRROS, CIDADES, GENERAL_FAQ, CONTACT_INFO } from '../constants';
+import { MAIN_SERVICES, BAIRROS, CIDADES, GENERAL_FAQ, CONTACT_INFO, IMAGES } from '../constants';
 
 const Home: React.FC = () => {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = CONTACT_INFO.logoUrl;
+    e.currentTarget.className = "rounded-xl p-4 object-contain bg-gray-50 w-full h-48";
+  };
+
   return (
     <>
       <Hero />
@@ -64,8 +69,18 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div className="md:w-1/2 grid grid-cols-2 gap-4">
-              <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=400&q=80" alt="Equipamento Profissional" className="rounded-lg shadow-md h-48 w-full object-cover" />
-              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=400&q=80" alt="Técnico em Ação" className="rounded-lg shadow-md h-48 w-full object-cover mt-8" />
+              <img 
+                src={IMAGES[0].url} 
+                alt="Encanador Profissional" 
+                onError={handleImageError}
+                className="rounded-lg shadow-md h-48 w-full object-cover" 
+              />
+              <img 
+                src={IMAGES[3].url} 
+                alt="Tubulação Hidráulica" 
+                onError={handleImageError}
+                className="rounded-lg shadow-md h-48 w-full object-cover mt-8" 
+              />
             </div>
           </div>
         </div>

@@ -35,7 +35,7 @@ const Header: React.FC = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6 text-sm lg:gap-8 lg:text-base">
           <NavLink to="/">Home</NavLink>
           {isHome ? (
             <>
@@ -50,6 +50,11 @@ const Header: React.FC = () => {
                <NavLink to="/#servicos">Serviços</NavLink>
             </>
           )}
+          <NavLink to="/gerador-de-imagens">
+            <span className="flex items-center gap-1">
+              <i className="fas fa-magic text-accent"></i> IA Imagens
+            </span>
+          </NavLink>
           <a 
             href={CONTACT_INFO.whatsappLink}
             target="_blank"
@@ -74,6 +79,7 @@ const Header: React.FC = () => {
         <div className="md:hidden bg-primary border-t border-white/10 animate-fade-in">
           <nav className="flex flex-col p-4 gap-4">
             <NavLink to="/">Home</NavLink>
+            <NavLink to="/gerador-de-imagens">IA Gerador de Imagens</NavLink>
             <NavLink to="/#bairros">Bairros</NavLink>
             <NavLink to="/#cidades">Cidades</NavLink>
             <NavLink to="/#servicos">Serviços</NavLink>

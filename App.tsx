@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import FixedButtons from './components/FixedButtons';
@@ -17,10 +17,14 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            
             {/* Dynamic routes for Locations and Services */}
             <Route path="/bairro/:name" element={<DynamicPage type="bairro" />} />
             <Route path="/cidade/:name" element={<DynamicPage type="cidade" />} />
             <Route path="/servico/:name" element={<DynamicPage type="servico" />} />
+            
+            {/* Auto Redirect for any non-existent route to Home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
         

@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const isHome = location.pathname === '/';
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -20,11 +20,12 @@ const Header: React.FC = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  // Se não estiver na home ou scrollou, o header é sólido e escuro
+  // Se estiver na home e não scrollou, o header é transparente
+  // Em qualquer outro caso, ele é sólido para contraste total
   const isSolid = !isHome || scrolled || isMenuOpen;
   
   const headerClasses = isSolid 
-    ? 'bg-primary py-3 shadow-2xl border-b border-accent/20' 
+    ? 'bg-primary/95 backdrop-blur-2xl py-3 shadow-2xl border-b border-accent/20' 
     : 'bg-transparent py-5';
 
   const linkClasses = "text-white hover:text-accent font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-300";
@@ -34,18 +35,18 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group relative z-[110]">
-          <div className="bg-white rounded-full p-1 shadow-lg transition-transform group-hover:rotate-6 group-hover:scale-110">
+          <div className="bg-white rounded-full p-1.5 shadow-xl transition-transform group-hover:rotate-6 group-hover:scale-110">
             <img 
               src={CONTACT_INFO.logoUrl} 
               alt="ADP Logo" 
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-9 md:h-12 w-auto object-contain"
             />
           </div>
           <div className="leading-none">
             <h1 className="font-black text-white text-base md:text-xl tracking-tighter uppercase italic">
               ADP <span className="text-accent">Engenharia</span>
             </h1>
-            <span className="text-[7px] text-white/50 font-bold uppercase tracking-[0.3em]">Curitiba 24 Horas</span>
+            <span className="text-[7px] text-white/50 font-bold uppercase tracking-[0.3em]">Precision Hidraulics 24h</span>
           </div>
         </Link>
 
@@ -58,7 +59,7 @@ const Header: React.FC = () => {
           <a 
             href={CONTACT_INFO.whatsappLink} 
             target="_blank"
-            className="bg-accent text-primary px-7 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-2xl hover:bg-white hover:scale-105 transition-all transform"
+            className="bg-accent text-primary px-7 py-3 rounded-xl font-[900] text-[10px] uppercase tracking-widest shadow-2xl hover:bg-white hover:scale-105 transition-all transform italic"
           >
             CHAMADA URGENTE
           </a>
@@ -84,20 +85,16 @@ const Header: React.FC = () => {
         isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
       }`}>
         <div className="flex flex-col h-full pt-32 px-10 gap-6 overflow-y-auto">
-          <Link to="/" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4">INÍCIO</Link>
-          <Link to="/servicos" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4">SERVIÇOS</Link>
-          <Link to="/sobre" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4">SOBRE</Link>
-          <Link to="/sitemap" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4">ATENDIMENTO</Link>
+          <Link to="/" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">INÍCIO</Link>
+          <Link to="/servicos" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">SERVIÇOS</Link>
+          <Link to="/sobre" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">SOBRE</Link>
+          <Link to="/sitemap" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">ATENDIMENTO</Link>
           
           <div className="mt-auto pb-12 space-y-6">
-            <a href={CONTACT_INFO.whatsappLink} className="w-full bg-accent text-primary flex items-center justify-center gap-4 py-6 rounded-2xl font-black text-xl shadow-2xl active:scale-95 transition-transform">
+            <a href={CONTACT_INFO.whatsappLink} className="w-full bg-accent text-primary flex items-center justify-center gap-4 py-6 rounded-2xl font-black text-xl shadow-2xl active:scale-95 transition-transform uppercase italic">
               <i className="fab fa-whatsapp text-3xl"></i> WHATSAPP 24H
             </a>
-            <div className="flex justify-center gap-8 text-white/30">
-               <i className="fas fa-shield-alt text-2xl"></i>
-               <i className="fas fa-microscope text-2xl"></i>
-               <i className="fas fa-tools text-2xl"></i>
-            </div>
+            <p className="text-center text-white/30 text-[9px] font-black uppercase tracking-[0.4em]">Curitiba • CIC • RMC</p>
           </div>
         </div>
       </div>

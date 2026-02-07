@@ -57,12 +57,12 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex gap-4 justify-center md:justify-start">
               {[
-                { icon: 'fa-whatsapp', link: CONTACT_INFO.whatsappLink },
-                { icon: 'fa-phone', link: CONTACT_INFO.phoneLink },
-                { icon: 'fa-map', link: '#' }
+                { icon: 'fa-whatsapp', link: CONTACT_INFO.whatsappLink, prefix: 'fab' },
+                { icon: 'fa-phone', link: CONTACT_INFO.phoneLink, prefix: 'fas' },
+                { icon: 'fa-map-location-dot', link: '#', prefix: 'fas' }
               ].map((social, i) => (
-                <a key={i} href={social.link} className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-accent hover:text-primary transition-all active:scale-90 border border-white/5">
-                  <i className={`fas ${social.icon} text-xl`}></i>
+                <a key={i} href={social.link} className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-accent hover:text-primary transition-all active:scale-90 border border-white/5 group">
+                  <i className={`${social.prefix} ${social.icon} text-xl transition-transform group-hover:scale-110`}></i>
                 </a>
               ))}
             </div>

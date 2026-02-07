@@ -1,3 +1,4 @@
+
 import { Service, FAQItem, TableRow, ImageData } from './types';
 
 export const CONTACT_INFO = {
@@ -36,31 +37,32 @@ export const MAIN_SERVICES: Service[] = [
 ];
 
 export const BAIRROS: string[] = [
-  // CIC e Vilas Específicas
   "Cidade Industrial (CIC)", "CIC Norte", "CIC Central", "CIC Sul", "Vila Nossa Senhora da Luz", 
   "Vila Verde", "Vila Sabará", "Vila São José", "Vila Santa Helena", "Vila Industrial", 
   "Vila Conquista", "Vila Torres", "Vila União", "Vila Nova Esperança", "Vila Osternack", 
-  "Vila Nova", "Vila Guaíra Velha", "Vila São Domingos", "Vila Tecnológica", "Vila Audi União", 
+  "Vila Nova", "Vila Guaíra", "Vila São Domingos", "Vila Tecnológica", "Vila Audi União", 
   "Vila Becker", "Vila Copel", "Vila Eletrosul", "Vila Trabalhador", "Vila São João", 
-  "Vila São Miguel", "Vila Santo Antônio", "Vila Verde II", "Vila Verde III", "Vila Araucária", 
-  "Vila Concórdia", "Vila São Judas Tadeu", "Vila São Mateus", "Vila São Pedro", "Vila Industrial Norte",
-  "Vila Industrial Sul", "Vila Parolin", "Vila Sabará Velha", "Vila Barigui", "Vila Reno",
-  // Bairros Tradicionais
-  "Água Verde", "Alto da Glória", "Alto da XV", "Atuba", "Bacacheri", "Bairro Alto", 
-  "Batel", "Bigorrilho", "Boa Vista", "Boqueirão", "Butiatuvinha", "Cabral", 
-  "Cachoeira", "Cajuru", "Campina do Siqueira", "Campo Comprido", "Capão da Imbuia", 
-  "Capão Raso", "Cascatinha", "Centro", "Centro Cívico", "Champagnat", 
-  "Cristo Rei", "Fanny", "Fazendinha", "Ganchinho", "Guabirotuba", "Hauer", 
-  "Hugo Lange", "Jardim Botânico", "Jardim das Américas", "Jardim Social", "Juvevê", 
-  "Lindóia", "Mercês", "Mossunguê", "Novo Mundo", "Orleans", "Parolin", 
-  "Pilarzinho", "Pinheirinho", "Portão", "Prado Velho", "Rebouças", "Santa Cândida", 
-  "Santa Felicidade", "Santa Quitéria", "Santo Inácio", "São Braz", "São Francisco", 
-  "São Lourenço", "Seminário", "Sítio Cercado", "Taboão", "Tarumã", "Tatuquara", 
-  "Tingui", "Uberaba", "Umbará", "Vila Izabel", "Vista Alegre", "Xaxim",
-  // Regiões e Conjuntos
-  "Conjunto Caiuá", "Conjunto Vitória Régia", "Conjunto Sabará", "Conjunto Parigot de Souza",
-  "Jardim Schaffer", "Boqueirão de Baixo", "Boqueirão de Cima", "Tanguá", "Vila Zumbi",
-  "Abranches de Baixo", "Abranches de Cima", "Ecoville", "Centro Histórico"
+  "Vila São Miguel", "Vila Santo Antônio", "Vila Verde II", "Vila Verde III", "Vila Verde IV", 
+  "Vila Verde V", "Vila Nova Primavera", "Vila Araucária", "Vila Concórdia", "Vila São Judas Tadeu", 
+  "Vila São Mateus", "Vila São Pedro", "Vila São Marcos", "Vila São Paulo", "Vila Industrial Oeste", 
+  "Vila Industrial Norte", "Vila Industrial Sul", "Vila Industrial Velha", "Vila Industrial Nova", 
+  "Vila Industrial Moderna", "Vila Industrial do Trabalhador", "Vila Industrial União", "Vila Industrial Esperança",
+  "Conjunto Habitacional Nossa Senhora da Luz", "Conjunto Sabará", "Conjunto Caiuá", "Conjunto Vitória Régia", 
+  "Conjunto Nova Esperança", "Conjunto Industrial", "Conjunto União", "Conjunto Osternack", "Conjunto Habitacional Vila Verde",
+  "Vila Parolin", "Vila Torres", "Jardim Schaffer", "Vila Sabará", "Boqueirão de Baixo", "Boqueirão de Cima", 
+  "Tanguá", "Vila Zumbi", "Abranches de Baixo", "Abranches de Cima", "Vila Nossa Senhora da Luz", 
+  "Vila Tecnológica", "Vila Oficinas", "Vila Fanny", "Vila Hauer", "Batel Soho", "Alto da Rua XV", 
+  "Vila Guaíra", "Centro Histórico", "Ecoville", "Carmo Abranches", "Água Verde", "Ahú", "Alto Boqueirão", 
+  "Alto da Glória", "Alto da XV", "Atuba", "Augusta", "Bacacheri", "Bairro Alto", "Barreirinha", 
+  "Batel", "Bigorrilho", "Boa Vista", "Bom Retiro", "Boqueirão", "Butiatuvinha", "Cabral", "Cachoeira", 
+  "Cajuru", "Campina do Siqueira", "Campo Comprido", "Campo de Santana", "Capão da Imbuia", "Capão Raso", 
+  "Cascatinha", "Caximba", "Centro", "Centro Cívico", "Cristo Rei", "Fanny", "Fazendinha", "Ganchinho", 
+  "Guabirotuba", "Guaíra", "Hauer", "Hugo Lange", "Jardim Botânico", "Jardim das Américas", "Jardim Social", 
+  "Juvevê", "Lamenha Pequena", "Lindóia", "Mercês", "Mossunguê", "Novo Mundo", "Orleans", "Parolin", 
+  "Pilarzinho", "Pinheirinho", "Portão", "Prado Velho", "Rebouças", "Riviera", "Santa Cândida", 
+  "Santa Felicidade", "Santa Quitéria", "Santo Inácio", "São Braz", "São Francisco", "São João", 
+  "São Lourenço", "São Miguel", "Vila Pantanal", "Seminário", "Sítio Cercado", "Taboão", "Tarumã", 
+  "Tatuquara", "Tingui", "Uberaba", "Umbará", "Vila Izabel", "Vista Alegre", "Xaxim"
 ];
 
 export const CIDADES: string[] = [
@@ -69,8 +71,8 @@ export const CIDADES: string[] = [
 ];
 
 export const GENERAL_FAQ: FAQItem[] = [
-  { question: "O orçamento é gratuito?", answer: "Sim! A ADP realiza a visita técnica e o diagnóstico presencial sem custo em toda Curitiba. Transparência total." },
-  { question: "Quanto tempo para chegar?", answer: "Temos unidades móveis espalhadas estrategicamente. Em Curitiba, chegamos em média entre 30 a 45 minutos." },
-  { question: "Dão garantia do serviço?", answer: "Sim, todos os nossos serviços possuem garantia total em contrato de 90 dias, assegurando sua paz de espírito." },
-  { question: "Atendem emergências no CIC?", answer: "Sim, possuímos uma base tática dentro do CIC para atender todas as vilas e conjuntos habitacionais com rapidez máxima 24h." }
+  { question: "O orçamento é gratuito?", answer: "Sim! A ADP realiza a visita técnica e o diagnóstico presencial sem custo em toda Curitiba. Transparência total para você." },
+  { question: "Quanto tempo leva para um técnico chegar?", answer: "Temos unidades móveis espalhadas estrategicamente por toda Curitiba e CIC. Em média, chegamos entre 30 a 45 minutos para emergências." },
+  { question: "Vocês dão garantia do serviço?", answer: "Sim, todos os nossos serviços possuem garantia total em contrato de 90 dias, assegurando sua paz de espírito e a qualidade da engenharia aplicada." },
+  { question: "Como funciona a detecção de vazamentos?", answer: "Utilizamos Geofone Digital de alta sensibilidade para localizar o vazamento exatamente onde ele está, evitando quebras desnecessárias em seu imóvel." }
 ];

@@ -27,121 +27,109 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
       "garantia total de 90 dias em todos os serviços executados",
       "plantão especial para emergências hidráulicas 24 horas"
     ];
-    const index = (name?.length || 0) % args.length;
+    // Determinístico baseado no nome
+    const index = (name || "").length % args.length;
     return args[index];
   }, [name]);
   
   const locationImage = useMemo(() => {
-    // Aumentando a variabilidade baseada no nome para garantir que cada página pareça única
-    const charSum = (name || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const idx = charSum % IMAGES.length;
-    return IMAGES[idx] || IMAGES[0];
+    // Hash simples para selecionar imagem variada mas fixa por local
+    const charCodeSum = (name || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const idx = charCodeSum % IMAGES.length;
+    return IMAGES[idx];
   }, [name]);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = CONTACT_INFO.logoUrl;
-    e.currentTarget.className = "rounded-xl p-12 object-contain bg-gray-50 w-full h-64 border border-gray-100 opacity-50";
-    e.currentTarget.onerror = null; 
+    const parent = e.currentTarget.parentElement;
+    if (parent) {
+      // Substitui a imagem por um container elegante com o logo
+      parent.innerHTML = `
+        <div class="w-full h-full bg-blue-50 flex items-center justify-center p-8 rounded-xl border border-blue-100">
+          <img src="${CONTACT_INFO.logoUrl}" class="max-h-full max-w-full object-contain opacity-50 grayscale" />
+        </div>
+      `;
+    }
   };
 
   useEffect(() => {
-    try {
-      window.scrollTo(0, 0);
-      document.title = type === 'servico' 
-        ? `${titleName} em Curitiba 24h | Atendimento Imediato`
-        : `Encanador em ${titleName} - Atendimento 24h | ADP Curitiba`;
-
-      const description = type === 'servico'
-        ? `Serviço especializado de ${titleName} em Curitiba. Atendimento 24h, preço justo e garantia.`
-        : `Precisa de um Encanador 24h em ${titleName}? A ADP resolve desentupimentos e vazamentos com ${uniqueArguments}.`;
-
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute('content', description);
-      }
-
-      const schemaData = {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": `ADP Encanador - ${titleName}`,
-        "image": locationImage.url,
-        "telephone": "+55-41-3345-1194",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rua Luiz Maltaca, 36",
-          "addressLocality": type === 'cidade' ? titleName : "Curitiba",
-          "addressRegion": "PR",
-          "addressCountry": "BR"
-        }
-      };
-
-      const scriptId = 'dynamic-schema';
-      const existingScript = document.getElementById(scriptId) as HTMLScriptElement | null;
-      if (existingScript) {
-        existingScript.textContent = JSON.stringify(schemaData);
-      } else {
-        const scriptElement = document.createElement('script');
-        scriptElement.id = scriptId;
-        scriptElement.type = 'application/ld+json';
-        scriptElement.textContent = JSON.stringify(schemaData);
-        document.head.appendChild(scriptElement);
-      }
-    } catch (e) {
-      console.error("SEO Update Error:", e);
-    }
-  }, [name, type, titleName, uniqueArguments, locationImage]);
+    window.scrollTo(0, 0);
+    document.title = type === 'servico' 
+      ? `${titleName} em Curitiba 24h | Atendimento Imediato`
+      : `Encanador em ${titleName} - Atendimento 24h | ADP Curitiba`;
+  }, [name, type, titleName]);
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <div className="bg-primary text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 capitalize">{titleName}</h1>
-             <h2 className="text-xl md:text-2xl text-accent font-medium opacity-90">
-              {type === 'servico' ? 'Especialista Hidráulico 24h' : 'Encanador de Plantão Agora'}
+      <div className="bg-primary text-white py-20 relative overflow-hidden">
+        {/* Background Decorative */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 transform translate-x-20"></div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+            <nav className="text-white/60 text-sm mb-6 font-medium">
+              <Link to="/" className="hover:text-accent">Home</Link> / 
+              <span className="text-white ml-2 capitalize">{type}</span>
+            </nav>
+            <h1 className="text-4xl md:text-6xl font-black mb-4 capitalize tracking-tight">{titleName}</h1>
+             <h2 className="text-xl md:text-2xl text-accent font-bold opacity-90 uppercase tracking-widest">
+              {type === 'servico' ? 'Especialista em Hidráulica 24h' : 'Equipe de Plantão Próxima'}
             </h2>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col lg:flex-row gap-12">
-            <div className="w-full lg:w-2/3 space-y-12">
-                <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                    <h2 className="text-2xl font-bold text-primary mb-6">Atendimento Especializado em {titleName}</h2>
-                    <p className="text-gray-600 mb-8 leading-relaxed">
-                      A ADP Encanador Curitiba é referência em <strong>{titleName}</strong> para resolver qualquer emergência hidráulica. 
-                      Oferecemos {uniqueArguments} com foco em rapidez e transparência total no orçamento.
+      <div className="container mx-auto px-4 py-16">
+        <div className="flex flex-col lg:flex-row gap-16">
+            <div className="w-full lg:w-2/3 space-y-16">
+                <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
+                    <h2 className="text-3xl font-bold text-primary mb-8">Soluções em {titleName}</h2>
+                    <p className="text-gray-600 mb-10 text-lg leading-relaxed">
+                      A ADP Encanador Curitiba oferece serviços de alta performance em <strong>{titleName}</strong>. 
+                      Resolvemos desde pequenos reparos até grandes obstruções industriais com {uniqueArguments}.
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <img 
-                        src={locationImage.url} 
-                        alt={locationImage.alt} 
-                        onError={handleImageError}
-                        className="rounded-xl shadow-md w-full h-64 object-cover border" 
-                      />
-                      <div className="bg-blue-50/50 p-6 rounded-xl border border-blue-100 flex flex-col justify-center">
-                        <h4 className="font-bold text-primary mb-4">Diferenciais em {titleName}:</h4>
-                        <ul className="space-y-3 text-sm text-gray-700">
-                          <li><i className="fas fa-check text-green-500 mr-2"></i> Chegada em até 30 minutos</li>
-                          <li><i className="fas fa-check text-green-500 mr-2"></i> Orçamento grátis no local</li>
-                          <li><i className="fas fa-check text-green-500 mr-2"></i> Equipamentos profissionais</li>
-                          <li><i className="fas fa-check text-green-500 mr-2"></i> Garantia de 90 dias</li>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                      <div className="rounded-2xl shadow-xl overflow-hidden aspect-video md:aspect-auto border border-gray-100">
+                        <img 
+                          src={locationImage.url} 
+                          alt={locationImage.alt} 
+                          onError={handleImageError}
+                          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" 
+                        />
+                      </div>
+                      <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-blue-100 flex flex-col justify-center">
+                        <h4 className="font-bold text-primary text-xl mb-6 flex items-center gap-2">
+                          <i className="fas fa-check-double text-accent"></i> Benefícios para Você:
+                        </h4>
+                        <ul className="space-y-4 text-gray-700">
+                          <li className="flex items-start gap-3">
+                            <i className="fas fa-clock text-blue-500 mt-1"></i>
+                            <div><strong>Rapidez:</strong> Chegada estimada em 30 min.</div>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <i className="fas fa-search-plus text-blue-500 mt-1"></i>
+                            <div><strong>Precisão:</strong> Geofone para evitar quebra-quebra.</div>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <i className="fas fa-wallet text-blue-500 mt-1"></i>
+                            <div><strong>Preço Justo:</strong> Orçamento técnico gratuito.</div>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <i className="fas fa-calendar-check text-blue-500 mt-1"></i>
+                            <div><strong>Plantão 24h:</strong> Noites, domingos e feriados.</div>
+                          </li>
                         </ul>
                       </div>
                     </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-bold text-primary mb-6">Serviços Disponíveis para {titleName}</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {SERVICE_TABLE_DATA.slice(0, 4).map((item, i) => (
-                      <div key={i} className="flex items-center gap-4 p-4 border rounded-xl hover:bg-gray-50 transition-colors">
-                        <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0">
-                          <i className="fas fa-wrench text-sm"></i>
+                <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
+                  <h3 className="text-2xl font-bold text-primary mb-8">Serviços em Destaque em {titleName}</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {SERVICE_TABLE_DATA.slice(0, 3).map((item, i) => (
+                      <div key={i} className="flex flex-col p-6 bg-gray-50 border border-gray-100 rounded-2xl hover:shadow-lg transition-all text-center">
+                        <div className="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                          <i className="fas fa-wrench text-xl"></i>
                         </div>
-                        <div>
-                          <p className="font-bold text-gray-800 text-sm">{item.service}</p>
-                          <p className="text-xs text-gray-500">{item.availability}</p>
-                        </div>
+                        <p className="font-black text-primary mb-2">{item.service}</p>
+                        <p className="text-xs text-gray-400 font-bold uppercase">{item.availability}</p>
                       </div>
                     ))}
                   </div>
@@ -149,21 +137,24 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
 
                 <FAQ 
                     items={[
-                        { question: `Qual o valor da visita em ${titleName}?`, answer: `Em ${titleName}, a visita e o orçamento são **100% gratuitos**. O técnico avalia o problema e passa o valor na hora.` },
+                        { question: `A visita para orçamento em ${titleName} é paga?`, answer: `De forma alguma! A visita e o orçamento em **${titleName}** são totalmente gratuitos e sem compromisso. Nosso técnico vai até você para avaliar o problema.` },
                         ...GENERAL_FAQ.slice(0, 2)
                     ]} 
-                    title={`Dúvidas sobre ${titleName}`}
+                    title={`FAQ sobre ${titleName}`}
                 />
             </div>
 
-            <div className="w-full lg:w-1/3 space-y-8">
-                <ContactForm />
-                <div className="bg-urgent text-white p-8 rounded-2xl shadow-xl text-center">
-                  <h4 className="text-xl font-bold mb-4">Emergência Agora?</h4>
-                  <p className="mb-6 opacity-90 text-sm">Temos um técnico de plantão perto de {titleName}.</p>
-                  <a href={CONTACT_INFO.whatsappLink} className="block bg-white text-urgent font-bold py-4 rounded-xl hover:scale-105 transition-all">
-                    <i className="fab fa-whatsapp mr-2 text-xl"></i> CHAMAR WHATSAPP
-                  </a>
+            <div className="w-full lg:w-1/3 space-y-10">
+                <div className="sticky top-24">
+                  <ContactForm />
+                  <div className="mt-8 bg-urgent text-white p-10 rounded-3xl shadow-2xl text-center relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-white/30 animate-pulse"></div>
+                    <h4 className="text-2xl font-black mb-4">EMERGÊNCIA 24H</h4>
+                    <p className="mb-8 opacity-90 text-lg">Temos um técnico agora em <strong>{titleName}</strong>.</p>
+                    <a href={CONTACT_INFO.whatsappLink} className="block bg-white text-urgent font-black py-5 rounded-2xl hover:scale-105 transition-all shadow-xl">
+                      <i className="fab fa-whatsapp mr-2 text-2xl"></i> WHATSAPP URGENTE
+                    </a>
+                  </div>
                 </div>
             </div>
         </div>

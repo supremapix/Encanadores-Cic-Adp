@@ -20,8 +20,6 @@ const Header: React.FC = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  // Se estiver na home e não scrollou, o header é transparente
-  // Em qualquer outro caso, ele é sólido para contraste total
   const isSolid = !isHome || scrolled || isMenuOpen;
   
   const headerClasses = isSolid 
@@ -68,14 +66,14 @@ const Header: React.FC = () => {
         {/* Mobile Interaction */}
         <div className="flex items-center gap-3 lg:hidden relative z-[110]">
           <a href={CONTACT_INFO.phoneLink} className="text-accent text-xl p-2.5 bg-white/5 rounded-full border border-white/10 active:scale-90 transition-all">
-            <i className="fas fa-phone-alt"></i>
+            <i className="fas fa-phone"></i>
           </a>
           <button 
             className="text-white text-3xl p-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Abrir Menu"
           >
-            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars-staggered'} transition-transform duration-300`}></i>
+            <i className={`fas ${isMenuOpen ? 'fa-xmark' : 'fa-bars'} transition-transform duration-300`}></i>
           </button>
         </div>
       </div>

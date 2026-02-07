@@ -10,7 +10,7 @@ const NotFound: React.FC = () => {
         <div className="relative inline-block mb-12">
           <span className="text-[clamp(6rem,20vw,15rem)] font-black text-white/5 leading-none">404</span>
           <div className="absolute inset-0 flex items-center justify-center">
-             <i className="fas fa-tools text-accent text-6xl md:text-8xl animate-bounce"></i>
+             <i className="fas fa-screwdriver-wrench text-accent text-6xl md:text-8xl animate-bounce"></i>
           </div>
         </div>
         

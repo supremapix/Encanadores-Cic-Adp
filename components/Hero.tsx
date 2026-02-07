@@ -80,7 +80,7 @@ const Hero: React.FC = () => {
               href={CONTACT_INFO.phoneLink}
               className="flex-1 bg-white/5 border border-white/10 text-white px-8 py-7 rounded-[2rem] font-black text-xl flex items-center justify-center gap-4 hover:bg-white/10 transition-all uppercase italic tracking-tighter"
             >
-              <i className="fas fa-phone-alt text-accent"></i> {CONTACT_INFO.phone}
+              <i className="fas fa-phone text-accent"></i> {CONTACT_INFO.phone}
             </a>
           </div>
 

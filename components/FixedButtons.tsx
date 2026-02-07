@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
 
@@ -34,7 +35,7 @@ const FixedButtons: React.FC = () => {
           className="bg-primary hover:bg-secondary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110"
           aria-label="Ligar Agora"
         >
-          <i className="fas fa-phone-alt text-2xl"></i>
+          <i className="fas fa-phone text-2xl"></i>
         </a>
       </div>
 
@@ -55,7 +56,7 @@ const FixedButtons: React.FC = () => {
           rel="noopener noreferrer"
           className="bg-urgent hover:bg-red-700 text-white px-4 py-2 rounded-full shadow-lg text-sm font-bold transition-transform hover:scale-105 flex items-center gap-2"
         >
-          <i className="fas fa-external-link-alt"></i> Site Oficial
+          <i className="fas fa-arrow-up-right-from-square"></i> Site Oficial
         </a>
       </div>
     </>

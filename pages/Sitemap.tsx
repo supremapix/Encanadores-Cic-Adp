@@ -1,23 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BAIRROS, CIDADES, MAIN_SERVICES } from '../constants';
-import { SITE_URL, updateMetaTags, injectSchema, generateBreadcrumbSchema } from '../utils/seo';
 
 const Sitemap: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    updateMetaTags({
-      title: 'Mapa do Site | ADP Encanador Curitiba 24h',
-      description: 'Navegue pelo mapa completo do site ADP Encanador. Encontre serviços de encanamento, desentupimento por bairro e cidade em Curitiba e região.',
-      canonical: `${SITE_URL}/sitemap`,
-      keywords: 'mapa do site, encanador curitiba, desentupidora curitiba, bairros curitiba, serviços encanamento'
-    });
-
-    injectSchema('schema-breadcrumb', generateBreadcrumbSchema([
-      { name: 'Home', url: SITE_URL },
-      { name: 'Mapa do Site', url: `${SITE_URL}/sitemap` }
-    ]));
+    document.title = "Mapa do Site - ADP Encanador Curitiba";
   }, []);
 
   const createSlug = (text: string) => text.toLowerCase().replace(/ /g, '-');

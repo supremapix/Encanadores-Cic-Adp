@@ -1,19 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ContactForm from '../components/ContactForm';
 import FAQ from '../components/FAQ';
-import { IMAGES, SERVICE_TABLE_DATA, CONTACT_INFO, GENERAL_FAQ } from '../constants';
-import { 
-  SITE_URL, 
-  SEO_CONFIG,
-  updateMetaTags, 
-  injectSchema,
-  generateLocalBusinessSchema,
-  generateServiceSchema,
-  generateBreadcrumbSchema,
-  generateFAQSchema,
-  generateVideoSchema
-} from '../utils/seo';
+import { IMAGES, SERVICE_TABLE_DATA, CONTACT_INFO, GENERAL_FAQ, TRUST_BADGES } from '../constants';
 
 type PageType = 'bairro' | 'cidade' | 'servico';
 
@@ -29,93 +18,84 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
   };
 
   const titleName = formatName(name);
+
+  // Content Spinnner to make pages unique
+  const uniqueArguments = useMemo(() => {
+    const args = [
+      "atendimento imediato para condomínios e residências",
+      "preço justo e orçamento sem compromisso no local",
+      "tecnologia de ponta com Geofone e Câmera de inspeção",
+      "garantia total de 90 dias em todos os serviços executados",
+      "plantão especial para emergências hidráulicas 24 horas"
+    ];
+    // Simple deterministic shuffle based on name length
+    const index = (name?.length || 0) % args.length;
+    return args[index];
+  }, [name]);
   
   const getPageTitle = () => {
-    if (type === 'servico') return `${titleName} em Curitiba 24h | Atendimento Imediato | ADP`;
-    if (type === 'cidade') return `Encanador em ${titleName} 24h | Desentupimento Urgente | ADP`;
-    return `Encanador em ${titleName} 24h | Desentupimento Urgente | ADP Curitiba`;
+    if (type === 'servico') return `${titleName} em Curitiba 24h | Atendimento Imediato`;
+    return `Encanador em ${titleName} - Atendimento 24h | ADP Curitiba`;
   };
 
   const getPageDescription = () => {
-    if (type === 'servico') return `Serviço especializado de ${titleName} em Curitiba e região. Atendimento 24h, orçamento grátis e garantia. Chegamos em 30 minutos. ☎ ${SEO_CONFIG.phoneDisplay}`;
-    if (type === 'cidade') return `Encanador 24h em ${titleName}. Desentupimento urgente, caça-vazamentos e reparos hidráulicos. Atendimento imediato em toda ${titleName}. ☎ ${SEO_CONFIG.phoneDisplay}`;
-    return `Encanador 24h no bairro ${titleName}, Curitiba. Desentupimento, caça-vazamentos e reparos hidráulicos com atendimento imediato. ☎ ${SEO_CONFIG.phoneDisplay}`;
+    if (type === 'servico') return `Serviço especializado de ${titleName} em Curitiba. Atendimento 24h, preço justo e garantia. Chegamos em 30 minutos em qualquer bairro.`;
+    return `Precisa de um Encanador 24h em ${titleName}? A ADP resolve desentupimentos, vazamentos e reparos com ${uniqueArguments}.`;
   };
-
-  const getCanonicalUrl = () => {
-    const pathType = type === 'bairro' ? 'bairro' : type === 'cidade' ? 'cidade' : 'servico';
-    return `${SITE_URL}/${pathType}/${name}`;
-  };
-
-  const getKeywords = () => {
-    const base = `encanador ${titleName}, desentupidora ${titleName}, desentupimento ${titleName}, vazamento ${titleName}, encanador 24h`;
-    if (type === 'servico') return `${titleName} curitiba, ${titleName} 24h, ${base}`;
-    if (type === 'cidade') return `encanador ${titleName}, desentupidora ${titleName}, ${base}`;
-    return `${base}, hidrojateamento ${titleName}, caça vazamentos ${titleName}`;
-  };
-
-  const getFAQItems = () => [
-    { question: `Qual o tempo de chegada em ${titleName}?`, answer: `Normalmente chegamos em ${titleName} entre 30 a 40 minutos após o chamado. Atendimento 24h.` },
-    { question: `Atendem ${titleName} aos sábados e domingos?`, answer: `Sim, nossa equipe de plantão atende 24 horas em ${titleName} todos os dias, incluindo feriados.` },
-    { question: `Quanto custa o serviço de desentupimento em ${titleName}?`, answer: `O valor varia de R$ 150 a R$ 800 dependendo da complexidade. Oferecemos orçamento gratuito. Ligue: ${SEO_CONFIG.phoneDisplay}.` },
-    ...GENERAL_FAQ.slice(0, 2)
-  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = getPageTitle();
 
-    updateMetaTags({
-      title: getPageTitle(),
-      description: getPageDescription(),
-      canonical: getCanonicalUrl(),
-      keywords: getKeywords(),
-      type: type === 'servico' ? 'service' : 'website',
-      image: IMAGES[0].url
-    });
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) metaDescription.setAttribute('content', getPageDescription());
 
-    const localBusiness = generateLocalBusinessSchema() as any;
-    localBusiness.name = `ADP Encanador - ${titleName}`;
-    localBusiness.areaServed = { "@type": "Place", "name": titleName };
-    injectSchema('schema-local-business', localBusiness);
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": `ADP Encanador - ${titleName}`,
+      "image": "https://desentope.aloanuncio.com.br/images/logo.png",
+      "telephone": "+55-41-3345-1194",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Luiz Maltaca, 36",
+        "addressLocality": type === 'cidade' ? titleName : "Curitiba",
+        "addressRegion": "PR",
+        "addressCountry": "BR"
+      },
+      "priceRange": "$$",
+      "areaServed": titleName,
+      "description": getPageDescription()
+    };
 
-    if (type === 'servico') {
-      injectSchema('schema-service', generateServiceSchema(titleName, getPageDescription()));
+    let scriptTag = document.getElementById('dynamic-schema') as HTMLScriptElement | null;
+    if (scriptTag) {
+      scriptTag.textContent = JSON.stringify(schemaData);
+    } else {
+      scriptTag = document.createElement('script');
+      scriptTag.id = 'dynamic-schema';
+      scriptTag.type = 'application/ld+json';
+      scriptTag.textContent = JSON.stringify(schemaData);
+      document.head.appendChild(scriptTag);
     }
-
-    const breadcrumbItems = [
-      { name: 'Home', url: SITE_URL },
-      { name: type === 'bairro' ? 'Bairros' : type === 'cidade' ? 'Cidades' : 'Serviços', url: `${SITE_URL}/#${type === 'bairro' ? 'bairros' : type === 'cidade' ? 'cidades' : 'servicos'}` },
-      { name: titleName, url: getCanonicalUrl() }
-    ];
-    injectSchema('schema-breadcrumb', generateBreadcrumbSchema(breadcrumbItems));
-
-    const faqItems = getFAQItems();
-    injectSchema('schema-faq', generateFAQSchema(faqItems));
-
-    injectSchema('schema-video', generateVideoSchema(
-      `${type === 'servico' ? titleName : 'Encanador'} em ${type === 'servico' ? 'Curitiba' : titleName} - ADP`,
-      `Veja como realizamos ${type === 'servico' ? titleName.toLowerCase() : 'desentupimento'} com equipamentos modernos e atendimento 24h em ${type === 'servico' ? 'Curitiba' : titleName}.`
-    ));
-
-  }, [name, type]);
+  }, [name, type, uniqueArguments]);
 
   const getIntroText = () => {
     if (type === 'servico') {
-        return `Somos especialistas em **${titleName}**. Se você está enfrentando problemas com entupimentos, vazamentos ou precisa de manutenção hidráulica, a ADP Encanador Curitiba é a escolha certa. Utilizamos tecnologia de ponta para resolver seu problema sem quebra-quebra, com garantia e preço justo.`;
+        return `O serviço de **${titleName}** da ADP Encanador Curitiba é executado por técnicos com mais de 10 anos de experiência. Utilizamos equipamentos de alta performance que garantem a limpeza completa da tubulação sem danos estruturais. Nossa meta é resolver seu problema de **${titleName}** ainda hoje, com a máxima eficiência.`;
     }
-    return `Se você procura por **Encanador em ${titleName}**, chegou ao lugar certo. A ADP oferece cobertura total nesta região com equipes de plantão prontas para atender emergências residenciais, comerciais e industriais. Conhecemos bem a região de ${titleName} e garantimos chegada rápida.`;
+    return `Você que mora ou trabalha em **${titleName}**, sabe a importância de ter um parceiro confiável para emergências. A ADP Encanador em ${titleName} oferece ${uniqueArguments}. Atendemos todas as ruas do bairro com equipes motorizadas, garantindo que o técnico chegue ao seu endereço em tempo recorde.`;
   };
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Page Header */}
       <div className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-4 capitalize">{titleName}</h1>
-             <h2 className="text-xl md:text-2xl text-accent font-medium mb-4">
-              {type === 'servico' ? 'Serviço Especializado' : 'Atendimento 24 Horas no Local'}
+             <h2 className="text-xl md:text-2xl text-accent font-medium">
+              {type === 'servico' ? 'Serviço Técnico Especializado' : 'Encanador 24 Horas de Plantão'}
             </h2>
-            <div className="flex justify-center gap-2 text-sm text-gray-300">
+            <div className="mt-6 flex justify-center gap-2 text-sm text-blue-200">
                 <Link to="/" className="hover:text-white">Home</Link> / 
                 <span className="capitalize">{type}</span> / 
                 <span className="text-white font-semibold">{titleName}</span>
@@ -126,95 +106,90 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col lg:flex-row gap-12">
             
-            {/* Main Content Column */}
             <div className="w-full lg:w-2/3 space-y-12">
                 
-                {/* Text Block 1 */}
                 <div className="bg-white p-8 rounded-2xl shadow-sm">
-                    <h2 className="text-2xl font-bold text-primary mb-4">
-                        Atendimento Profissional em {titleName}
+                    <h2 className="text-2xl font-bold text-primary mb-6">
+                        Soluções Hidráulicas em {titleName}
                     </h2>
-                    <p className="text-gray-600 leading-relaxed mb-6">
-                       {getIntroText()} Nossa empresa se destaca pela agilidade e transparência. Ao contratar um **encanador 24h** conosco, você tem a segurança de um serviço bem executado. Não importa se é um pequeno reparo em uma torneira ou um grande **desentupimento de esgoto**, tratamos cada chamado com prioridade absoluta.
-                    </p>
-                    <img 
-                        src={IMAGES[0].url} 
-                        alt={`Atendimento em ${titleName}`} 
-                        className="w-full h-64 md:h-80 object-cover rounded-xl shadow-md mb-6"
-                    />
-                     <p className="text-gray-600 leading-relaxed">
-                        Atuamos com **preço por metro** ou valor fechado, sempre com orçamento prévio e sem surpresas. A transparência é nosso compromisso com os moradores de {titleName}.
-                    </p>
+                    <div className="prose prose-blue max-w-none text-gray-600 leading-relaxed space-y-4">
+                      <p>{getIntroText()}</p>
+                      <p>Muitos moradores de **{titleName}** tentam resolver problemas de encanamento com soluções caseiras (como soda cáustica ou arames), o que pode corroer os canos ou causar entupimentos ainda piores. Nossa recomendação é sempre chamar um profissional que possua as ferramentas certas para cada tipo de obstrução ou vazamento.</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                      {TRUST_BADGES.map((b, i) => (
+                        <div key={i} className="bg-gray-50 p-3 rounded text-center">
+                          <i className={`fas ${b.icon} text-primary mb-2`}></i>
+                          <p className="text-[10px] font-bold uppercase text-gray-500">{b.text}</p>
+                        </div>
+                      ))}
+                    </div>
                 </div>
 
-                {/* Service Table */}
-                <div className="bg-white p-8 rounded-2xl shadow-sm overflow-hidden">
-                    <h2 className="text-2xl font-bold text-primary mb-6">Tabela de Serviços Disponíveis</h2>
-                    <div className="overflow-x-auto">
+                <div className="bg-white p-8 rounded-2xl shadow-sm">
+                    <h2 className="text-2xl font-bold text-primary mb-6">Tabela de Preços e Serviços em {titleName}</h2>
+                    <div className="overflow-x-auto border rounded-lg">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="bg-gray-100 text-gray-700">
-                                    <th className="p-4 font-bold border-b">Serviço</th>
-                                    <th className="p-4 font-bold border-b">Descrição</th>
-                                    <th className="p-4 font-bold border-b">Disponibilidade</th>
+                                <tr className="bg-gray-50 text-gray-700">
+                                    <th className="p-4 font-bold border-b">Especialidade</th>
+                                    <th className="p-4 font-bold border-b">O que fazemos</th>
+                                    <th className="p-4 font-bold border-b text-center">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {SERVICE_TABLE_DATA.map((row, idx) => (
-                                    <tr key={idx} className="border-b border-gray-100 hover:bg-blue-50">
-                                        <td className="p-4 font-medium text-primary">{row.service}</td>
+                                    <tr key={idx} className="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td className="p-4 font-semibold text-primary">{row.service}</td>
                                         <td className="p-4 text-gray-600 text-sm">{row.description}</td>
-                                        <td className="p-4 text-green-600 font-semibold text-sm">
-                                            <i className="fas fa-clock mr-1"></i> {row.availability}
+                                        <td className="p-4 text-center">
+                                            <span className="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold bg-green-100 text-green-700">
+                                              DISPONÍVEL AGORA
+                                            </span>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
-                    <div className="mt-6 text-center">
-                         <a href={CONTACT_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-green-600 font-bold hover:underline">
-                            <i className="fab fa-whatsapp mr-2"></i> Consultar Tabela Completa
-                        </a>
-                    </div>
+                    <p className="mt-4 text-xs text-gray-400 italic">* Valores base para Curitiba. O preço final depende da avaliação técnica no local.</p>
                 </div>
 
-                {/* Text Block 2 & 3 Combined */}
                 <div className="bg-white p-8 rounded-2xl shadow-sm">
-                     <h2 className="text-2xl font-bold text-primary mb-4">
-                        Por que escolher a ADP em {titleName}?
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-6 mb-6">
-                        <div className="p-4 bg-blue-50 rounded-lg">
-                            <h3 className="font-bold text-lg mb-2 text-secondary"><i className="fas fa-bolt text-yellow-500 mr-2"></i> Rapidez</h3>
-                            <p className="text-sm text-gray-600">Equipes motorizadas espalhadas estrategicamente para chegar rápido em {titleName}.</p>
-                        </div>
-                        <div className="p-4 bg-blue-50 rounded-lg">
-                            <h3 className="font-bold text-lg mb-2 text-secondary"><i className="fas fa-shield-alt text-green-500 mr-2"></i> Garantia</h3>
-                            <p className="text-sm text-gray-600">Todos os serviços de **caça-vazamentos** e desentupimentos possuem garantia total.</p>
-                        </div>
-                    </div>
-                    <p className="text-gray-600 leading-relaxed mb-6">
-                        Entendemos que problemas hidráulicos não têm hora para acontecer. Por isso, nosso serviço de **encanador urgente** funciona de domingo a domingo. Seja um **desentupimento de pia**, limpeza de caixa de gordura ou detecção de vazamento oculto, estamos prontos.
-                    </p>
-                    <div className="grid grid-cols-2 gap-2">
-                        <img src={IMAGES[1].url} alt="Serviço técnico" className="w-full h-40 object-cover rounded-lg" />
-                        <img src={IMAGES[2].url} alt="Equipamento" className="w-full h-40 object-cover rounded-lg" />
+                    <h2 className="text-2xl font-bold text-primary mb-6">Atendimento Técnico em {titleName}</h2>
+                    <div className="grid md:grid-cols-2 gap-8 items-center">
+                      <div className="space-y-4 text-gray-600">
+                        <p>Nossa base em **{titleName}** conta com veículos equipados para qualquer emergência. Atendemos chamados de urgência em:</p>
+                        <ul className="grid grid-cols-1 gap-2">
+                          <li><i className="fas fa-caret-right text-accent mr-2"></i> Apartamentos e Coberturas</li>
+                          <li><i className="fas fa-caret-right text-accent mr-2"></i> Casas e Sobrados</li>
+                          <li><i className="fas fa-caret-right text-accent mr-2"></i> Lojas e Restaurantes</li>
+                          <li><i className="fas fa-caret-right text-accent mr-2"></i> Condomínios Industriais</li>
+                        </ul>
+                        <p>Emitimos laudos técnicos detalhados e nota fiscal para condomínios e empresas.</p>
+                      </div>
+                      <div className="relative group">
+                         <img src={IMAGES[3].url} alt={`Equipe ADP em ${titleName}`} className="rounded-xl shadow-lg w-full h-64 object-cover" />
+                         <div className="absolute inset-0 bg-primary/20 rounded-xl group-hover:bg-transparent transition-all"></div>
+                      </div>
                     </div>
                 </div>
 
-                {/* FAQ Specific */}
                 <FAQ 
-                    items={getFAQItems()} 
-                    title={`Perguntas Frequentes em ${titleName}`}
+                    items={[
+                        { question: `Qual a taxa de visita para o bairro ${titleName}?`, answer: `A ADP não cobra taxa de visita em ${titleName}. O orçamento é realizado sem compromisso por um de nossos técnicos especializados.` },
+                        { question: `Vocês dão nota fiscal para o serviço em ${titleName}?`, answer: `Sim! Emitimos nota fiscal eletrônica e fornecemos certificado de garantia por escrito para todos os moradores de ${titleName}.` },
+                        ...GENERAL_FAQ.slice(0, 2)
+                    ]} 
+                    title={`Dúvidas Comuns em ${titleName}`}
                 />
 
-                {/* Video Embed */}
-                <div className="bg-black rounded-xl overflow-hidden shadow-lg aspect-video">
+                <div className="bg-black rounded-2xl overflow-hidden shadow-2xl aspect-video">
                      <iframe 
                         className="w-full h-full"
                         src="https://www.youtube.com/embed/jJ0WJqgXZ3k" 
-                        title={`Encanador em ${titleName}`}
+                        title={`Encanador Especialista em ${titleName}`}
                         frameBorder="0" 
                         allowFullScreen
                     ></iframe>
@@ -222,41 +197,39 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
 
             </div>
 
-            {/* Sidebar Column */}
-            <div className="w-full lg:w-1/3 space-y-8">
-                <div className="sticky top-24">
+            <div className="w-full lg:w-1/3">
+                <div className="lg:sticky lg:top-24 space-y-8">
                     <ContactForm />
                     
-                    <div className="mt-8 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-                        <h3 className="font-bold text-xl mb-4 text-primary">Atendimento Rápido</h3>
-                        <p className="text-gray-600 mb-4 text-sm">
-                            Precisa de um **orçamento imediato**? Clique no botão abaixo e fale direto com o técnico responsável pela região de {titleName}.
+                    <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-urgent">
+                        <h3 className="font-bold text-xl mb-4 text-primary">Emergência em {titleName}?</h3>
+                        <p className="text-gray-600 mb-6 text-sm">
+                            Estamos com uma equipe agora mesmo na região de {titleName}. Clique abaixo e fale com o técnico via WhatsApp.
                         </p>
-                        <a 
-                             href={CONTACT_INFO.whatsappLink}
-                             target="_blank" rel="noopener noreferrer"
-                             className="block w-full bg-green-500 hover:bg-green-600 text-white text-center font-bold py-3 rounded-lg shadow transition-colors"
-                        >
-                            <i className="fab fa-whatsapp mr-2"></i> CHAMAR NO WHATSAPP
-                        </a>
+                        <div className="space-y-3">
+                          <a 
+                               href={CONTACT_INFO.whatsappLink}
+                               target="_blank" rel="noopener noreferrer"
+                               className="flex items-center justify-center gap-3 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-lg shadow-md transition-all transform hover:scale-105"
+                          >
+                              <i className="fab fa-whatsapp text-2xl"></i> WHATSAPP TÉCNICO
+                          </a>
+                          <a 
+                               href={CONTACT_INFO.phoneLink}
+                               className="flex items-center justify-center gap-3 w-full bg-primary hover:bg-secondary text-white font-bold py-4 rounded-lg shadow-md transition-all"
+                          >
+                              <i className="fas fa-phone-alt"></i> (41) 3345-1194
+                          </a>
+                        </div>
                     </div>
 
-                    <div className="mt-8 bg-primary p-6 rounded-xl shadow-lg text-white">
-                        <h3 className="font-bold text-xl mb-4 text-accent">Serviços Populares</h3>
-                        <ul className="space-y-3 text-sm">
-                            <li className="border-b border-white/20 pb-2 hover:pl-2 transition-all cursor-pointer">
-                                <i className="fas fa-angle-right mr-2 text-accent"></i> Desentupimento de Vaso
-                            </li>
-                            <li className="border-b border-white/20 pb-2 hover:pl-2 transition-all cursor-pointer">
-                                <i className="fas fa-angle-right mr-2 text-accent"></i> Caça Vazamento de Água
-                            </li>
-                            <li className="border-b border-white/20 pb-2 hover:pl-2 transition-all cursor-pointer">
-                                <i className="fas fa-angle-right mr-2 text-accent"></i> Hidrojateamento
-                            </li>
-                            <li className="border-b border-white/20 pb-2 hover:pl-2 transition-all cursor-pointer">
-                                <i className="fas fa-angle-right mr-2 text-accent"></i> Limpeza de Fossa
-                            </li>
-                        </ul>
+                    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                        <h3 className="font-bold text-lg mb-4 text-primary">Principais Ruas Atendidas</h3>
+                        <div className="flex flex-wrap gap-2">
+                           <span className="bg-gray-100 px-2 py-1 rounded text-[10px] text-gray-500 uppercase font-bold">Todas as Ruas de {titleName}</span>
+                           <span className="bg-gray-100 px-2 py-1 rounded text-[10px] text-gray-500 uppercase font-bold">Avenidas Principais</span>
+                           <span className="bg-gray-100 px-2 py-1 rounded text-[10px] text-gray-500 uppercase font-bold">Condomínios</span>
+                        </div>
                     </div>
                 </div>
             </div>

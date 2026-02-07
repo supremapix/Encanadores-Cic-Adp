@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import DynamicPage from './pages/DynamicPage';
 import Sitemap from './pages/Sitemap';
 import NotFound from './pages/NotFound';
+import ServicesPage from './pages/ServicesPage';
+import AboutPage from './pages/AboutPage';
 
 const App: React.FC = () => {
   return (
@@ -18,6 +20,8 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/servicos" element={<ServicesPage />} />
+            <Route path="/sobre" element={<AboutPage />} />
             <Route path="/sitemap" element={<Sitemap />} />
             
             {/* Dynamic SEO Routes */}

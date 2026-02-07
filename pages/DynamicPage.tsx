@@ -20,7 +20,6 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
 
   const titleName = formatName(name);
 
-  // Content Spinning Engine for SEO Dominance
   const uniqueContent = useMemo(() => {
     const args = [
       {
@@ -50,20 +49,6 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
     return IMAGES[idx];
   }, [name]);
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const parent = e.currentTarget.parentElement;
-    if (parent) {
-      parent.className = "w-full h-full bg-[#f1f5f9] flex flex-col items-center justify-center p-8 border-2 border-dashed border-gray-200 rounded-[2.5rem]";
-      parent.innerHTML = `
-        <div class="relative group flex flex-col items-center">
-          <div class="absolute inset-0 bg-accent/20 blur-2xl rounded-full animate-pulse"></div>
-          <img src="${CONTACT_INFO.logoUrl}" class="w-24 h-24 object-contain grayscale opacity-20 mb-4 relative z-10" alt="ADP Logo" />
-          <span class="text-primary/30 font-black text-[10px] uppercase tracking-[0.3em] relative z-10 italic">ADP Engenharia Digital</span>
-        </div>
-      `;
-    }
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
     const metaTitle = type === 'servico' 
@@ -74,67 +59,42 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Schema Markup for Local SEO */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "PlumbingService",
-          "name": `ADP Encanador 24h em ${titleName}`,
-          "description": `Serviço de encanador profissional e caça vazamentos em ${titleName}, Curitiba. Atendimento 24 horas para emergências hidráulicas.`,
-          "url": window.location.href,
-          "telephone": CONTACT_INFO.phone,
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Curitiba",
-            "addressRegion": "PR",
-            "addressCountry": "BR"
-          }
-        })}
-      </script>
-
-      {/* Dynamic Header Section */}
-      <section className="bg-[#051125] text-white pt-24 pb-16 md:py-48 relative overflow-hidden">
+      <section className="bg-primary text-white pt-32 pb-20 md:pt-48 md:pb-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 transform translate-x-20"></div>
-        <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-accent/5 rounded-full blur-[120px]"></div>
-        
         <div className="container mx-auto px-4 relative z-10 text-center md:text-left">
             <div className="max-w-5xl">
-              <nav className="flex items-center justify-center md:justify-start gap-2 text-white/30 text-[9px] font-black uppercase tracking-[0.2em] mb-8 overflow-x-auto scrollbar-hide">
-                <Link to="/" className="hover:text-accent">Home</Link>
+              <nav className="flex items-center justify-center md:justify-start gap-3 text-white/30 text-[9px] font-black uppercase tracking-[0.2em] mb-8 overflow-x-auto scrollbar-hide">
+                <Link to="/" className="hover:text-accent transition-colors">Home</Link>
                 <i className="fas fa-chevron-right text-[6px]"></i>
-                <span className="text-white/50">{type}</span>
+                <Link to="/sitemap" className="hover:text-accent transition-colors">{type}s</Link>
                 <i className="fas fa-chevron-right text-[6px]"></i>
                 <span className="text-accent">{titleName}</span>
               </nav>
-              <h1 className="text-3xl md:text-7xl font-black mb-6 leading-none tracking-tighter uppercase italic">
+              <h1 className="text-4xl md:text-8xl font-black mb-8 leading-none tracking-tighter uppercase italic">
                 {type === 'servico' ? titleName : `Encanador em ${titleName}`}
               </h1>
-              <p className="text-base md:text-3xl font-light text-white/40 max-w-3xl leading-tight mx-auto md:mx-0">
-                Liderança técnica em sistemas hidráulicos em <strong className="text-white font-black">{titleName}</strong>. 
-                Sua infraestrutura em mãos de engenharia qualificada 24 horas por dia.
+              <p className="text-lg md:text-3xl font-light text-white/40 max-w-3xl leading-tight mx-auto md:mx-0">
+                Soluções hidráulicas de alta precisão em <strong className="text-white font-black">{titleName}</strong>. Atendimento tático e digital para seu imóvel.
               </p>
             </div>
         </div>
       </section>
 
-      {/* Main Content Layout */}
-      <div className="container mx-auto px-4 -mt-12 relative z-20 pb-24">
+      <div className="container mx-auto px-4 -mt-16 relative z-20 pb-24">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
-            
             <div className="w-full lg:w-2/3 space-y-12">
-                <div className="bg-white p-6 md:p-16 rounded-[2rem] md:rounded-[3.5rem] shadow-2xl border border-gray-100">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl border border-gray-100">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                       <div className="order-2 md:order-1">
-                        <span className="text-secondary font-black tracking-[0.3em] text-[10px] uppercase mb-4 block">Precisão Operacional</span>
-                        <h2 className="text-2xl md:text-4xl font-black text-primary mb-6 tracking-tighter leading-none">O Especialista em {titleName}.</h2>
-                        <p className="text-gray-500 mb-8 leading-relaxed text-sm md:text-base font-medium opacity-80">
-                          Na região de <strong>{titleName}</strong>, a ADP Engenharia disponibiliza {uniqueContent.arg}. 
-                          Nossa meta em cada intervenção é {uniqueContent.reason}, entregando um resultado limpo e certificado.
+                        <span className="text-secondary font-black tracking-[0.3em] text-[10px] uppercase mb-4 block">Foco Regional</span>
+                        <h2 className="text-3xl md:text-4xl font-black text-primary mb-8 tracking-tighter leading-none">Referência em {titleName}.</h2>
+                        <p className="text-gray-500 mb-10 leading-relaxed font-medium opacity-80">
+                          Na região de <strong>{titleName}</strong>, a ADP Engenharia disponibiliza {uniqueContent.arg}. Nossa meta em cada intervenção é {uniqueContent.reason}, entregando um resultado certificado.
                         </p>
-                        <div className="space-y-3">
+                        <div className="space-y-4">
                            {TRUST_BADGES.map((badge, i) => (
-                             <div key={i} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 group hover:bg-primary transition-all duration-300">
-                               <div className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center group-hover:bg-accent transition-colors">
+                             <div key={i} className="flex items-center gap-4 p-5 bg-gray-50 rounded-2xl border border-gray-100 group hover:bg-primary transition-all duration-300">
+                               <div className="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center group-hover:bg-accent transition-colors">
                                  <i className={`fas ${badge.icon} text-primary`}></i>
                                </div>
                                <span className="text-[10px] font-black text-gray-700 uppercase tracking-widest group-hover:text-white">{badge.text}</span>
@@ -143,76 +103,45 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
                         </div>
                       </div>
                       <div className="order-1 md:order-2">
-                        <div className="rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-square md:aspect-[4/5] bg-gray-50 relative group">
-                          <img 
-                            src={locationImage.url} 
-                            alt={`Serviço ADP em ${titleName}`} 
-                            onError={handleImageError}
-                            className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" 
-                          />
-                          <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+                        <div className="rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-square md:aspect-[4/5] bg-gray-50">
+                          <img src={locationImage.url} alt={`ADP em ${titleName}`} className="w-full h-full object-cover" />
                         </div>
                       </div>
                     </div>
                 </div>
 
-                {/* Persuasive CTA Banner */}
-                <div className="bg-primary text-white p-8 md:p-16 rounded-[2rem] md:rounded-[3.5rem] shadow-2xl relative overflow-hidden group">
+                <div className="bg-primary text-white p-10 md:p-20 rounded-[3rem] shadow-2xl relative overflow-hidden group">
                    <div className="absolute top-0 left-0 w-2 h-full bg-accent group-hover:w-full transition-all opacity-100 group-hover:opacity-5 duration-700"></div>
-                   <h3 className="text-2xl md:text-4xl font-black mb-8 tracking-tighter uppercase italic leading-none">Vazamento oculto <br /><span className="text-accent italic">detectado em minutos.</span></h3>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-accent transition-colors">
-                         <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center mb-4">
-                            <i className="fas fa-satellite-dish text-accent"></i>
-                         </div>
-                         <h4 className="text-base font-black mb-2 uppercase italic">Caça-Vazamentos</h4>
-                         <p className="text-white/40 text-[10px] leading-relaxed font-bold uppercase tracking-widest">Escaneamento digital em toda rede de {titleName}.</p>
-                      </div>
-                      <div className="p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-accent transition-colors">
-                         <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center mb-4">
-                            <i className="fas fa-camera-rotate text-accent"></i>
-                         </div>
-                         <h4 className="text-base font-black mb-2 uppercase italic">Vídeo Inspeção</h4>
-                         <p className="text-white/40 text-[10px] leading-relaxed font-bold uppercase tracking-widest">Diagnóstico visual de tubulações sem quebrar nada.</p>
-                      </div>
+                   <h3 className="text-3xl md:text-5xl font-black mb-10 tracking-tighter uppercase italic leading-none">Problema Crítico em {titleName}?</h3>
+                   <div className="flex flex-col md:flex-row gap-6">
+                      <a href={CONTACT_INFO.whatsappLink} target="_blank" className="bg-accent text-primary px-10 py-5 rounded-2xl font-black uppercase text-sm shadow-xl hover:bg-white transition-all flex items-center justify-center gap-4">
+                        <i className="fab fa-whatsapp text-2xl"></i> Chamar Unidade 24h
+                      </a>
+                      <a href={CONTACT_INFO.phoneLink} className="bg-white/5 border border-white/20 px-10 py-5 rounded-2xl font-black uppercase text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-4">
+                        <i className="fas fa-phone-alt"></i> Ligar Agora
+                      </a>
                    </div>
                 </div>
 
-                <FAQ 
-                    items={[
-                        { question: `Qual o valor da visita técnica em ${titleName}?`, answer: `Em **${titleName}**, a ADP Engenharia realiza a visita técnica e o diagnóstico presencial de forma **totalmente gratuita**. Você só paga se aprovar o orçamento e o serviço for executado.` },
-                        ...GENERAL_FAQ
-                    ]} 
-                    title={`Engenharia de Suporte em ${titleName}`}
-                />
+                <FAQ items={[
+                  { question: `Como funciona o atendimento 24h em ${titleName}?`, answer: `Nossas unidades móveis operam em regime de plantão constante. Para **${titleName}**, temos uma rota dedicada que permite a chegada em tempo recorde para emergências.` },
+                  ...GENERAL_FAQ.slice(0, 2)
+                ]} title={`Suporte Técnico em ${titleName}`} />
             </div>
 
-            {/* Sidebar Sticky Column */}
             <div className="w-full lg:w-1/3">
-                <div className="sticky top-24 space-y-6">
+                <div className="sticky top-28 space-y-8">
                   <div className="bg-white p-2 rounded-[2.5rem] shadow-2xl border border-gray-100">
                     <ContactForm />
                   </div>
                   
-                  <div className="bg-urgent p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2"></div>
-                    <span className="text-[10px] font-black uppercase tracking-widest mb-4 block opacity-60">Urgência: Unidades On-line</span>
-                    <h4 className="text-xl md:text-2xl font-black mb-6 tracking-tighter leading-none uppercase italic">Emergência Hidráulica em {titleName}?</h4>
-                    <a 
-                      href={CONTACT_INFO.whatsappLink} 
-                      className="block bg-white text-urgent text-center font-black py-4 rounded-xl hover:bg-accent hover:text-primary transition-all shadow-xl uppercase tracking-[0.2em] text-[10px] active:scale-95"
-                    >
-                      <i className="fab fa-whatsapp mr-2 text-lg"></i> ATIVAR TÉCNICO AGORA
-                    </a>
-                  </div>
-
-                  <div className="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100">
-                    <h5 className="font-black text-primary mb-6 flex items-center gap-2 text-[10px] uppercase tracking-widest">
-                      <i className="fas fa-location-dot text-accent"></i> Atendimento em Regiões Próximas
+                  <div className="bg-gray-50 p-10 rounded-[2.5rem] border border-gray-100">
+                    <h5 className="font-black text-primary mb-8 text-[10px] uppercase tracking-widest flex items-center gap-3">
+                      <i className="fas fa-map-marked-alt text-accent"></i> Vizinhos de {titleName}
                     </h5>
-                    <div className="flex flex-wrap gap-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
-                       {BAIRROS.slice(0, 40).map((b, i) => (
-                         <Link key={i} to={`/bairro/${b.toLowerCase().replace(/ /g, '-').normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`} className="text-[9px] font-black text-gray-400 hover:text-primary transition-colors uppercase bg-white px-3 py-1.5 rounded-lg border border-gray-100 hover:border-accent">
+                    <div className="flex flex-wrap gap-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                       {BAIRROS.slice(0, 30).map((b, i) => (
+                         <Link key={i} to={`/bairro/${b.toLowerCase().replace(/ /g, '-')}`} className="text-[9px] font-black text-gray-400 hover:text-primary transition-colors uppercase bg-white px-4 py-2 rounded-xl border border-gray-100 hover:border-accent">
                            {b}
                          </Link>
                        ))}

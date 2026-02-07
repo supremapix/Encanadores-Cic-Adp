@@ -1,103 +1,118 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  const isHome = location.pathname === '/';
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const NavLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
-    <Link 
-      to={to} 
-      className="text-white hover:text-accent font-medium transition-all duration-300 relative group"
-      onClick={() => setIsMenuOpen(false)}
-    >
-      {children}
-      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
-    </Link>
-  );
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
+  const NavLink: React.FC<{ to: string; children: React.ReactNode; isAnchor?: boolean }> = ({ to, children, isAnchor }) => {
+    const commonClasses = "text-white/80 hover:text-accent font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-300 relative group";
+    
+    if (isAnchor) {
+      return (
+        <a href={to} className={commonClasses}>
+          {children}
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+        </a>
+      );
+    }
+
+    return (
+      <Link to={to} className={commonClasses}>
+        {children}
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full"></span>
+      </Link>
+    );
+  };
 
   return (
-    <header className="sticky top-0 z-50 bg-primary/95 backdrop-blur-md shadow-2xl border-b border-white/5">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
-          <img 
-            src={CONTACT_INFO.logoUrl} 
-            alt="ADP Encanador Logo" 
-            className="h-12 md:h-16 bg-white rounded-full p-1.5 shadow-xl transition-transform group-hover:rotate-6"
-          />
-          <div className="leading-tight text-white">
-            <h1 className="font-black text-xl md:text-2xl tracking-tighter">ADP <span className="text-accent">ENGENHARIA</span></h1>
-            <span className="text-[10px] md:text-xs text-white/70 font-bold block tracking-widest uppercase">Soluções Hidráulicas 24h</span>
+    <header className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
+      scrolled ? 'bg-[#051125]/95 backdrop-blur-xl py-2 shadow-2xl' : 'bg-transparent py-4'
+    }`}>
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* Logo Section */}
+        <Link to="/" className="flex items-center gap-4 group">
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-pulse"></div>
+            <img 
+              src={CONTACT_INFO.logoUrl} 
+              alt="ADP Logo" 
+              className="h-10 md:h-14 bg-white rounded-full p-1 shadow-lg relative z-10"
+            />
+          </div>
+          <div className="leading-none hidden sm:block">
+            <h1 className="font-black text-white text-lg md:text-xl tracking-tighter">ADP <span className="text-accent italic">ENGENHARIA</span></h1>
+            <span className="text-[8px] text-white/40 font-bold uppercase tracking-[0.3em]">Precision Hidraulics</span>
           </div>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-8">
-          <NavLink to="/">Home</NavLink>
-          {isHome ? (
-            <>
-              <a href="#servicos" className="text-white hover:text-accent font-medium transition-colors">Serviços</a>
-              <a href="#tecnologia" className="text-white hover:text-accent font-medium transition-colors">Tecnologia</a>
-              <a href="#bairros" className="text-white hover:text-accent font-medium transition-colors">Atendimento</a>
-            </>
-          ) : (
-            <>
-               <NavLink to="/#servicos">Serviços</NavLink>
-               <NavLink to="/#tecnologia">Tecnologia</NavLink>
-               <NavLink to="/#bairros">Bairros</NavLink>
-            </>
-          )}
+        <nav className="hidden lg:flex items-center gap-10">
+          <NavLink to="/">Página Inicial</NavLink>
+          <NavLink to="#servicos" isAnchor>Serviços</NavLink>
+          <NavLink to="#tecnologia" isAnchor>Tecnologia</NavLink>
+          <NavLink to="#bairros" isAnchor>Unidades</NavLink>
           
-          <div className="h-8 w-px bg-white/10 mx-2"></div>
+          <div className="h-6 w-px bg-white/10"></div>
 
           <a 
             href={CONTACT_INFO.whatsappLink}
             target="_blank"
             rel="noopener noreferrer" 
-            className="bg-accent hover:bg-white text-primary px-8 py-3 rounded-xl font-black shadow-lg transform hover:-translate-y-1 transition-all flex items-center gap-2 text-sm uppercase"
+            className="bg-accent hover:bg-white text-primary px-8 py-3 rounded-full font-black shadow-2xl transform hover:-translate-y-1 transition-all flex items-center gap-3 text-[10px] uppercase tracking-widest"
           >
-            <i className="fab fa-whatsapp text-lg"></i> Consultoria Já
+            <i className="fab fa-whatsapp text-lg"></i> CONSULTORIA 24H
           </a>
         </nav>
 
         {/* Mobile Toggle */}
-        <button 
-          className="lg:hidden text-white text-3xl focus:outline-none p-2"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars-staggered'}`}></i>
-        </button>
+        <div className="flex items-center gap-4 lg:hidden">
+          <a href={CONTACT_INFO.phoneLink} className="text-accent text-lg p-2 bg-white/5 rounded-full border border-white/10">
+            <i className="fas fa-phone-alt"></i>
+          </a>
+          <button 
+            className="text-white text-3xl focus:outline-none p-2 relative"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars-staggered'} transition-transform duration-300`}></i>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="lg:hidden bg-primary border-t border-white/10 animate-fade-in absolute w-full shadow-2xl">
-          <nav className="flex flex-col p-6 gap-6">
-            <NavLink to="/">Página Inicial</NavLink>
-            <NavLink to="/#servicos">Serviços Premium</NavLink>
-            <NavLink to="/#tecnologia">Nossa Tecnologia</NavLink>
-            <NavLink to="/#bairros">Locais de Atendimento</NavLink>
-            <a 
-              href={CONTACT_INFO.phoneLink}
-              className="flex items-center gap-3 text-white font-bold"
-            >
-              <i className="fas fa-phone-alt text-accent"></i> (41) 3345-1194
-            </a>
+      {/* Mobile Sidebar Redesign */}
+      <div className={`fixed inset-0 bg-[#051125] z-[-1] transition-transform duration-500 lg:hidden ${
+        isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}>
+        <div className="flex flex-col h-full pt-32 px-10 gap-10">
+          <Link to="/" className="text-4xl font-black text-white tracking-tighter hover:text-accent" onClick={() => setIsMenuOpen(false)}>Início</Link>
+          <a href="#servicos" className="text-4xl font-black text-white tracking-tighter hover:text-accent" onClick={() => setIsMenuOpen(false)}>Serviços</a>
+          <a href="#bairros" className="text-4xl font-black text-white tracking-tighter hover:text-accent" onClick={() => setIsMenuOpen(false)}>Atendimento</a>
+          
+          <div className="mt-auto pb-20 space-y-6">
             <a 
               href={CONTACT_INFO.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-               className="bg-green-500 text-white text-center py-4 rounded-2xl font-black text-lg shadow-xl"
+              className="w-full bg-accent text-primary flex items-center justify-center gap-4 py-6 rounded-[2rem] font-black text-xl shadow-2xl"
             >
-              <i className="fab fa-whatsapp mr-2"></i> WHATSAPP URGENTE
+              <i className="fab fa-whatsapp text-2xl"></i> WHATSAPP URGENTE
             </a>
-          </nav>
+            <div className="text-center text-white/30 font-bold uppercase tracking-[0.2em] text-[10px]">
+              Curitiba 24 Horas
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };

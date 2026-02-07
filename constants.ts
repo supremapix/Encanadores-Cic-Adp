@@ -13,10 +13,10 @@ export const CONTACT_INFO = {
 };
 
 export const TRUST_BADGES = [
-  { icon: 'fa-microscope', text: 'Engenharia de Diagnóstico' },
-  { icon: 'fa-shield-halved', text: 'Garantia Blindada 90 Dias' },
-  { icon: 'fa-file-signature', text: 'Laudos Técnicos Oficiais' },
-  { icon: 'fa-user-tie', text: 'Técnicos de Elite' }
+  { icon: 'fa-microscope', text: 'Diagnóstico Digital' },
+  { icon: 'fa-shield-halved', text: 'Garantia Premium' },
+  { icon: 'fa-file-signature', text: 'Laudos Oficiais' },
+  { icon: 'fa-user-tie', text: 'Engenharia de Campo' }
 ];
 
 export const IMAGES: ImageData[] = [
@@ -31,12 +31,12 @@ export const IMAGES: ImageData[] = [
 ];
 
 export const MAIN_SERVICES: Service[] = [
-  { id: 'caca-vazamento', title: 'Engenharia de Vazamentos', description: 'Diagnóstico por Ultrassom Geofônico. Identificamos a fissura exata sem intervenções destrutivas no seu imóvel.', icon: 'fa-crosshairs' },
-  { id: 'esgoto', title: 'Desobstrução Técnica', description: 'Tecnologia de sondas rotativas industriais. Limpeza profunda de redes de esgoto com preservação total da tubulação.', icon: 'fa-vial-circle-check' },
-  { id: 'hidro', title: 'Hidrojateamento Premium', description: 'Remoção de incrustações por alta pressão em condomínios e indústrias. Higienização completa e restauradora.', icon: 'fa-faucet-drip' },
-  { id: 'vaso', title: 'Restauração de Fluxo', description: 'Intervenção higiênica e rápida em vasos sanitários. Solucionamos o bloqueio sem riscos de danos à porcelana.', icon: 'fa-toilet-paper' },
-  { id: 'pia', title: 'Manutenção de Cozinha', description: 'Limpeza hidrodinâmica de pias e caixas de gordura. Eliminação total de odores e bloqueios persistentes.', icon: 'fa-sink' },
-  { id: 'ralo', title: 'Drenagem Pluvial', description: 'Manutenção e desobstrução de ralos e calhas. Preparação completa contra alagamentos e infiltrações.', icon: 'fa-droplet' },
+  { id: 'caca-vazamento', title: 'Rastreamento de Vazamentos', description: 'Localização milimétrica com Geofone Ultrassônico Digital. Onde outros quebram tudo, nós apenas apontamos o ponto exato.', icon: 'fa-crosshairs' },
+  { id: 'esgoto', title: 'Engenharia de Esgoto', description: 'Desobstrução técnica com sistema rotativo de alta performance. Limpeza total de colunas e redes coletoras sem riscos.', icon: 'fa-vial-circle-check' },
+  { id: 'hidro', title: 'Hidrojateamento Industrial', description: 'Lavagem interna de tubulações por ultra-pressão. Solução definitiva para remoção de gordura e detritos petrificados.', icon: 'fa-faucet-drip' },
+  { id: 'vaso', title: 'Restauração Sanitária', description: 'Intervenção técnica em sistemas de descarga e vasos sanitários com foco em higiene e preservação da louça.', icon: 'fa-toilet' },
+  { id: 'pia', title: 'Manutenção Hidrodinâmica', description: 'Desentupimento de pias e sifões com foco na eliminação de odores e prevenção de transbordamentos futuros.', icon: 'fa-sink' },
+  { id: 'ralo', title: 'Sistemas Pluviais', description: 'Diagnóstico e limpeza de ralos e sistemas de drenagem de águas da chuva para condomínios e pátios industriais.', icon: 'fa-droplet' },
 ];
 
 export const BAIRROS: string[] = [
@@ -60,15 +60,15 @@ export const CIDADES: string[] = [
 ];
 
 export const GENERAL_FAQ: FAQItem[] = [
-  { question: "O orçamento técnico é realmente gratuito?", answer: "Sim. A ADP acredita na transparência total. Realizamos o diagnóstico técnico presencial em toda Curitiba sem qualquer taxa de deslocamento ou avaliação." },
-  { question: "Vocês emitem Laudo para a Sanepar?", answer: "Sim. Somos credenciados para emitir **Laudos de Estanqueidade e Conformidade**, essenciais para solicitar o abatimento na conta de água após o reparo de vazamentos ocultos." },
-  { question: "Quanto tempo dura a garantia?", answer: "Todos os nossos serviços de engenharia hidráulica possuem **90 dias de garantia total**, formalizada em contrato, assegurando sua total tranquilidade." },
-  { question: "Atendem emergências condominiais?", answer: "Sim. Possuímos um canal exclusivo de **atendimento prioritário para Síndicos e Administradoras**, com faturamento mensal e plantão 24h especializado." }
+  { question: "O orçamento técnico é pago?", answer: "Não. Oferecemos a **Visita e o Diagnóstico Presencial sem custo** para toda Curitiba. Transparência é o pilar da nossa engenharia." },
+  { question: "Como funciona a detecção sem quebra?", answer: "Utilizamos o **Geofone Digital**, um equipamento de ultrassom que capta a frequência sonora da água escapando da tubulação, indicando o local exato com precisão de centímetros." },
+  { question: "Vocês emitem documentos oficiais?", answer: "Sim. Nossos serviços acompanham **Laudo Técnico de Conformidade** para redução de conta na Sanepar e perícia de seguradoras." },
+  { question: "Qual o prazo de atendimento?", answer: "Operamos com **Equipes de Pronta Resposta**. Em Curitiba, nossa meta de chegada é de 30 a 45 minutos após a confirmação." }
 ];
 
 export const SERVICE_TABLE_DATA: TableRow[] = [
-  { service: "Engenharia de Esgoto", description: "Sondas rotativas alemãs", price: "Sob Consulta", availability: "Imediato 24h" },
-  { service: "Caça Vazamento Digital", description: "Ultrassom Geofônico", price: "A partir de R$ 149", availability: "Urgente" },
-  { service: "Hidrojateamento", description: "Alta pressão industrial", price: "Por metro/hora", availability: "Agendado" },
-  { service: "Manutenção Preventiva", description: "Check-up completo", price: "Contrato Mensal", availability: "Personalizado" },
+  { service: "Rastreamento de Vazamento", description: "Geofone Nível 1", price: "Sob Orçamento", availability: "Imediato 24h" },
+  { service: "Desobstrução Mecânica", description: "Sondas K-500", price: "Valor Fixo/M", availability: "24h Urgente" },
+  { service: "Vídeo Inspeção HD", description: "Mapeamento Digital", price: "Consulte", availability: "Agendado" },
+  { service: "Contrato Condominial", description: "Preventiva Mensal", price: "Exclusivo", availability: "Prioritária" },
 ];

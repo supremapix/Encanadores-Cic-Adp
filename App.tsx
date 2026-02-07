@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import FixedButtons from './components/FixedButtons';
@@ -10,6 +10,7 @@ import Sitemap from './pages/Sitemap';
 import NotFound from './pages/NotFound';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/servicos" element={<ServicesPage />} />
             <Route path="/sobre" element={<AboutPage />} />
+            <Route path="/contato" element={<ContactPage />} />
             <Route path="/sitemap" element={<Sitemap />} />
             
             {/* Dynamic SEO Routes */}
@@ -30,7 +32,6 @@ const App: React.FC = () => {
             <Route path="/servico/:name" element={<DynamicPage type="servico" />} />
             
             {/* 404 Page */}
-            <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

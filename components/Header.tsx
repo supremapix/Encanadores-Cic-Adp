@@ -53,7 +53,7 @@ const Header: React.FC = () => {
           <Link to="/" className={linkClasses}>Início</Link>
           <Link to="/servicos" className={linkClasses}>Serviços</Link>
           <Link to="/sobre" className={linkClasses}>Sobre</Link>
-          <Link to="/sitemap" className={linkClasses}>Atendimento</Link>
+          <Link to="/contato" className={linkClasses}>Contato</Link>
           <a 
             href={CONTACT_INFO.whatsappLink} 
             target="_blank"
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
           <Link to="/" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">INÍCIO</Link>
           <Link to="/servicos" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">SERVIÇOS</Link>
           <Link to="/sobre" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">SOBRE</Link>
-          <Link to="/sitemap" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">ATENDIMENTO</Link>
+          <Link to="/contato" className="text-4xl font-black text-white tracking-tighter border-b border-white/5 pb-4 uppercase italic">CONTATO</Link>
           
           <div className="mt-auto pb-12 space-y-6">
             <a href={CONTACT_INFO.whatsappLink} className="w-full bg-accent text-primary flex items-center justify-center gap-4 py-6 rounded-2xl font-black text-xl shadow-2xl active:scale-95 transition-transform uppercase italic">

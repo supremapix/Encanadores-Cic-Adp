@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants';
@@ -48,9 +49,9 @@ const Footer: React.FC = () => {
               <h4 className="text-accent font-black text-[10px] uppercase tracking-[0.3em] mb-8">Navegação</h4>
               <ul className="space-y-4 text-white/50 text-[10px] font-black uppercase tracking-widest">
                 <li><Link to="/" className="hover:text-accent transition-colors">Início</Link></li>
-                <li><a href="#servicos" className="hover:text-accent transition-colors">Serviços</a></li>
-                <li><a href="#bairros" className="hover:text-accent transition-colors">Atendimento</a></li>
-                <li><Link to="/sitemap" className="hover:text-accent transition-colors">Mapa do Site</Link></li>
+                <li><Link to="/servicos" className="hover:text-accent transition-colors">Serviços</Link></li>
+                <li><Link to="/contato" className="hover:text-accent transition-colors">Contato</Link></li>
+                <li><Link to="/sitemap" className="hover:text-accent transition-colors">Atendimento (Sitemap)</Link></li>
               </ul>
             </div>
             <div>

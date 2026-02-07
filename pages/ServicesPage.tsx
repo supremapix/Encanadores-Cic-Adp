@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MAIN_SERVICES, CONTACT_INFO } from '../constants';
 import FAQ from '../components/FAQ';
+import SafeImage from '../components/SafeImage';
 
 const ServicesPage: React.FC = () => {
   useEffect(() => {
@@ -14,7 +15,7 @@ const ServicesPage: React.FC = () => {
     <div className="bg-white min-h-screen">
       <section className="bg-primary text-white pt-32 pb-20 md:pt-48 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1920&q=80" alt="Background" className="w-full h-full object-cover" />
+          <SafeImage src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1920&q=80" alt="Background Engenharia" className="w-full h-full object-cover" />
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <span className="text-accent font-black tracking-[0.4em] text-[10px] uppercase mb-4 block">Portfólio Técnico</span>
@@ -33,7 +34,7 @@ const ServicesPage: React.FC = () => {
                 <div className="w-20 h-20 bg-primary text-accent rounded-3xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                   <i className={`fas ${service.icon} text-3xl`}></i>
                 </div>
-                <h2 className="text-2xl font-black text-primary mb-6 uppercase tracking-tight">{service.title}</h2>
+                <h2 className="text-2xl font-black text-primary mb-6 uppercase tracking-tight italic">{service.title}</h2>
                 <p className="text-gray-500 font-medium mb-10 leading-relaxed">{service.description}</p>
                 <Link 
                   to={`/servico/${service.id}`}
@@ -54,19 +55,19 @@ const ServicesPage: React.FC = () => {
              <p className="text-gray-500">Aliamos o conhecimento da engenharia civil com equipamentos digitais de última geração.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-             <div className="p-10 bg-white rounded-3xl shadow-sm">
-                <i className="fas fa-microscope text-4xl text-accent mb-6"></i>
-                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter">Diagnóstico Digital</h3>
+             <div className="p-10 bg-white rounded-3xl shadow-sm border border-transparent hover:border-accent transition-all group">
+                <i className="fas fa-microscope text-4xl text-accent mb-6 group-hover:scale-110 transition-transform"></i>
+                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter italic">Diagnóstico Digital</h3>
                 <p className="text-sm text-gray-500">Localizamos vazamentos sem o método "tentativa e erro".</p>
              </div>
-             <div className="p-10 bg-white rounded-3xl shadow-sm">
-                <i className="fas fa-file-signature text-4xl text-accent mb-6"></i>
-                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter">Laudos Oficiais</h3>
+             <div className="p-10 bg-white rounded-3xl shadow-sm border border-transparent hover:border-accent transition-all group">
+                <i className="fas fa-file-signature text-4xl text-accent mb-6 group-hover:scale-110 transition-transform"></i>
+                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter italic">Laudos Oficiais</h3>
                 <p className="text-sm text-gray-500">Documentação técnica para Sanepar e Seguradoras.</p>
              </div>
-             <div className="p-10 bg-white rounded-3xl shadow-sm">
-                <i className="fas fa-history text-4xl text-accent mb-6"></i>
-                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter">Pronta Resposta</h3>
+             <div className="p-10 bg-white rounded-3xl shadow-sm border border-transparent hover:border-accent transition-all group">
+                <i className="fas fa-history text-4xl text-accent mb-6 group-hover:scale-110 transition-transform"></i>
+                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter italic">Pronta Resposta</h3>
                 <p className="text-sm text-gray-500">Unidades móveis 24h em todos os bairros de Curitiba.</p>
              </div>
           </div>

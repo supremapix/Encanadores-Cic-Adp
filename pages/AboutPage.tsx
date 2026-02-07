@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
+import SafeImage from '../components/SafeImage';
 
 const AboutPage: React.FC = () => {
   useEffect(() => {
@@ -26,10 +27,10 @@ const AboutPage: React.FC = () => {
             <div className="lg:w-1/2">
               <div className="relative">
                 <div className="absolute -inset-4 bg-accent/20 rounded-[3rem] blur-2xl"></div>
-                <img 
+                <SafeImage 
                   src="https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=1200&q=80" 
-                  alt="Técnico ADP" 
-                  className="relative z-10 rounded-[3rem] shadow-2xl border-8 border-white"
+                  alt="Técnico ADP Especialista" 
+                  className="relative z-10 rounded-[3rem] shadow-2xl border-8 border-white w-full h-auto min-h-[400px] object-cover"
                 />
               </div>
             </div>
@@ -52,7 +53,7 @@ const AboutPage: React.FC = () => {
               <a 
                 href={CONTACT_INFO.whatsappLink}
                 target="_blank"
-                className="inline-block bg-primary text-white font-black px-12 py-5 rounded-2xl shadow-xl hover:bg-accent hover:text-primary transition-all uppercase tracking-widest text-[11px]"
+                className="inline-block bg-primary text-white font-black px-12 py-5 rounded-2xl shadow-xl hover:bg-accent hover:text-primary transition-all uppercase tracking-widest text-[11px] italic"
               >
                 Fale com nossa Engenharia
               </a>

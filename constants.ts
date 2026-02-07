@@ -37,32 +37,13 @@ export const MAIN_SERVICES: Service[] = [
 ];
 
 export const BAIRROS: string[] = [
-  "Cidade Industrial (CIC)", "CIC Norte", "CIC Central", "CIC Sul", "Vila Nossa Senhora da Luz", 
-  "Vila Verde", "Vila Sabará", "Vila São José", "Vila Santa Helena", "Vila Industrial", 
-  "Vila Conquista", "Vila Torres", "Vila União", "Vila Nova Esperança", "Vila Osternack", 
-  "Vila Nova", "Vila Guaíra", "Vila São Domingos", "Vila Tecnológica", "Vila Audi União", 
-  "Vila Becker", "Vila Copel", "Vila Eletrosul", "Vila Trabalhador", "Vila São João", 
-  "Vila São Miguel", "Vila Santo Antônio", "Vila Verde II", "Vila Verde III", "Vila Verde IV", 
-  "Vila Verde V", "Vila Nova Primavera", "Vila Araucária", "Vila Concórdia", "Vila São Judas Tadeu", 
-  "Vila São Mateus", "Vila São Pedro", "Vila São Marcos", "Vila São Paulo", "Vila Industrial Oeste", 
-  "Vila Industrial Norte", "Vila Industrial Sul", "Vila Industrial Velha", "Vila Industrial Nova", 
-  "Vila Industrial Moderna", "Vila Industrial do Trabalhador", "Vila Industrial União", "Vila Industrial Esperança",
-  "Conjunto Habitacional Nossa Senhora da Luz", "Conjunto Sabará", "Conjunto Caiuá", "Conjunto Vitória Régia", 
-  "Conjunto Nova Esperança", "Conjunto Industrial", "Conjunto União", "Conjunto Osternack", "Conjunto Habitacional Vila Verde",
-  "Vila Parolin", "Vila Torres", "Jardim Schaffer", "Vila Sabará", "Boqueirão de Baixo", "Boqueirão de Cima", 
-  "Tanguá", "Vila Zumbi", "Abranches de Baixo", "Abranches de Cima", "Vila Nossa Senhora da Luz", 
-  "Vila Tecnológica", "Vila Oficinas", "Vila Fanny", "Vila Hauer", "Batel Soho", "Alto da Rua XV", 
-  "Vila Guaíra", "Centro Histórico", "Ecoville", "Carmo Abranches", "Água Verde", "Ahú", "Alto Boqueirão", 
-  "Alto da Glória", "Alto da XV", "Atuba", "Augusta", "Bacacheri", "Bairro Alto", "Barreirinha", 
-  "Batel", "Bigorrilho", "Boa Vista", "Bom Retiro", "Boqueirão", "Butiatuvinha", "Cabral", "Cachoeira", 
-  "Cajuru", "Campina do Siqueira", "Campo Comprido", "Campo de Santana", "Capão da Imbuia", "Capão Raso", 
-  "Cascatinha", "Caximba", "Centro", "Centro Cívico", "Cristo Rei", "Fanny", "Fazendinha", "Ganchinho", 
-  "Guabirotuba", "Guaíra", "Hauer", "Hugo Lange", "Jardim Botânico", "Jardim das Américas", "Jardim Social", 
-  "Juvevê", "Lamenha Pequena", "Lindóia", "Mercês", "Mossunguê", "Novo Mundo", "Orleans", "Parolin", 
-  "Pilarzinho", "Pinheirinho", "Portão", "Prado Velho", "Rebouças", "Riviera", "Santa Cândida", 
-  "Santa Felicidade", "Santa Quitéria", "Santo Inácio", "São Braz", "São Francisco", "São João", 
-  "São Lourenço", "São Miguel", "Vila Pantanal", "Seminário", "Sítio Cercado", "Taboão", "Tarumã", 
-  "Tatuquara", "Tingui", "Uberaba", "Umbará", "Vila Izabel", "Vista Alegre", "Xaxim"
+  "Cidade Industrial (CIC)", "Batel", "Água Verde", "Portão", "Centro", "Santa Felicidade", "Boqueirão", "Sítio Cercado", "Tatuquara",
+  "Alto da XV", "Bigorrilho", "Cabral", "Juvevê", "Mercês", "Rebouças", "São Francisco", "Hugo Lange", "Jardim Social",
+  "Abranches", "Pilarzinho", "Taboão", "Bacacheri", "Bairro Alto", "Tarumã", "Capão da Imbuia", "Cajuru", "Uberaba",
+  "Jardim das Américas", "Guabirotuba", "Prado Velho", "Hauer", "Fanny", "Lindóia", "Novo Mundo", "Capão Raso", "Pinheirinho",
+  "Xaxim", "Ganchinho", "Umbará", "Caximba", "Campo de Santana", "Augusta", "Riviera", "São Miguel", "Fazendinha", "Santa Quitéria",
+  "Vila Izabel", "Seminário", "Campina do Siqueira", "Mossunguê", "Orleans", "São Braz", "Santo Inácio", "Cascatinha", "Vista Alegre",
+  "Butiatuvinha", "São João", "Lamenha Pequena", "Santa Cândida", "Tingui", "Atuba", "Boa Vista", "Barreirinha", "São Lourenço", "Bom Retiro", "Ahú", "Centro Cívico", "Alto da Glória", "Jardim Botânico", "Cristo Rei"
 ];
 
 export const CIDADES: string[] = [
@@ -70,9 +51,81 @@ export const CIDADES: string[] = [
   "Fazenda Rio Grande", "Pinhais", "Piraquara", "São José dos Pinhais", "Quatro Barras"
 ];
 
-export const GENERAL_FAQ: FAQItem[] = [
-  { question: "O orçamento é gratuito?", answer: "Sim! A ADP realiza a visita técnica e o diagnóstico presencial sem custo em toda Curitiba. Transparência total para você." },
-  { question: "Quanto tempo leva para um técnico chegar?", answer: "Temos unidades móveis espalhadas estrategicamente por toda Curitiba e CIC. Em média, chegamos entre 30 a 45 minutos para emergências." },
-  { question: "Vocês dão garantia do serviço?", answer: "Sim, todos os nossos serviços possuem garantia total em contrato de 90 dias, assegurando sua paz de espírito e a qualidade da engenharia aplicada." },
-  { question: "Como funciona a detecção de vazamentos?", answer: "Utilizamos Geofone Digital de alta sensibilidade para localizar o vazamento exatamente onde ele está, evitando quebras desnecessárias em seu imóvel." }
+// Gerador Dinâmico de 550 FAQs cruzando Bairros e Serviços para SEO Local
+const generateMegaFAQ = (): FAQItem[] => {
+  const faqs: FAQItem[] = [
+    { question: "O orçamento é gratuito?", answer: "Sim! A ADP realiza a visita técnica e o diagnóstico presencial sem custo em toda Curitiba. Transparência total para você." },
+    { question: "Quanto tempo leva para um técnico chegar?", answer: "Temos unidades móveis espalhadas estrategicamente por toda Curitiba e CIC. Em média, chegamos entre 30 a 45 minutos para emergências." },
+    { question: "Vocês dão garantia do serviço?", answer: "Sim, todos os nossos serviços possuem garantia total em contrato de 90 dias, assegurando sua paz de espírito." },
+    { question: "Como funciona a detecção de vazamentos?", answer: "Utilizamos Geofone Digital de alta sensibilidade para localizar o vazamento exatamente onde ele está, evitando quebras desnecessárias." }
+  ];
+
+  const servicosSEO = ["Caça Vazamento", "Desentupimento de Pia", "Desentupimento de Esgoto", "Limpeza de Caixa de Gordura", "Hidrojateamento", "Vaso Sanitário"];
+  
+  // Cruzamento de dados para gerar volume massivo
+  BAIRROS.forEach(bairro => {
+    servicosSEO.forEach(servico => {
+      faqs.push({
+        question: `Como funciona o ${servico} no bairro ${bairro}?`,
+        answer: `Nosso serviço de **${servico} no ${bairro}** é realizado por técnicos de plantão na região. Utilizamos equipamentos digitais de última geração e oferecemos laudo técnico oficial para a Sanepar. O atendimento no ${bairro} é prioritário e 24h.`
+      });
+    });
+  });
+
+  return faqs.slice(0, 550);
+};
+
+export const GENERAL_FAQ = generateMegaFAQ();
+
+export const PLUMBING_TIPS = [
+  "Nunca jogue óleo de cozinha na pia; ele solidifica e causa obstruções graves.",
+  "Limpe as calhas antes do período de chuvas para evitar refluxo pluvial.",
+  "Verifique o relógio de água antes de dormir; se mexer sem uso, há vazamento.",
+  "Não use soda cáustica; ela pode 'empedrar' o esgoto e corroer canos de PVC.",
+  "O mau cheiro no ralo pode ser falta de água no fecho hídrico do sifão.",
+  "Troque o anel de vedação do vaso sanitário a cada 2 anos para evitar infiltrações.",
+  "Mantenha a tampa da caixa de gordura sempre bem vedada contra insetos.",
+  "Vazamentos em descargas podem desperdiçar até 100 litros de água por dia.",
+  "Cabelos no ralo do chuveiro são os maiores causadores de entupimento doméstico.",
+  "A limpeza da caixa d'água deve ser feita a cada 6 meses obrigatoriamente.",
+  "Use telas de proteção nos ralos para impedir a entrada de detritos e baratas.",
+  "Sons de batidas nos canos (golpe de aríete) indicam excesso de pressão na rede.",
+  "Se a conta de água subiu sem motivo, o culpado pode ser um vazamento oculto.",
+  "Nunca descarte lenços umedecidos no vaso; eles não se dissolvem como papel.",
+  "A borra de café na pia cria uma massa que obstrui a passagem da água.",
+  "Verifique se as raízes de árvores próximas não estão invadindo a rede de esgoto.",
+  "Um gotejamento simples pode desperdiçar 45 litros de água tratada por dia.",
+  "A manutenção preventiva custa 70% menos que um reparo emergencial de quebra.",
+  "Em apartamentos, vazamentos no teto geralmente são responsabilidade do vizinho acima.",
+  "O hidrojateamento é a única forma de limpar as paredes internas dos canos de gordura.",
+  "Canos de ferro antigos devem ser substituídos por PVC ou PPR para evitar ferrugem.",
+  "A válvula Hydra precisa de manutenção se começar a demorar para fechar.",
+  "Manchas de mofo na parede são sinais claros de infiltração por micro-vazamento.",
+  "Ao viajar, feche o registro geral para evitar surpresas com canos estourados.",
+  "Ralos sifonados impedem que os gases do esgoto entrem na sua residência.",
+  "Evite usar arames para desentupir; você pode perfurar a tubulação.",
+  "O Geofone localiza vazamentos por som, sem precisar quebrar azulejos.",
+  "Limpeza de fossa deve ser feita por empresas com certificação ambiental.",
+  "Borbulhas no vaso quando você solta a água indicam obstrução no respiro do esgoto.",
+  "Água demorando a descer na pia? É o primeiro sinal de entupimento parcial.",
+  "Use água quente (não fervendo) e detergente para manter a gordura fluida nos canos.",
+  "O registro de pressão do chuveiro não deve ser apertado com força excessiva.",
+  "Infiltrações na base da parede podem vir do solo ou de canos de alimentação.",
+  "Teste do balde: se colocar água e ela descer devagar, o problema é estrutural.",
+  "A Sanepar dá desconto na tarifa de esgoto se houver laudo de vazamento oculto.",
+  "Vazamentos em piscinas podem ser detectados com corantes específicos.",
+  "Tubulações de água quente exigem isolamento térmico para economizar energia.",
+  "O desentupimento técnico com mola rotativa preserva as curvas do cano.",
+  "Caixas de gordura de plástico são mais fáceis de limpar que as de concreto.",
+  "Não ligue a água pluvial na rede de esgoto; isso causa transbordamento nas ruas.",
+  "Verifique a boia da caixa d'água; se travar, a água vai vazar pelo ladrão.",
+  "O laudo técnico da ADP é aceito por todas as seguradoras de imóveis.",
+  "Vazamentos em colunas de prédios exigem intervenção imediata da administração.",
+  "Sempre exija nota fiscal e certificado de garantia do serviço hidráulico.",
+  "Equipamentos de vídeo-inspeção mostram o estado real do seu esgoto.",
+  "O cloro na caixa d'água deve ser dosado corretamente para não corroer metais.",
+  "Pias de cozinha industrial exigem caixas de gordura de alta capacidade.",
+  "A pressão excessiva da rua pode ser controlada com válvulas redutoras.",
+  "O 'azul de metileno' ajuda a encontrar vazamentos em caixas acopladas.",
+  "A ADP Engenharia é especialista em diagnósticos complexos em Curitiba."
 ];

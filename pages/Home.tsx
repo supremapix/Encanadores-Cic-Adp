@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
 import VideoSection from '../components/VideoSection';
-import FAQ from '../components/FAQ';
+import FAQInfinite from '../components/FAQInfinite';
+import FloatingTips from '../components/FloatingTips';
 import SafeImage from '../components/SafeImage';
-import { MAIN_SERVICES, BAIRROS, GENERAL_FAQ, CONTACT_INFO, IMAGES } from '../constants';
+import { MAIN_SERVICES, BAIRROS, CONTACT_INFO, IMAGES } from '../constants';
 
 const Home: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ const Home: React.FC = () => {
                <span className="text-secondary font-black tracking-[0.3em] text-[10px] uppercase mb-6 block">Credibilidade Técnica</span>
                <h2 className="text-4xl md:text-6xl font-black text-primary mb-10 tracking-tighter leading-none">Proteja seu imóvel com <br /><span className="text-secondary italic">Engenharia Digital.</span></h2>
                <p className="text-xl text-gray-600 leading-relaxed font-light mb-10">
-                 A ADP Engenharia localiza vazamentos invisíveis com precisão cirúrgica. Valores a partir de <strong>R$ 50</strong> para serviços básicos de desobstrução e avaliação.
+                 A ADP Engenharia localiza vazamentos invisíveis com precisão cirúrgica em Curitiba e CIC. Valores a partir de <strong>R$ 50</strong>.
                </p>
                <div className="flex items-center gap-6 p-6 bg-blue-50/50 rounded-3xl border border-blue-100">
                   <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
@@ -83,6 +84,9 @@ const Home: React.FC = () => {
 
       <VideoSection />
 
+      {/* Infinite FAQ Section */}
+      <FAQInfinite />
+
       {/* High-End CTA */}
       <section className="py-32 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -122,6 +126,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Floating System Component */}
+      <FloatingTips />
     </div>
   );
 };

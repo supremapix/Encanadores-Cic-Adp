@@ -7,6 +7,7 @@ import FixedButtons from './components/FixedButtons';
 import Home from './pages/Home';
 import DynamicPage from './pages/DynamicPage';
 import Sitemap from './pages/Sitemap';
+import NotFound from './pages/NotFound';
 
 const App: React.FC = () => {
   return (
@@ -19,13 +20,14 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/sitemap" element={<Sitemap />} />
             
-            {/* Dynamic routes for Locations and Services */}
+            {/* Dynamic SEO Routes */}
             <Route path="/bairro/:name" element={<DynamicPage type="bairro" />} />
             <Route path="/cidade/:name" element={<DynamicPage type="cidade" />} />
             <Route path="/servico/:name" element={<DynamicPage type="servico" />} />
             
-            {/* Catch-all route to prevent 404 by redirecting to Home */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* 404 Page */}
+            <Route path="/404" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         

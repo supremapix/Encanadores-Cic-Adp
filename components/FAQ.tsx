@@ -14,41 +14,32 @@ const FAQ: React.FC<Props> = ({ items, title = "Perguntas Frequentes" }) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const renderText = (text: string) => {
-    const parts = text.split(/(\*\*.*?\*\*)/g);
-    return parts.map((part, index) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={index} className="text-secondary font-bold">{part.slice(2, -2)}</strong>;
-      }
-      return part;
-    });
-  };
-
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-4 md:p-8">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-primary">{title}</h2>
-      <div className="space-y-3">
+    <div className="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-12 border border-gray-100">
+      <h2 className="text-3xl md:text-4xl font-black text-center mb-10 text-primary tracking-tighter uppercase italic">{title}</h2>
+      <div className="space-y-4">
         {items.map((item, index) => (
-          <div key={index} className="border border-gray-100 rounded-xl overflow-hidden shadow-sm">
+          <div key={index} className="border border-gray-100 rounded-3xl overflow-hidden shadow-sm transition-all hover:shadow-md">
             <button
-              className={`w-full text-left p-4 md:p-5 flex justify-between items-center transition-all ${
-                openIndex === index ? 'bg-blue-50 text-secondary' : 'bg-white hover:bg-gray-50 text-gray-800'
+              className={`w-full text-left p-6 flex justify-between items-center transition-all ${
+                openIndex === index ? 'bg-primary text-white' : 'bg-gray-50 text-gray-800 hover:bg-white'
               }`}
               onClick={() => toggle(index)}
-              aria-expanded={openIndex === index}
             >
-              <span className="font-bold text-sm md:text-base pr-4">{item.question}</span>
-              <i className={`fas fa-chevron-down transition-transform duration-300 text-xs ${
-                openIndex === index ? 'rotate-180' : ''
+              <span className="font-black text-base md:text-lg pr-6 uppercase tracking-tight">{item.question}</span>
+              <i className={`fas fa-chevron-down transition-transform duration-500 text-sm ${
+                openIndex === index ? 'rotate-180 text-accent' : 'text-gray-400'
               }`}></i>
             </button>
             <div 
-              className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                openIndex === index ? 'max-h-[500px] opacity-100 border-t border-gray-50' : 'max-h-0 opacity-0'
+              className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                openIndex === index ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-              <div className="p-5 text-gray-600 text-sm md:text-base leading-relaxed bg-white">
-                {renderText(item.answer)}
+              <div className="p-8 text-gray-700 text-sm md:text-base leading-relaxed bg-white font-medium border-t border-gray-50">
+                {item.answer.split('**').map((part, i) => (
+                  i % 2 === 1 ? <strong key={i} className="text-primary font-black">{part}</strong> : part
+                ))}
               </div>
             </div>
           </div>

@@ -2,16 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants';
+import PremiumLogo from './PremiumLogo';
 
 const Footer: React.FC = () => {
-  const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.style.display = 'none';
-    const parent = e.currentTarget.parentElement;
-    if (parent) {
-      parent.innerHTML = `<div class="h-16 w-16 bg-white rounded-full flex items-center justify-center font-black text-primary text-2xl shadow-xl animate-float">A</div>`;
-    }
-  };
-
   return (
     <footer className="bg-[#051125] text-white pt-20 pb-12 mt-16 relative overflow-hidden">
       {/* Background Decor */}
@@ -21,25 +14,13 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
-          {/* Brand & Animated Logo */}
-          <div className="space-y-6 text-center md:text-left">
-            <div className="relative group inline-block">
-              <div className="absolute -inset-4 bg-accent/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="shimmer-container rounded-full overflow-hidden inline-block bg-white p-2 shadow-2xl relative z-10">
-                <img 
-                  src={CONTACT_INFO.logoUrl} 
-                  alt="ADP Logo" 
-                  onError={handleLogoError}
-                  className="h-16 md:h-20 w-auto object-contain animate-float-slow transition-transform group-hover:scale-105"
-                />
-              </div>
+          {/* Brand & Animated Premium Logo */}
+          <div className="space-y-6 text-center md:text-left flex flex-col items-center md:items-start">
+            <div className="relative group inline-block mb-4">
+              <PremiumLogo size="lg" />
             </div>
-            <div className="mt-4">
-              <h3 className="text-2xl font-black tracking-tighter uppercase italic">ADP <span className="text-accent">ENGENHARIA</span></h3>
-              <p className="text-white/30 text-[9px] font-bold uppercase tracking-[0.4em] mb-4">Precision Hidraulics 24h</p>
-            </div>
-            <p className="text-white/40 text-xs leading-relaxed max-w-xs mx-auto md:mx-0 font-medium">
-              Engenharia especializada em diagnóstico digital não-invasivo e manutenção hidráulica preditiva em Curitiba.
+            <p className="text-white/40 text-xs leading-relaxed max-w-xs mx-auto md:mx-0 font-medium italic">
+              Engenharia especializada em diagnóstico digital não-invasivo e manutenção hidráulica preditiva em Curitiba e RMC.
             </p>
           </div>
 
@@ -99,30 +80,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <style>{`
-        .animate-float-slow { animation: floatSlow 8s ease-in-out infinite; }
-        @keyframes floatSlow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        .shimmer-container { position: relative; }
-        .shimmer-container::after {
-          content: "";
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.4) 50%, transparent 75%);
-          animation: shimmer 4s infinite linear;
-          pointer-events: none;
-        }
-        @keyframes shimmer {
-          0% { transform: translate(-30%, -30%) rotate(45deg); }
-          100% { transform: translate(30%, 30%) rotate(45deg); }
-        }
-      `}</style>
     </footer>
   );
 };

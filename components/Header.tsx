@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants';
+import PremiumLogo from './PremiumLogo';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,13 +16,11 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fecha o menu ao mudar de rota ou redimensionar
   useEffect(() => {
     setIsMenuOpen(false);
     window.scrollTo(0, 0);
   }, [location]);
 
-  // Bloqueia o scroll do body quando o menu está aberto
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -41,21 +40,9 @@ const Header: React.FC = () => {
   return (
     <header className={`fixed top-0 w-full z-[1000] transition-all duration-500 ${headerClasses}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group relative z-[1100]">
-          <div className="bg-white rounded-full p-1.5 shadow-xl transition-transform group-hover:rotate-6 group-hover:scale-110">
-            <img 
-              src={CONTACT_INFO.logoUrl} 
-              alt="ADP Logo" 
-              className="h-10 md:h-12 w-auto object-contain"
-            />
-          </div>
-          <div className="leading-none">
-            <h1 className="font-black text-white text-base md:text-xl tracking-tighter uppercase italic">
-              ADP <span className="text-accent">Engenharia</span>
-            </h1>
-            <span className="text-[7px] text-white/50 font-bold uppercase tracking-[0.3em]">Precision Hidraulics 24h</span>
-          </div>
+        {/* Logo Emulado Premium */}
+        <Link to="/" className="relative z-[1100]">
+          <PremiumLogo size="sm" />
         </Link>
 
         {/* Desktop Nav */}
@@ -88,7 +75,6 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay - Cor sólida e Z-index ajustado */}
       <div className={`fixed inset-0 bg-[#051125] z-[1050] transition-all duration-500 ease-in-out lg:hidden ${
         isMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-full invisible pointer-events-none'
       }`}>

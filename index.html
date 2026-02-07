@@ -2,26 +2,48 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ADP Encanador Curitiba 24h | Desentupidora e Caça Vazamentos</title>
-    <meta name="description" content="Encanador 24h Curitiba e Região. Serviços de desentupimento urgente, caça-vazamentos, hidrojateamento e conserto de encanamento. Atendimento imediato em até 30 min.">
-    <meta name="keywords" content="encanador curitiba, encanador 24h, desentupimento, caça vazamento, hidrojateamento, curitiba">
-    <meta name="author" content="ADP Encanador Curitiba">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#1e3c72">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ADP Engenharia Hidráulica | Encanador 24h Curitiba</title>
+    <meta name="description" content="Encanador 24h Curitiba e Região. Especialistas em Caça-Vazamentos Digital e Desentupimento. Atendimento imediato em todos os bairros e vilas de Curitiba.">
+    <meta name="keywords" content="encanador curitiba, encanador 24h, caça vazamento curitiba, desentupidora curitiba, geofone curitiba">
     
-    <!-- Resource Hints for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="ADP Encanador Curitiba 24h">
-    <meta property="og:description" content="Serviços de encanador e desentupidora 24h em Curitiba.">
-    <meta property="og:image" content="https://desentope.aloanuncio.com.br/images/logo.png">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
-    
+    <!-- Schema.org JSON-LD para LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PlumbingService",
+      "name": "ADP Engenharia Hidráulica Curitiba",
+      "image": "https://desentope.aloanuncio.com.br/images/logo.png",
+      "@id": "https://servicosadp.shop/",
+      "url": "https://servicosadp.shop/",
+      "telephone": "+554133451194",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Luiz Maltaca, 36",
+        "addressLocality": "Curitiba",
+        "addressRegion": "PR",
+        "postalCode": "80000-000",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -25.4284,
+        "longitude": -49.2733
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "sameAs": [
+        "https://desentopeadp.com.br/"
+      ]
+    }
+    </script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,46 +51,26 @@
         theme: {
           extend: {
             colors: {
-              primary: '#1e3c72',
-              secondary: '#2a5298',
+              primary: '#051125',
+              secondary: '#1e3c72',
               accent: '#ffeb3b',
               urgent: '#e74c3c'
             },
             fontFamily: {
               sans: ['Poppins', 'sans-serif'],
-            },
-            animation: {
-              'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
-              'fade-in': 'fadeIn 1s ease-out',
-              'slide-up': 'slideUp 0.8s ease-out',
-            },
-            keyframes: {
-              heartbeat: {
-                '0%, 100%': { transform: 'scale(1)' },
-                '10%, 30%': { transform: 'scale(1.1)' },
-                '20%, 40%': { transform: 'scale(1)' },
-              },
-              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-              slideUp: {
-                '0%': { transform: 'translateY(20px)', opacity: '0' },
-                '100%': { transform: 'translateY(0)', opacity: '1' },
-              }
             }
           }
         }
       }
     </script>
 
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-      body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-      ::-webkit-scrollbar { width: 10px; }
-      ::-webkit-scrollbar-track { background: #f1f1f1; }
-      ::-webkit-scrollbar-thumb { background: #1e3c72; border-radius: 5px; }
-      ::-webkit-scrollbar-thumb:hover { background: #2a5298; }
+      body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+      .scrollbar-hide::-webkit-scrollbar { display: none; }
+      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 
     <script type="importmap">
@@ -78,17 +80,16 @@
     "react-dom": "https://esm.sh/react-dom@^19.2.3",
     "react": "https://esm.sh/react@^19.2.3",
     "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1",
-    "react-markdown": "https://esm.sh/react-markdown@^10.1.0",
     "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/"
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-markdown": "https://esm.sh/react-markdown@^10.1.0"
   }
 }
 </script>
-
     <script type="module" src="./index.tsx"></script>
   </head>
-  <body class="bg-gray-50 text-gray-800 antialiased">
+  <body class="bg-white antialiased">
     <div id="root"></div>
   </body>
 </html>

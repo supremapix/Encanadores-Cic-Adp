@@ -23,35 +23,44 @@ export const IMAGES: ImageData[] = [
   { url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80", alt: "Engenharia Hidráulica de Precisão" },
   { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80", alt: "Detecção Digital de Vazamentos" },
   { url: "https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=1200&q=80", alt: "Reparos Hidráulicos Profissionais" },
-  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1200&q=80", alt: "Infraestrutura Hidráulica" },
-  { url: "https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=1200&q=80", alt: "Conexões Técnicas" },
-  { url: "https://images.unsplash.com/photo-1595467793429-079717871f76?auto=format&fit=crop&w=1200&q=80", alt: "Desentupimento Industrial" },
-  { url: "https://images.unsplash.com/photo-1624266324687-0971fd306775?auto=format&fit=crop&w=1200&q=80", alt: "Geofone Digital Avançado" },
-  { url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", alt: "Acabamento em Engenharia" }
+  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1200&q=80", alt: "Infraestrutura Hidráulica" }
 ];
 
 export const MAIN_SERVICES: Service[] = [
-  { id: 'caca-vazamento', title: 'Rastreamento de Vazamentos', description: 'Localização milimétrica com Geofone Ultrassônico Digital. Onde outros quebram tudo, nós apenas apontamos o ponto exato.', icon: 'fa-crosshairs' },
-  { id: 'esgoto', title: 'Engenharia de Esgoto', description: 'Desobstrução técnica com sistema rotativo de alta performance. Limpeza total de colunas e redes coletoras sem riscos.', icon: 'fa-vial-circle-check' },
-  { id: 'hidro', title: 'Hidrojateamento Industrial', description: 'Lavagem interna de tubulações por ultra-pressão. Solução definitiva para remoção de gordura e detritos petrificados.', icon: 'fa-faucet-drip' },
-  { id: 'vaso', title: 'Restauração Sanitária', description: 'Intervenção técnica em sistemas de descarga e vasos sanitários com foco em higiene e preservação da louça.', icon: 'fa-toilet' },
-  { id: 'pia', title: 'Manutenção Hidrodinâmica', description: 'Desentupimento de pias e sifões com foco na eliminação de odores e prevenção de transbordamentos futuros.', icon: 'fa-sink' },
-  { id: 'ralo', title: 'Sistemas Pluviais', description: 'Diagnóstico e limpeza de ralos e sistemas de drenagem de águas da chuva para condomínios e pátios industriais.', icon: 'fa-droplet' },
+  { id: 'caca-vazamento', title: 'Caça Vazamentos Digital', description: 'Localização exata com Geofone Digital e Ultrassom. Emitimos laudo para redução de conta na Sanepar.', icon: 'fa-crosshairs' },
+  { id: 'esgoto', title: 'Desentupidora 24h', description: 'Desobstrução técnica com sistema rotativo e hidrojateamento. Solução definitiva sem quebrar pisos.', icon: 'fa-vial-circle-check' },
+  { id: 'hidro', title: 'Hidrojateamento', description: 'Limpeza de alta pressão em redes de esgoto, colunas de prédios e caixas de gordura industriais.', icon: 'fa-faucet-drip' },
+  { id: 'vaso', title: 'Vasos e Pias', description: 'Desentupimento rápido e higiênico de vasos sanitários e pias com equipamentos que preservam a louça.', icon: 'fa-toilet' },
+  { id: 'caixa-gordura', title: 'Caixa de Gordura', description: 'Limpeza completa e manutenção preventiva de caixas de gordura para evitar refluxos e mau cheiro.', icon: 'fa-sink' },
+  { id: 'laudo-tecnico', title: 'Laudos Oficiais', description: 'Emissão de Laudo Técnico de Estanqueidade para redução de tarifas Sanepar e perícias de seguros.', icon: 'fa-file-contract' },
 ];
 
 export const BAIRROS: string[] = [
+  // CIC e Vilas Específicas
+  "Cidade Industrial (CIC)", "CIC Norte", "CIC Central", "CIC Sul", "Vila Nossa Senhora da Luz", 
+  "Vila Verde", "Vila Sabará", "Vila São José", "Vila Santa Helena", "Vila Industrial", 
+  "Vila Conquista", "Vila Torres", "Vila União", "Vila Nova Esperança", "Vila Osternack", 
+  "Vila Nova", "Vila Guaíra Velha", "Vila São Domingos", "Vila Tecnológica", "Vila Audi União", 
+  "Vila Becker", "Vila Copel", "Vila Eletrosul", "Vila Trabalhador", "Vila São João", 
+  "Vila São Miguel", "Vila Santo Antônio", "Vila Verde II", "Vila Verde III", "Vila Araucária", 
+  "Vila Concórdia", "Vila São Judas Tadeu", "Vila São Mateus", "Vila São Pedro", "Vila Industrial Norte",
+  "Vila Industrial Sul", "Vila Parolin", "Vila Sabará Velha", "Vila Barigui", "Vila Reno",
+  // Bairros Tradicionais
   "Água Verde", "Alto da Glória", "Alto da XV", "Atuba", "Bacacheri", "Bairro Alto", 
   "Batel", "Bigorrilho", "Boa Vista", "Boqueirão", "Butiatuvinha", "Cabral", 
   "Cachoeira", "Cajuru", "Campina do Siqueira", "Campo Comprido", "Capão da Imbuia", 
   "Capão Raso", "Cascatinha", "Centro", "Centro Cívico", "Champagnat", 
-  "Cidade Industrial", "Cristo Rei", "Fanny", "Fazendinha", "Ganchinho", 
-  "Guabirotuba", "Hauer", "Hugo Lange", "Jardim Botânico", "Jardim das Américas", 
-  "Jardim Social", "Juvevê", "Lindóia", "Mercês", "Mossunguê", "Novo Mundo", 
-  "Orleans", "Parolin", "Pilarzinho", "Pinheirinho", "Portão", "Prado Velho", 
-  "Rebouças", "Santa Cândida", "Santa Felicidade", "Santa Quitéria", "Santo Inácio", 
-  "São Braz", "São Francisco", "São Lourenço", "Seminário", "Sítio Cercado", 
-  "Taboão", "Tarumã", "Tatuquara", "Tingui", "Uberaba", "Umbará", "Vila Izabel", 
-  "Vista Alegre", "Xaxim"
+  "Cristo Rei", "Fanny", "Fazendinha", "Ganchinho", "Guabirotuba", "Hauer", 
+  "Hugo Lange", "Jardim Botânico", "Jardim das Américas", "Jardim Social", "Juvevê", 
+  "Lindóia", "Mercês", "Mossunguê", "Novo Mundo", "Orleans", "Parolin", 
+  "Pilarzinho", "Pinheirinho", "Portão", "Prado Velho", "Rebouças", "Santa Cândida", 
+  "Santa Felicidade", "Santa Quitéria", "Santo Inácio", "São Braz", "São Francisco", 
+  "São Lourenço", "Seminário", "Sítio Cercado", "Taboão", "Tarumã", "Tatuquara", 
+  "Tingui", "Uberaba", "Umbará", "Vila Izabel", "Vista Alegre", "Xaxim",
+  // Regiões e Conjuntos
+  "Conjunto Caiuá", "Conjunto Vitória Régia", "Conjunto Sabará", "Conjunto Parigot de Souza",
+  "Jardim Schaffer", "Boqueirão de Baixo", "Boqueirão de Cima", "Tanguá", "Vila Zumbi",
+  "Abranches de Baixo", "Abranches de Cima", "Ecoville", "Centro Histórico"
 ];
 
 export const CIDADES: string[] = [
@@ -60,15 +69,8 @@ export const CIDADES: string[] = [
 ];
 
 export const GENERAL_FAQ: FAQItem[] = [
-  { question: "O orçamento técnico é pago?", answer: "Não. Oferecemos a **Visita e o Diagnóstico Presencial sem custo** para toda Curitiba. Transparência é o pilar da nossa engenharia." },
-  { question: "Como funciona a detecção sem quebra?", answer: "Utilizamos o **Geofone Digital**, um equipamento de ultrassom que capta a frequência sonora da água escapando da tubulação, indicando o local exato com precisão de centímetros." },
-  { question: "Vocês emitem documentos oficiais?", answer: "Sim. Nossos serviços acompanham **Laudo Técnico de Conformidade** para redução de conta na Sanepar e perícia de seguradoras." },
-  { question: "Qual o prazo de atendimento?", answer: "Operamos com **Equipes de Pronta Resposta**. Em Curitiba, nossa meta de chegada é de 30 a 45 minutos após a confirmação." }
-];
-
-export const SERVICE_TABLE_DATA: TableRow[] = [
-  { service: "Rastreamento de Vazamento", description: "Geofone Nível 1", price: "Sob Orçamento", availability: "Imediato 24h" },
-  { service: "Desobstrução Mecânica", description: "Sondas K-500", price: "Valor Fixo/M", availability: "24h Urgente" },
-  { service: "Vídeo Inspeção HD", description: "Mapeamento Digital", price: "Consulte", availability: "Agendado" },
-  { service: "Contrato Condominial", description: "Preventiva Mensal", price: "Exclusivo", availability: "Prioritária" },
+  { question: "O orçamento é gratuito?", answer: "Sim! A ADP realiza a visita técnica e o diagnóstico presencial sem custo em toda Curitiba. Transparência total." },
+  { question: "Quanto tempo para chegar?", answer: "Temos unidades móveis espalhadas estrategicamente. Em Curitiba, chegamos em média entre 30 a 45 minutos." },
+  { question: "Dão garantia do serviço?", answer: "Sim, todos os nossos serviços possuem garantia total em contrato de 90 dias, assegurando sua paz de espírito." },
+  { question: "Atendem emergências no CIC?", answer: "Sim, possuímos uma base tática dentro do CIC para atender todas as vilas e conjuntos habitacionais com rapidez máxima 24h." }
 ];

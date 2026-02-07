@@ -13,7 +13,7 @@ export const CONTACT_INFO = {
 };
 
 export const TRUST_BADGES = [
-  { icon: 'fa-shield-check', text: 'Garantia de 90 dias' },
+  { icon: 'fa-award', text: 'Garantia de 90 dias' },
   { icon: 'fa-user-check', text: 'Técnicos Certificados' },
   { icon: 'fa-clock', text: 'Chegada em 30 min' },
   { icon: 'fa-credit-card', text: 'Parcelamos no Cartão' }

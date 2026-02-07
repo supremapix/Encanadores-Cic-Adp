@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ContactForm from '../components/ContactForm';
@@ -33,19 +32,16 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
   }, [name]);
   
   const locationImage = useMemo(() => {
-    const idx = (name?.length || 0) % IMAGES.length;
+    // Aumentando a variabilidade baseada no nome para garantir que cada página pareça única
+    const charSum = (name || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const idx = charSum % IMAGES.length;
     return IMAGES[idx] || IMAGES[0];
-  }, [name]);
-
-  const secondaryImage = useMemo(() => {
-    const idx = ((name?.length || 0) + 2) % IMAGES.length;
-    return IMAGES[idx] || IMAGES[1];
   }, [name]);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = CONTACT_INFO.logoUrl;
     e.currentTarget.className = "rounded-xl p-12 object-contain bg-gray-50 w-full h-64 border border-gray-100 opacity-50";
-    e.currentTarget.onerror = null; // Previne loop infinito
+    e.currentTarget.onerror = null; 
   };
 
   useEffect(() => {
@@ -79,7 +75,6 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
         }
       };
 
-      // @google/genai fix: Correctly type and handle script element for SEO schema to avoid property 'type' error on HTMLElement
       const scriptId = 'dynamic-schema';
       const existingScript = document.getElementById(scriptId) as HTMLScriptElement | null;
       if (existingScript) {
@@ -111,7 +106,7 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
         <div className="flex flex-col lg:flex-row gap-12">
             <div className="w-full lg:w-2/3 space-y-12">
                 <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                    <h2 className="text-2xl font-bold text-primary mb-6">Atendimento em {titleName}</h2>
+                    <h2 className="text-2xl font-bold text-primary mb-6">Atendimento Especializado em {titleName}</h2>
                     <p className="text-gray-600 mb-8 leading-relaxed">
                       A ADP Encanador Curitiba é referência em <strong>{titleName}</strong> para resolver qualquer emergência hidráulica. 
                       Oferecemos {uniqueArguments} com foco em rapidez e transparência total no orçamento.

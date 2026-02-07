@@ -13,19 +13,22 @@ export const CONTACT_INFO = {
 };
 
 export const TRUST_BADGES = [
-  { icon: 'fa-award', text: 'Garantia de 90 dias' },
-  { icon: 'fa-user-check', text: 'Técnicos Certificados' },
-  { icon: 'fa-clock', text: 'Chegada em 30 min' },
+  { icon: 'fa-certificate', text: 'Garantia de 90 dias' }, // fa-certificate é mais estável na versão free
+  { icon: 'fa-user-shield', text: 'Técnicos Certificados' },
+  { icon: 'fa-shipping-fast', text: 'Chegada em 30 min' },
   { icon: 'fa-credit-card', text: 'Parcelamos no Cartão' }
 ];
 
 export const IMAGES: ImageData[] = [
-  { url: "https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=800&q=80", alt: "Encanador profissional trabalhando em tubulação de cobre" },
-  { url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80", alt: "Manutenção de sistema hidráulico residencial" },
-  { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80", alt: "Técnico encanador consertando vazamento em pia" },
-  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=80", alt: "Tubulações industriais e válvulas hidráulicas" },
-  { url: "https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=800&q=80", alt: "Reparo profissional em encanamento de banheiro" },
-  { url: "https://images.unsplash.com/photo-1595467793429-079717871f76?auto=format&fit=crop&w=800&q=80", alt: "Encanador limpando ralo e esgoto" }
+  { url: "https://images.unsplash.com/photo-1581244276891-997b6a550267?q=80&w=2070&auto=format&fit=crop", alt: "Encanador profissional trabalhando" },
+  { url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop", alt: "Manutenção de encanamento profissional" },
+  { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop", alt: "Reparo em pia de banheiro" },
+  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=1974&auto=format&fit=crop", alt: "Tubulações e válvulas profissionais" },
+  { url: "https://images.unsplash.com/photo-1542013936693-884638332954?q=80&w=1974&auto=format&fit=crop", alt: "Encanador instalando componentes" },
+  { url: "https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=2070&auto=format&fit=crop", alt: "Equipamentos técnicos de hidrojateamento" },
+  { url: "https://images.unsplash.com/photo-1595467793429-079717871f76?q=80&w=2070&auto=format&fit=crop", alt: "Limpeza de ralos e esgoto" },
+  { url: "https://images.unsplash.com/photo-1624266324687-0971fd306775?q=80&w=2070&auto=format&fit=crop", alt: "Detecção de vazamento por geofone" },
+  { url: "https://images.unsplash.com/photo-1541271696563-3be2f995fc62?q=80&w=1974&auto=format&fit=crop", alt: "Ferramentas profissionais de encanador" }
 ];
 
 export const MAIN_SERVICES: Service[] = [

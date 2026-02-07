@@ -70,14 +70,14 @@ const Home: React.FC = () => {
             </div>
             <div className="md:w-1/2 grid grid-cols-2 gap-4">
               <img 
-                src={IMAGES[0].url} 
-                alt="Encanador Profissional" 
+                src={IMAGES[2].url} 
+                alt="Encanador Profissional Curitiba" 
                 onError={handleImageError}
                 className="rounded-lg shadow-md h-48 w-full object-cover" 
               />
               <img 
-                src={IMAGES[3].url} 
-                alt="Tubulação Hidráulica" 
+                src={IMAGES[5].url} 
+                alt="Equipamento Geofone Digital" 
                 onError={handleImageError}
                 className="rounded-lg shadow-md h-48 w-full object-cover mt-8" 
               />

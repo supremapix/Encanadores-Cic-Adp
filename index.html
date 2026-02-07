@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ADP Encanador Curitiba 24h | Desentupidora e Caça Vazamentos</title>
-    <meta name="description" content="Encanador 24h Curitiba e Região. Serviços de desentupimento urgente, caça-vazamentos, hidrojateamento e conserto de encanamento. Atendimento imediato.">
-    <meta name="keywords" content="encanador curitiba, encanador 24h, desentupimento, caça vazamento, hidrojateamento">
+    <meta name="description" content="Encanador 24h Curitiba e Região. Serviços de desentupimento urgente, caça-vazamentos, hidrojateamento e conserto de encanamento. Atendimento imediato em até 30 min.">
+    <meta name="keywords" content="encanador curitiba, encanador 24h, desentupimento, caça vazamento, hidrojateamento, curitiba">
     <meta name="author" content="ADP Encanador Curitiba">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#1e3c72">
@@ -14,8 +14,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="dns-prefetch" href="https://www.youtube.com">
-    <link rel="dns-prefetch" href="https://desentope.aloanuncio.com.br">
     
     <!-- Open Graph -->
     <meta property="og:title" content="ADP Encanador Curitiba 24h">
@@ -50,10 +48,7 @@
                 '10%, 30%': { transform: 'scale(1.1)' },
                 '20%, 40%': { transform: 'scale(1)' },
               },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
+              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
               slideUp: {
                 '0%': { transform: 'translateY(20px)', opacity: '0' },
                 '100%': { transform: 'translateY(0)', opacity: '1' },
@@ -68,27 +63,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Schema Markup Base -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ADP Encanador Curitiba 24h",
-      "image": "https://desentope.aloanuncio.com.br/images/logo.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Rua Luiz Maltaca, 36",
-        "addressLocality": "Curitiba",
-        "addressRegion": "PR",
-        "addressCountry": "BR"
-      },
-      "telephone": "+55-41-3345-1194",
-      "priceRange": "$$",
-      "openingHours": "Mo-Su 00:00-23:59",
-      "sameAs": "https://desentopeadp.com.br/"
-    }
-    </script>
-    
     <style>
       body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
       ::-webkit-scrollbar { width: 10px; }
@@ -113,16 +87,6 @@
 </script>
 
     <script type="module" src="./index.tsx"></script>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js').catch(err => {
-            console.warn('SW registration failed (non-critical): ', err);
-          });
-        });
-      }
-    </script>
   </head>
   <body class="bg-gray-50 text-gray-800 antialiased">
     <div id="root"></div>

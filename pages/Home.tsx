@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
+import ResponseTimeTracker from '../components/ResponseTimeTracker';
 import TrustBar from '../components/TrustBar';
 import VideoSection from '../components/VideoSection';
 import FAQInfinite from '../components/FAQInfinite';
@@ -13,6 +14,10 @@ const Home: React.FC = () => {
   return (
     <div className="overflow-x-hidden bg-white">
       <Hero />
+      
+      {/* Botão de Tecnologia de Tempo de Resposta */}
+      <ResponseTimeTracker />
+
       <TrustBar />
       
       {/* Authority Section */}

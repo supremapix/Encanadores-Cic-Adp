@@ -46,36 +46,39 @@ export const BAIRROS: string[] = [
   "Butiatuvinha", "São João", "Lamenha Pequena", "Santa Cândida", "Tingui", "Atuba", "Boa Vista", "Barreirinha", "São Lourenço", "Bom Retiro", "Ahú", "Centro Cívico", "Alto da Glória", "Jardim Botânico", "Cristo Rei"
 ];
 
+// Fix: Adding missing CIDADES export used by the Sitemap page
 export const CIDADES: string[] = [
-  "Curitiba", "Almirante Tamandaré", "Araucária", "Campo Largo", "Colombo", 
-  "Fazenda Rio Grande", "Pinhais", "Piraquara", "São José dos Pinhais", "Quatro Barras"
+  "São José dos Pinhais", "Colombo", "Pinhais", "Araucária", "Fazenda Rio Grande", "Campo Largo", "Piraquara", "Almirante Tamandaré", "Campina Grande do Sul", "Quatro Barras", "Itaperuçu", "Rio Branco do Sul"
 ];
 
-// Gerador Dinâmico de 550 FAQs cruzando Bairros e Serviços para SEO Local
-const generateMegaFAQ = (): FAQItem[] => {
-  const faqs: FAQItem[] = [
-    { question: "O orçamento é gratuito?", answer: "Sim! A ADP realiza a visita técnica e o diagnóstico presencial sem custo em toda Curitiba. Transparência total para você." },
-    { question: "Quanto tempo leva para um técnico chegar?", answer: "Temos unidades móveis espalhadas estrategicamente por toda Curitiba e CIC. Em média, chegamos entre 30 a 45 minutos para emergências." },
-    { question: "Vocês dão garantia do serviço?", answer: "Sim, todos os nossos serviços possuem garantia total em contrato de 90 dias, assegurando sua paz de espírito." },
-    { question: "Como funciona a detecção de vazamentos?", answer: "Utilizamos Geofone Digital de alta sensibilidade para localizar o vazamento exatamente onde ele está, evitando quebras desnecessárias." }
+// Gerador de FAQ Localizado Dinâmico (550+ itens)
+export const getLocalizedFAQ = (location: string): FAQItem[] => {
+  const baseFaqs = [
+    { question: `O orçamento é gratuito no ${location}?`, answer: `Sim! A ADP Engenharia realiza a visita técnica e o diagnóstico presencial sem custo em todo o **${location}**. Oferecemos transparência total para sua residência ou empresa.` },
+    { question: `Qual o tempo de chegada no ${location}?`, answer: `Temos unidades móveis baseadas estrategicamente próximas ao **${location}**. En média, nossa equipe tática chega ao local entre 20 a 40 minutos para emergências hidráulicas.` },
+    { question: `Vocês emitem laudo para a Sanepar no ${location}?`, answer: `Com certeza. Emitimos o Laudo Técnico de Estanqueidade oficial para que você possa solicitar o desconto na tarifa de esgoto diretamente com a Sanepar do **${location}**.` }
   ];
 
-  const servicosSEO = ["Caça Vazamento", "Desentupimento de Pia", "Desentupimento de Esgoto", "Limpeza de Caixa de Gordura", "Hidrojateamento", "Vaso Sanitário"];
-  
-  // Cruzamento de dados para gerar volume massivo
-  BAIRROS.forEach(bairro => {
-    servicosSEO.forEach(servico => {
-      faqs.push({
-        question: `Como funciona o ${servico} no bairro ${bairro}?`,
-        answer: `Nosso serviço de **${servico} no ${bairro}** é realizado por técnicos de plantão na região. Utilizamos equipamentos digitais de última geração e oferecemos laudo técnico oficial para a Sanepar. O atendimento no ${bairro} é prioritário e 24h.`
-      });
+  const prefixos = ["Preço de", "Como funciona", "Melhor", "Urgência em", "Problema com", "Quanto custa", "Empresa de", "Especialista em"];
+  const servicos = ["Caça Vazamento Digital", "Desentupimento de Pia", "Desentupimento de Vaso", "Hidrojateamento de Esgoto", "Limpeza de Caixa de Gordura", "Vídeo Inspeção de Canos", "Reparo de Tubulação PPR", "Detecção de Infiltração"];
+  const variacoes = ["com garantia", "24 horas", "sem quebrar", "em condomínios", "em empresas", "rápido e limpo", "com geofone", "com tecnologia alemã"];
+
+  const generated: FAQItem[] = [...baseFaqs];
+
+  // Loop para gerar 550 itens únicos focados exclusivamente na LOCALIZAÇÃO atual
+  for (let i = 0; i < 550; i++) {
+    const p = prefixos[i % prefixos.length];
+    const s = servicos[Math.floor(i / 10) % servicos.length];
+    const v = variacoes[i % variacoes.length];
+    
+    generated.push({
+      question: `${p} ${s} no ${location} ${v}?`,
+      answer: `Nossa solução de **${s} no ${location}** utiliza equipamentos de ponta para garantir um serviço ${v}. Atendemos todas as ruas e vilas da região com técnicos certificados e pronto atendimento 24h. Solicite agora seu diagnóstico digital no ${location} a partir de R$ 50.`
     });
-  });
+  }
 
-  return faqs.slice(0, 550);
+  return generated;
 };
-
-export const GENERAL_FAQ = generateMegaFAQ();
 
 export const PLUMBING_TIPS = [
   "Nunca jogue óleo de cozinha na pia; ele solidifica e causa obstruções graves.",

@@ -28,12 +28,15 @@ export const IMAGES: ImageData[] = [
 ];
 
 export const MAIN_SERVICES: Service[] = [
-  { id: 'caca-vazamento', title: 'Caça Vazamentos Digital', description: 'Localização exata com Geofone Digital e Ultrassom. Emitimos laudo para redução de conta na Sanepar.', icon: 'fa-crosshairs' },
-  { id: 'esgoto', title: 'Desentupidora 24h', description: 'Desobstrução técnica com sistema rotativo e hidrojateamento. Solução definitiva sem quebrar pisos.', icon: 'fa-vial-circle-check' },
-  { id: 'hidro', title: 'Hidrojateamento', description: 'Limpeza de alta pressão em redes de esgoto, colunas de prédios e caixas de gordura industriais.', icon: 'fa-faucet-drip' },
-  { id: 'vaso', title: 'Vasos e Pias', description: 'Desentupimento rápido e higiênico de vasos sanitários e pias com equipamentos que preservam a louça.', icon: 'fa-toilet' },
-  { id: 'caixa-gordura', title: 'Caixa de Gordura', description: 'Limpeza completa e manutenção preventiva de caixas de gordura para evitar refluxos e mau cheiro.', icon: 'fa-sink' },
-  { id: 'laudo-tecnico', title: 'Laudos Oficiais', description: 'Emissão de Laudo Técnico de Estanqueidade para redução de tarifas Sanepar e perícias de seguros.', icon: 'fa-file-contract' },
+  { id: 'caca-vazamento-digital', title: 'Caça Vazamento Digital', description: 'Localização não-invasiva com Geofone Ultrassônico. Detectamos vazamentos ocultos em paredes, pisos e jardins com precisão milimétrica, evitando quebras desnecessárias.', icon: 'fa-crosshairs' },
+  { id: 'desentupidora-24h', title: 'Desentupidora 24h', description: 'Desobstrução técnica de redes de esgoto, pias, ralos e colunas prediais. Utilizamos máquinas rotativas K-500 e hidrojateamento para limpeza completa da tubulação.', icon: 'fa-vial-circle-check' },
+  { id: 'limpeza-caixa-gordura', title: 'Limpeza de Caixa de Gordura', description: 'Manutenção higiênica e técnica para evitar transbordamentos e mau cheiro. Limpeza completa com descarte ecológico e certificação de conformidade.', icon: 'fa-sink' },
+  { id: 'hidrojateamento-pressao', title: 'Hidrojateamento', description: 'Limpeza de alta pressão para redes coletoras de condomínios e indústrias. Remove raízes, gordura solidificada e detritos pesados com jatos ultra-potentes.', icon: 'fa-faucet-drip' },
+  { id: 'video-inspecao-esgoto', title: 'Vídeo Inspeção HD', description: 'Diagnóstico visual interno de tubulações via micro-câmera. Identificamos rachaduras, selas rompidas ou obstruções complexas com gravação em tempo real.', icon: 'fa-video' },
+  { id: 'laudo-tecnico-sanepar', title: 'Laudos para Sanepar', description: 'Emissão de Laudo de Estanqueidade para redução de tarifa de esgoto. Perícia técnica aceita pela Sanepar e companhias de seguro para comprovação de vazamento.', icon: 'fa-file-contract' },
+  { id: 'limpeza-caixa-dagua', title: 'Limpeza de Caixa d\'Água', description: 'Higienização bactericida de reservatórios residenciais e prediais. Controle de potabilidade seguindo rigorosos padrões de saúde e segurança.', icon: 'fa-droplet' },
+  { id: 'desentupimento-vaso-sanitario', title: 'Desentupimento de Vaso', description: 'Remoção de obstruções em vasos sanitários com equipamentos que não riscam a louça nem danificam o anel de vedação. Serviço rápido e higiênico.', icon: 'fa-toilet' },
+  { id: 'manutencao-hidraulica-predial', title: 'Manutenção Predial', description: 'Gestão hidráulica completa para condomínios. Revisão de prumadas, barriletes, bombas e válvulas redutoras de pressão com engenharia tática.', icon: 'fa-building-shield' },
 ];
 
 export const BAIRROS: string[] = [
@@ -46,34 +49,42 @@ export const BAIRROS: string[] = [
   "Butiatuvinha", "São João", "Lamenha Pequena", "Santa Cândida", "Tingui", "Atuba", "Boa Vista", "Barreirinha", "São Lourenço", "Bom Retiro", "Ahú", "Centro Cívico", "Alto da Glória", "Jardim Botânico", "Cristo Rei"
 ];
 
-// Fix: Adding missing CIDADES export used by the Sitemap page
 export const CIDADES: string[] = [
   "São José dos Pinhais", "Colombo", "Pinhais", "Araucária", "Fazenda Rio Grande", "Campo Largo", "Piraquara", "Almirante Tamandaré", "Campina Grande do Sul", "Quatro Barras", "Itaperuçu", "Rio Branco do Sul"
 ];
 
-// Gerador de FAQ Localizado Dinâmico (550+ itens)
-export const getLocalizedFAQ = (location: string): FAQItem[] => {
+export const getLocalizedFAQ = (locationOrService: string): FAQItem[] => {
+  const isService = MAIN_SERVICES.some(s => s.id === locationOrService || s.title.toLowerCase().includes(locationOrService.toLowerCase()));
+  
   const baseFaqs = [
-    { question: `O orçamento é gratuito no ${location}?`, answer: `Sim! A ADP Engenharia realiza a visita técnica e o diagnóstico presencial sem custo em todo o **${location}**. Oferecemos transparência total para sua residência ou empresa.` },
-    { question: `Qual o tempo de chegada no ${location}?`, answer: `Temos unidades móveis baseadas estrategicamente próximas ao **${location}**. En média, nossa equipe tática chega ao local entre 20 a 40 minutos para emergências hidráulicas.` },
-    { question: `Vocês emitem laudo para a Sanepar no ${location}?`, answer: `Com certeza. Emitimos o Laudo Técnico de Estanqueidade oficial para que você possa solicitar o desconto na tarifa de esgoto diretamente com a Sanepar do **${location}**.` }
+    { 
+      question: `Quanto custa o serviço de ${locationOrService} em Curitiba?`, 
+      answer: `O valor para **${locationOrService}** inicia em R$ 50 para a visita técnica de diagnóstico. O orçamento final depende da complexidade detectada via Geofone ou Vídeo Inspeção. Garantimos o melhor custo-benefício da região.` 
+    },
+    { 
+      question: `A ADP Engenharia atende ${locationOrService} hoje?`, 
+      answer: `Sim! Operamos com plantão tático 24 horas para todos os chamados de **${locationOrService}**. Nossa equipe está pronta para sair agora mesmo com equipamentos digitais de última geração.` 
+    },
+    { 
+      question: `Qual a garantia para ${locationOrService}?`, 
+      answer: `Oferecemos garantia total de até 90 dias para serviços de desentupimento e laudos técnicos permanentes para processos de redução de conta junto à Sanepar em casos de **${locationOrService}**.` 
+    }
   ];
 
   const prefixos = ["Preço de", "Como funciona", "Melhor", "Urgência em", "Problema com", "Quanto custa", "Empresa de", "Especialista em"];
-  const servicos = ["Caça Vazamento Digital", "Desentupimento de Pia", "Desentupimento de Vaso", "Hidrojateamento de Esgoto", "Limpeza de Caixa de Gordura", "Vídeo Inspeção de Canos", "Reparo de Tubulação PPR", "Detecção de Infiltração"];
   const variacoes = ["com garantia", "24 horas", "sem quebrar", "em condomínios", "em empresas", "rápido e limpo", "com geofone", "com tecnologia alemã"];
+  
+  const contextSubject = isService ? locationOrService : `encanador no ${locationOrService}`;
 
   const generated: FAQItem[] = [...baseFaqs];
 
-  // Loop para gerar 550 itens únicos focados exclusivamente na LOCALIZAÇÃO atual
   for (let i = 0; i < 550; i++) {
     const p = prefixos[i % prefixos.length];
-    const s = servicos[Math.floor(i / 10) % servicos.length];
     const v = variacoes[i % variacoes.length];
     
     generated.push({
-      question: `${p} ${s} no ${location} ${v}?`,
-      answer: `Nossa solução de **${s} no ${location}** utiliza equipamentos de ponta para garantir um serviço ${v}. Atendemos todas as ruas e vilas da região com técnicos certificados e pronto atendimento 24h. Solicite agora seu diagnóstico digital no ${location} a partir de R$ 50.`
+      question: `${p} ${contextSubject} ${v}?`,
+      answer: `Nossa solução de **${contextSubject}** foca em eficiência e custo reduzido. Atendemos Curitiba e RMC com técnicos certificados que dominam a técnica de ${v}, garantindo que o seu problema hidráulico seja resolvido na primeira visita.`
     });
   }
 

@@ -8,7 +8,13 @@ const Sitemap: React.FC = () => {
     document.title = "Mapa do Site - ADP Encanador Curitiba";
   }, []);
 
-  const createSlug = (text: string) => text.toLowerCase().replace(/ /g, '-');
+  const createSlug = (text: string) => 
+    text.toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ /g, '-')
+      .replace(/[()]/g, '')
+      .replace(/[^a-z0-9-]/g, '');
 
   return (
     <div className="bg-gray-50 min-h-screen py-16">

@@ -38,28 +38,39 @@ const DynamicPage: React.FC<Props> = ({ type }) => {
     // Inject JSON-LD Schema Markup
     const schemaData = {
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": titleName,
-      "serviceType": type === 'servico' ? "Plumbing Service" : "Emergency Plumber",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "ADP Engenharia Hidráulica",
-        "image": CONTACT_INFO.logoUrl,
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": CONTACT_INFO.address,
-          "addressLocality": "Curitiba",
-          "addressRegion": "PR",
-          "addressCountry": "BR"
-        },
-        "telephone": CONTACT_INFO.phone,
-        "priceRange": "$$"
+      "@type": "PlumbingService",
+      "name": `${titleName} - Encanador 24h Curitiba`,
+      "image": CONTACT_INFO.logoUrl,
+      "url": window.location.href,
+      "telephone": CONTACT_INFO.phone,
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": CONTACT_INFO.address,
+        "addressLocality": "Curitiba",
+        "addressRegion": "PR",
+        "postalCode": "80000-000",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -25.4284,
+        "longitude": -49.2733
       },
       "areaServed": [
-        { "@type": "City", "name": "Curitiba" },
-        { "@type": "City", "name": titleName }
-      ],
-      "description": serviceInfo?.description || `Serviço especializado de ${titleName} em Curitiba. Atendimento tático 24 horas para residências e empresas.`
+        {
+          "@type": "City",
+          "name": type === 'cidade' ? titleName : "Curitiba"
+        },
+        type === 'bairro' ? { "@type": "AdministrativeArea", "name": titleName } : null
+      ].filter(Boolean),
+      "description": serviceInfo?.description || `Serviço especializado de encanador 24h em ${titleName}. Atendimento imediato para caça-vazamento, desentupimento e reparos hidráulicos com tecnologia digital.`,
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
     };
 
     const script = document.createElement('script');

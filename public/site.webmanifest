@@ -1,0 +1,17 @@
+{
+  "name": "ADP Engenharia Hidráulica",
+  "short_name": "ADP Encanador",
+  "description": "Encanador 24h Curitiba & CIC - Especialista em Caça-Vazamentos Digital e Desentupimento",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#051125",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

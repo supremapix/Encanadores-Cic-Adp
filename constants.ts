@@ -40,17 +40,14 @@ export const MAIN_SERVICES: Service[] = [
 ];
 
 export const BAIRROS: string[] = [
-  "Cidade Industrial (CIC)", "Batel", "Água Verde", "Portão", "Centro", "Santa Felicidade", "Boqueirão", "Sítio Cercado", "Tatuquara",
-  "Alto da XV", "Bigorrilho", "Cabral", "Juvevê", "Mercês", "Rebouças", "São Francisco", "Hugo Lange", "Jardim Social",
-  "Abranches", "Pilarzinho", "Taboão", "Bacacheri", "Bairro Alto", "Tarumã", "Capão da Imbuia", "Cajuru", "Uberaba",
-  "Jardim das Américas", "Guabirotuba", "Prado Velho", "Hauer", "Fanny", "Lindóia", "Novo Mundo", "Capão Raso", "Pinheirinho",
-  "Xaxim", "Ganchinho", "Umbará", "Caximba", "Campo de Santana", "Augusta", "Riviera", "São Miguel", "Fazendinha", "Santa Quitéria",
-  "Vila Izabel", "Seminário", "Campina do Siqueira", "Mossunguê", "Orleans", "São Braz", "Santo Inácio", "Cascatinha", "Vista Alegre",
-  "Butiatuvinha", "São João", "Lamenha Pequena", "Santa Cândida", "Tingui", "Atuba", "Boa Vista", "Barreirinha", "São Lourenço", "Bom Retiro", "Ahú", "Centro Cívico", "Alto da Glória", "Jardim Botânico", "Cristo Rei"
+  // Bairros Oficiais Curitiba
+  "Abranches", "Água Verde", "Ahú", "Alto Boqueirão", "Alto da Glória", "Alto da Rua XV", "Atuba", "Augusta", "Bacacheri", "Bairro Alto", "Barreirinha", "Batel", "Bigorrilho", "Boa Vista", "Bom Retiro", "Boqueirão", "Butiatuvinha", "Cabral", "Cachoeira", "Cajuru", "Campina do Siqueira", "Campo Comprido", "Campo de Santana", "Capão Raso", "Capão da Imbuia", "Cascatinha", "Caximba", "Centro", "Centro Cívico", "Cidade Industrial (CIC)", "Cristo Rei", "Fanny", "Fazendinha", "Ganchinho", "Guabirotuba", "Guaíra", "Hauer", "Hugo Lange", "Jardim Botânico", "Jardim Social", "Jardim das Américas", "Juvevê", "Lamenha Pequena", "Lindóia", "Mercês", "Mossunguê", "Novo Mundo", "Orleans", "Parolin", "Pilarzinho", "Pinheirinho", "Portão", "Prado Velho", "Rebouças", "Riviera", "Santa Cândida", "Santa Felicidade", "Santa Quitéria", "Santo Inácio", "Seminário", "Sítio Cercado", "São Braz", "São Francisco", "São João", "São Lourenço", "São Miguel", "Taboão", "Tarumã", "Tatuquara", "Tingui", "Uberaba", "Umbará", "Vila Izabel", "Vista Alegre", "Xaxim",
+  // Vilas e Regiões Populares (Não Oficiais)
+  "Vila Sandra", "Vila Verde", "Vila Nossa Senhora da Luz", "Vitória Régia", "Caiuá", "Sabará", "Gabineto", "Itatiaia", "Santa Helena", "Conquista", "Barigui", "Osvaldo Cruz", "Atenas", "Neoville", "Vila Pantanal", "Vila Torres", "Vila das Torres", "Vila Hauer", "Vila Oficinas", "Vila Guaíra", "Vila Osternack", "Vila São Pedro", "Vila Audi", "Vila Parolin", "Jardim Gabineto", "Jardim Itatiaia", "Jardim da Ordem", "Jardim Kosmos", "Jardim Alvorada", "CIC Central", "Pinheirinho Velho", "Sítio Cercado Velho", "Umbará de Baixo", "Umbará de Cima", "Capão Raso Velho", "Carmo", "Hauer Velho", "Xaxim Velho", "Boqueirão Alto", "Boqueirão Velho", "Cajuru Alto", "Uberaba Velho", "Uberaba de Cima", "Jardim das Torres", "Vila Prado", "Bairro Alto Norte", "Bairro Alto Velho", "Tingui Velho", "Boa Vista Norte", "Orleans Velho", "São Braz Alto", "Santa Felicidade Norte", "Portão Velho"
 ];
 
 export const CIDADES: string[] = [
-  "São José dos Pinhais", "Colombo", "Pinhais", "Araucária", "Fazenda Rio Grande", "Campo Largo", "Piraquara", "Almirante Tamandaré", "Campina Grande do Sul", "Quatro Barras", "Itaperuçu", "Rio Branco do Sul"
+  "Curitiba", "São José dos Pinhais", "Pinhais", "Colombo", "Araucária", "Almirante Tamandaré", "Campo Largo", "Campo Magro", "Fazenda Rio Grande", "Quatro Barras", "Campina Grande do Sul", "Mandirituba", "Balsa Nova", "Rio Branco do Sul", "Itaperuçu", "Tijucas do Sul"
 ];
 
 export const getLocalizedFAQ = (locationOrService: string): FAQItem[] => {

@@ -1,8 +1,10 @@
 export interface Service {
   id: string;
   title: string;
+  shortTitle?: string;
   description: string;
   icon: string;
+  applications?: string[];
 }
 
 export interface Location {
@@ -13,13 +15,6 @@ export interface Location {
 export interface FAQItem {
   question: string;
   answer: string;
-}
-
-export interface TableRow {
-  service: string;
-  description: string;
-  price: string;
-  availability: string;
 }
 
 export interface ImageData {

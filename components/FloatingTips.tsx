@@ -1,82 +1,53 @@
-
 import React, { useState, useEffect } from 'react';
 import { PLUMBING_TIPS } from '../constants';
 
 const FloatingTips: React.FC = () => {
-  const [tipIdx, setTipIdx] = useState(0);
+  const [currentTip, setCurrentTip] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    // Inicia o ciclo de dicas
-    const showRandomTip = () => {
-      const nextIdx = Math.floor(Math.random() * PLUMBING_TIPS.length);
-      setTipIdx(nextIdx);
-      setIsVisible(true);
+    // Exibe após 6 segundos
+    const timer = setTimeout(() => {
+      if (!dismissed) setIsVisible(true);
+    }, 6000);
 
-      // Desaparece após 15 segundos
-      setTimeout(() => {
-        setIsVisible(false);
-      }, 15000);
-    };
-
-    const interval = setInterval(showRandomTip, 35000); // Mostra uma dica a cada 35 segundos
-    
-    // Mostra a primeira dica após 10 segundos no site
-    const firstTimeout = setTimeout(showRandomTip, 10000);
+    const interval = setInterval(() => {
+      setCurrentTip((prev) => (prev + 1) % PLUMBING_TIPS.length);
+    }, 15000);
 
     return () => {
+      clearTimeout(timer);
       clearInterval(interval);
-      clearTimeout(firstTimeout);
     };
-  }, []);
+  }, [dismissed]);
 
-  if (!isVisible) return null;
+  if (dismissed || !isVisible) return null;
 
   return (
-    <div className="fixed bottom-24 right-4 md:right-8 z-[1500] max-w-sm w-full animate-slide-left pointer-events-none">
-      <div className="bg-white rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-gray-100 p-6 pointer-events-auto relative overflow-hidden group">
-        <div className="absolute top-0 left-0 w-1 h-full bg-accent group-hover:w-2 transition-all"></div>
-        
-        <div className="flex justify-between items-start mb-4">
-           <div className="flex items-center gap-2">
-              <i className="fas fa-lightbulb text-accent text-xl animate-pulse"></i>
-              <span className="text-[9px] font-black text-primary uppercase tracking-[0.3em]">Dica de Engenharia</span>
-           </div>
-           <button 
-             onClick={() => setIsVisible(false)}
-             className="text-gray-300 hover:text-urgent transition-colors p-1"
-             aria-label="Fechar dica"
-           >
-             <i className="fas fa-xmark"></i>
-           </button>
+    <div className="fixed bottom-20 left-4 z-40 max-w-xs sm:max-w-sm bg-slate-900/95 text-white border border-slate-700/80 rounded-xl p-3.5 shadow-xl backdrop-blur-sm transition-all duration-300 hidden md:block">
+      <div className="flex items-start gap-2.5">
+        <div className="w-7 h-7 rounded-lg bg-yellow-400/20 text-yellow-300 flex items-center justify-center flex-shrink-0 text-xs">
+          <i className="fa-solid fa-lightbulb"></i>
         </div>
-
-        <p className="text-sm font-bold text-gray-700 leading-relaxed italic">
-          "{PLUMBING_TIPS[tipIdx]}"
-        </p>
-
-        {/* Progress Bar para expiração */}
-        <div className="mt-4 h-1 w-full bg-gray-50 rounded-full overflow-hidden">
-           <div className="h-full bg-accent animate-progress-tip"></div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] uppercase tracking-wider font-bold text-yellow-400">
+              Dica Técnica do Especialista
+            </span>
+            <button 
+              onClick={() => setDismissed(true)} 
+              className="text-slate-400 hover:text-white text-xs p-1"
+              aria-label="Fechar dica"
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p className="text-xs text-slate-200 mt-1 leading-snug">
+            {PLUMBING_TIPS[currentTip]}
+          </p>
         </div>
       </div>
-
-      <style>{`
-        @keyframes slide-left {
-          from { opacity: 0; transform: translateX(50px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        .animate-slide-left {
-          animation: slide-left 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-        }
-        @keyframes progress-tip {
-          from { width: 100%; }
-          to { width: 0%; }
-        }
-        .animate-progress-tip {
-          animation: progress-tip 15s linear forwards;
-        }
-      `}</style>
     </div>
   );
 };

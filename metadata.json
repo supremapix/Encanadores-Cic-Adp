@@ -1,8 +1,10 @@
 {
-  "name": "ADP Encanador Curitiba 24h",
-  "description": "Site moderno e responsivo para serviços de encanador 24h em Curitiba e Região Metropolitana.",
+  "name": "Desentupidora ADP Curitiba 24h",
+  "description": "Site moderno e responsivo para serviços de desentupidora e encanador 24h em Curitiba e Região Metropolitana.",
   "requestFramePermissions": [
     "geolocation"
   ],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

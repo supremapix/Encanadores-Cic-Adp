@@ -1,48 +1,177 @@
-
-import { Service, FAQItem, TableRow, ImageData } from './types';
+import { Service, FAQItem, ImageData } from './types';
 
 export const CONTACT_INFO = {
+  brandName: "Desentupidora ADP",
+  companyName: "ADP Engenharia Hidráulica",
   phone: "(41) 3345-1194",
   whatsapp: "(41) 98517-1966",
   address: "Rua Luiz Maltaca, 36",
+  neighborhood: "CIC (Cidade Industrial)",
+  city: "Curitiba",
+  state: "PR",
+  cep: "81310-060",
   email: "contato@desentopeadp.com.br",
-  whatsappLink: "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F",
+  whatsappLink: "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%2C%20encontrei%20o%20site%20e%20preciso%20de%20um%20encanador%20em%20Curitiba%20para%3A%20",
   officialSite: "https://desentopeadp.com.br/",
   phoneLink: "tel:+554133451194",
-  socialLink: "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F",
-  logoUrl: "https://desentope.aloanuncio.com.br/images/logo.png"
+  logoUrl: "https://desentope.aloanuncio.com.br/images/logo.png",
+  workingHours: "Plantão 24 Horas (Segunda a Domingo, incluindo feriados)",
+  canonicalDomain: "https://www.encanador.servicosnobairro.com.br"
 };
 
 export const TRUST_BADGES = [
-  { icon: 'fa-microscope', text: 'Diagnóstico Digital' },
-  { icon: 'fa-shield-halved', text: 'Garantia Premium' },
-  { icon: 'fa-file-signature', text: 'Laudos Oficiais' },
-  { icon: 'fa-user-tie', text: 'Engenharia de Campo' }
+  { icon: 'fa-microscope', title: 'Geofone Digital Ultrassônico', desc: 'Detecção milimétrica sem quebra-quebra' },
+  { icon: 'fa-file-signature', title: 'Laudo Oficial Sanepar', desc: 'Para contestação e desconto na fatura' },
+  { icon: 'fa-shield-halved', title: 'Garantia por Escrito de 90 Dias', desc: 'Segurança total em todos os reparos' },
+  { icon: 'fa-clock', title: 'Plantão 24 Horas em Curitiba', desc: 'Unidades volantes com saída imediata' }
 ];
 
 export const IMAGES: ImageData[] = [
-  { url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80", alt: "Engenharia Hidráulica de Precisão" },
-  { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80", alt: "Detecção Digital de Vazamentos" },
-  { url: "https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=1200&q=80", alt: "Reparos Hidráulicos Profissionais" },
-  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1200&q=80", alt: "Infraestrutura Hidráulica" }
+  { url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80", alt: "Encanador Especialista em Curitiba - Manutenção Hidráulica" },
+  { url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80", alt: "Detecção Digital de Vazamento Oculto com Geofone em Curitiba" },
+  { url: "https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=1200&q=80", alt: "Técnico Hidráulico em Atendimento Residencial e Predial" },
+  { url: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1200&q=80", alt: "Tubulações e Infraestrutura Hidráulica Profissional" }
 ];
 
 export const MAIN_SERVICES: Service[] = [
-  { id: 'caca-vazamento-digital', title: 'Caça Vazamento Digital', description: 'Localização não-invasiva com Geofone Ultrassônico. Detectamos vazamentos ocultos em paredes, pisos e jardins com precisão milimétrica, evitando quebras desnecessárias.', icon: 'fa-crosshairs' },
-  { id: 'desentupidora-24h', title: 'Desentupidora 24h', description: 'Desobstrução técnica de redes de esgoto, pias, ralos e colunas prediais. Utilizamos máquinas rotativas K-500 e hidrojateamento para limpeza completa da tubulação.', icon: 'fa-vial-circle-check' },
-  { id: 'limpeza-caixa-gordura', title: 'Limpeza de Caixa de Gordura', description: 'Manutenção higiênica e técnica para evitar transbordamentos e mau cheiro. Limpeza completa com descarte ecológico e certificação de conformidade.', icon: 'fa-sink' },
-  { id: 'hidrojateamento-pressao', title: 'Hidrojateamento', description: 'Limpeza de alta pressão para redes coletoras de condomínios e indústrias. Remove raízes, gordura solidificada e detritos pesados com jatos ultra-potentes.', icon: 'fa-faucet-drip' },
-  { id: 'video-inspecao-esgoto', title: 'Vídeo Inspeção HD', description: 'Diagnóstico visual interno de tubulações via micro-câmera. Identificamos rachaduras, selas rompidas ou obstruções complexas com gravação em tempo real.', icon: 'fa-video' },
-  { id: 'laudo-tecnico-sanepar', title: 'Laudos para Sanepar', description: 'Emissão de Laudo de Estanqueidade para redução de tarifa de esgoto. Perícia técnica aceita pela Sanepar e companhias de seguro para comprovação de vazamento.', icon: 'fa-file-contract' },
-  { id: 'limpeza-caixa-dagua', title: 'Limpeza de Caixa d\'Água', description: 'Higienização bactericida de reservatórios residenciais e prediais. Controle de potabilidade seguindo rigorosos padrões de saúde e segurança.', icon: 'fa-droplet' },
-  { id: 'desentupimento-vaso-sanitario', title: 'Desentupimento de Vaso', description: 'Remoção de obstruções em vasos sanitários com equipamentos que não riscam a louça nem danificam o anel de vedação. Serviço rápido e higiênico.', icon: 'fa-toilet' },
-  { id: 'manutencao-hidraulica-predial', title: 'Manutenção Predial', description: 'Gestão hidráulica completa para condomínios. Revisão de prumadas, barriletes, bombas e válvulas redutoras de pressão com engenharia tática.', icon: 'fa-building-shield' },
+  { 
+    id: 'caca-vazamento-digital', 
+    title: 'Caça-Vazamento Digital', 
+    shortTitle: 'Caça-Vazamento',
+    description: 'Localização acústica com Geofone Ultrassônico e Câmera Térmica. Encontramos vazamentos ocultos sob pisos, lajes, paredes e redes subterrâneas sem necessidade de quebra generalizada.', 
+    icon: 'fa-crosshairs',
+    applications: ['Conta de água alta repentina', 'Infiltrações e umidade na parede ou rodapé', 'Relógio de água rodando sem uso', 'Vazamentos em piscinas e reservatórios']
+  },
+  { 
+    id: 'desentupidora-24h', 
+    title: 'Desentupidora 24 Horas', 
+    shortTitle: 'Desentupimento 24h',
+    description: 'Desobstrução técnica com maquinário rotativo elétrico K-500 com molas flexíveis que limpam as paredes dos canos de esgoto, pias, ralos e colunas prediais sem danificar as conexões de PVC.', 
+    icon: 'fa-vial-circle-check',
+    applications: ['Ralos e pias transbordando', 'Mau cheiro crônico na tubulação', 'Esgoto com retorno ou escoamento lento', 'Colunas e prumadas de prédios entupidas']
+  },
+  { 
+    id: 'limpeza-caixa-gordura', 
+    title: 'Limpeza de Caixa de Gordura', 
+    shortTitle: 'Caixa de Gordura',
+    description: 'Higienização e desincrustação mecânica de caixas de gordura residenciais e comerciais. Evita transbordamentos, mau odor na cozinha e atração de pragas urbanas com descarte ecologicamente correto.', 
+    icon: 'fa-sink',
+    applications: ['Pias de cozinha com retorno lento', 'Odores fortes vindos da área de serviço', 'Manutenção preventiva semestral e anual']
+  },
+  { 
+    id: 'hidrojateamento-pressao', 
+    title: 'Hidrojateamento de Alta Pressão', 
+    shortTitle: 'Hidrojateamento',
+    description: 'Limpeza e desobstrução pesada com jatos ultra potentes de água para galerias pluviais, tubulações industriais, redes condominiais e tubos com raízes ou gordura calcificada.', 
+    icon: 'fa-faucet-drip',
+    applications: ['Redes coletoras condominiais', 'Tubulações pluviais e bueiros entupidos', 'Gorduras duras e calcificações severas']
+  },
+  { 
+    id: 'video-inspecao-esgoto', 
+    title: 'Vídeo Inspeção Robotizada HD', 
+    shortTitle: 'Vídeo Inspeção HD',
+    description: 'Diagnóstico visual interno de tubulações por microcâmeras com sonda guia. Identifica com precisão quebras estruturais, desníveis, esmagamento de tubos e obstruções profundas.', 
+    icon: 'fa-video',
+    applications: ['Entupimentos recorrentes sem causa aparente', 'Verificação de integridade antes de reformas', 'Relatórios com fotos e vídeos técnicos']
+  },
+  { 
+    id: 'laudo-tecnico-sanepar', 
+    title: 'Laudo Técnico para Sanepar', 
+    shortTitle: 'Laudo Sanepar',
+    description: 'Emissão de Laudo Técnico de Estanqueidade e comprovação pericial de vazamento oculto sanado. Documento oficial necessário para solicitar abatimento na tarifa de esgoto junto à Sanepar.', 
+    icon: 'fa-file-contract',
+    applications: ['Contestação de contas astronômicas de água', 'Processos de reembolso e recálculo Sanepar', 'Documentação para seguradoras de imóveis']
+  },
+  { 
+    id: 'limpeza-caixa-dagua', 
+    title: 'Limpeza de Caixa d\'Água', 
+    shortTitle: 'Caixa d\'Água',
+    description: 'Higienização profunda, desinfecção e cloração de reservatórios de água potável residenciais e prediais, garantindo a pureza da água conforme exigências dos órgãos de vigilância.', 
+    icon: 'fa-droplet',
+    applications: ['Manutenção preventiva a cada 6 meses', 'Remoção de lodo, ferrugem e impurezas', 'Controle bacteriológico de água potável']
+  },
+  { 
+    id: 'desentupimento-vaso-sanitario', 
+    title: 'Desentupimento de Vaso Sanitário', 
+    shortTitle: 'Vaso Sanitário',
+    description: 'Remoção rápida e limpa de obstruções em vasos sanitários utilizando ponteiras especiais que preservam o esmalte da louça e o anel de vedação, restabelecendo a vazão original.', 
+    icon: 'fa-toilet',
+    applications: ['Vaso sanitário com nível de água subindo', 'Objetos caídos acidentalmente', 'Troca de anel de vedação e válvula de descarga']
+  },
+  { 
+    id: 'manutencao-hidraulica-predial', 
+    title: 'Manutenção Hidráulica Predial', 
+    shortTitle: 'Manutenção Predial',
+    description: 'Serviços completos de engenharia hidráulica para condomínios e residências: reparo em barriletes, prumadas, substituição de válvulas Hydra/Docol, registros gerais e pressurizadores.', 
+    icon: 'fa-building-shield',
+    applications: ['Substituição de registros que não fecham', 'Regulagem de válvulas redutoras de pressão', 'Revisão geral de bombas e barriletes']
+  },
 ];
+
+// Grafo Geográfico Real de Bairros de Curitiba (Vizinhanças reais)
+export const NEIGHBORHOOD_GRAPH: Record<string, string[]> = {
+  "cidade-industrial-cic": ["fazendinha", "capao-raso", "campo-comprido", "tatuquara", "pinheirinho", "augusta", "sao-miguel"],
+  "batel": ["agua-verde", "bigorrilho", "seminario", "centro", "reboucas", "campina-do-siqueira"],
+  "agua-verde": ["batel", "portao", "vila-izabel", "reboucas", "guaira", "prado-velho"],
+  "portao": ["agua-verde", "vila-izabel", "santa-quiteria", "fazendinha", "novo-mundo", "lindoia", "guaira"],
+  "santa-felicidade": ["cascatinha", "sao-braz", "butiatuvinha", "santo-inacio", "merces", "vista-alegre"],
+  "boa-vista": ["bacacheri", "cabral", "ahu", "barreirinha", "santa-candida", "sao-lourenco"],
+  "cabral": ["alto-da-gloria", "hugo-lange", "centro-civico", "boa-vista", "ahu", "bacacheri", "juveve"],
+  "juveve": ["cabral", "alto-da-gloria", "ahu", "hugo-lange", "centro-civico"],
+  "boqueirao": ["hauer", "xaxim", "alto-boqueirao", "uberaba", "guabirotuba"],
+  "pinheirinho": ["capao-raso", "sitio-cercado", "tatuquara", "xaxim", "lindoia", "novo-mundo"],
+  "sitio-cercado": ["pinheirinho", "alto-boqueirao", "ganchinho", "umbara", "xaxim"],
+  "cajuru": ["capao-da-imbuia", "jardim-das-americas", "taruma", "uberaba", "cristo-rei"],
+  "centro": ["centro-civico", "batel", "reboucas", "cristo-rei", "sao-francisco", "alto-da-rua-xv"],
+  "merces": ["bigorrilho", "bom-retiro", "sao-francisco", "vista-alegre", "pilarzinho"],
+  "santa-candida": ["boa-vista", "barreirinha", "atuba", "tingui"],
+  "uberaba": ["jardim-das-americas", "cajuru", "guabirotuba", "boqueirao", "alto-boqueirao"],
+  "novo-mundo": ["portao", "capao-raso", "lindoia", "fanny", "fazendinha"],
+  "fazendinha": ["portao", "cidade-industrial-cic", "santa-quiteria", "campo-comprido", "novo-mundo"],
+  "campo-comprido": ["santa-quiteria", "cidade-industrial-cic", "fazendinha", "mossungue", "seminario"],
+  "bigorrilho": ["batel", "merces", "campina-do-siqueira", "santo-inacio", "mossungue"],
+  "reboucas": ["centro", "agua-verde", "prado-velho", "jardim-botanico", "parolin"],
+  "jardim-botanico": ["reboucas", "cristo-rei", "jardim-social", "jardim-das-americas", "prado-velho"],
+  "alto-da-gloria": ["centro-civico", "juveve", "alto-da-rua-xv", "cabral"],
+  "alto-da-rua-xv": ["centro", "alto-da-gloria", "cristo-rei", "taruma", "hugo-lange"],
+  "cristo-rei": ["jardim-botanico", "centro", "alto-da-rua-xv", "cajuru"],
+  "capao-raso": ["novo-mundo", "pinheirinho", "cidade-industrial-cic", "lindoia", "fanny"],
+  "xaxim": ["boqueirao", "pinheirinho", "sitio-cercado", "fanny", "hauer"],
+  "hauer": ["boqueirao", "xaxim", "guabirotuba", "prado-velho", "parolin"],
+  "bacacheri": ["boa-vista", "cabral", "tingui", "bairro-alto", "jardim-social"],
+  "bairro-alto": ["bacacheri", "taruma", "atuba", "tingui", "capao-da-imbuia"],
+  "sao-braz": ["santa-felicidade", "orleans", "santo-inacio", "cascatinha"],
+  "pilarzinho": ["merces", "sao-lourenco", "bom-retiro", "vista-alegre", "barreirinha"],
+  "barreirinha": ["santa-candida", "boa-vista", "pilarzinho", "abranches", "cachoeira"],
+  "tatuquara": ["cidade-industrial-cic", "pinheirinho", "campo-de-santana", "caximba"],
+  "umbara": ["sitio-cercado", "ganchinho", "campo-de-santana"],
+  "vila-izabel": ["agua-verde", "portao", "seminario", "santa-quiteria"]
+};
+
+// Cidades RMC e conexões lógicas
+export const CITY_GRAPH: Record<string, string[]> = {
+  "curitiba": ["sao-jose-dos-pinhais", "pinhais", "colombo", "araucaria", "campo-largo", "fazenda-rio-grande"],
+  "sao-jose-dos-pinhais": ["curitiba", "pinhais", "fazenda-rio-grande", "tijucas-do-sul", "mandirituba"],
+  "pinhais": ["curitiba", "sao-jose-dos-pinhais", "colombo", "quatro-barras", "campina-grande-do-sul"],
+  "colombo": ["curitiba", "pinhais", "almirante-tamandare", "quatro-barras", "bocaiuva-do-sul"],
+  "araucaria": ["curitiba", "fazenda-rio-grande", "campo-largo", "balsa-nova", "contenda"],
+  "fazenda-rio-grande": ["curitiba", "araucaria", "sao-jose-dos-pinhais", "mandirituba"],
+  "campo-largo": ["curitiba", "campo-magro", "araucaria", "balsa-nova"],
+  "almirante-tamandare": ["curitiba", "colombo", "campo-magro", "rio-branco-do-sul", "itaperucu"],
+  "campo-magro": ["curitiba", "almirante-tamandare", "campo-largo"],
+  "quatro-barras": ["pinhais", "colombo", "campina-grande-do-sul", "curitiba"],
+  "campina-grande-do-sul": ["quatro-barras", "colombo", "bocaiuva-do-sul"],
+  "mandirituba": ["fazenda-rio-grande", "sao-jose-dos-pinhais", "quitandinha"],
+  "balsa-nova": ["campo-largo", "araucaria"],
+  "rio-branco-do-sul": ["almirante-tamandare", "itaperucu"],
+  "itaperucu": ["rio-branco-do-sul", "almirante-tamandare"],
+  "tijucas-do-sul": ["sao-jose-dos-pinhais", "mandirituba"]
+};
 
 export const BAIRROS: string[] = [
   // Bairros Oficiais Curitiba
   "Abranches", "Água Verde", "Ahú", "Alto Boqueirão", "Alto da Glória", "Alto da Rua XV", "Atuba", "Augusta", "Bacacheri", "Bairro Alto", "Barreirinha", "Batel", "Bigorrilho", "Boa Vista", "Bom Retiro", "Boqueirão", "Butiatuvinha", "Cabral", "Cachoeira", "Cajuru", "Campina do Siqueira", "Campo Comprido", "Campo de Santana", "Capão Raso", "Capão da Imbuia", "Cascatinha", "Caximba", "Centro", "Centro Cívico", "Cidade Industrial (CIC)", "Cristo Rei", "Fanny", "Fazendinha", "Ganchinho", "Guabirotuba", "Guaíra", "Hauer", "Hugo Lange", "Jardim Botânico", "Jardim Social", "Jardim das Américas", "Juvevê", "Lamenha Pequena", "Lindóia", "Mercês", "Mossunguê", "Novo Mundo", "Orleans", "Parolin", "Pilarzinho", "Pinheirinho", "Portão", "Prado Velho", "Rebouças", "Riviera", "Santa Cândida", "Santa Felicidade", "Santa Quitéria", "Santo Inácio", "Seminário", "Sítio Cercado", "São Braz", "São Francisco", "São João", "São Lourenço", "São Miguel", "Taboão", "Tarumã", "Tatuquara", "Tingui", "Uberaba", "Umbará", "Vila Izabel", "Vista Alegre", "Xaxim",
-  // Vilas e Regiões Populares (Não Oficiais)
+  // Vilas e Regiões Populares
   "Vila Sandra", "Vila Verde", "Vila Nossa Senhora da Luz", "Vitória Régia", "Caiuá", "Sabará", "Gabineto", "Itatiaia", "Santa Helena", "Conquista", "Barigui", "Osvaldo Cruz", "Atenas", "Neoville", "Vila Pantanal", "Vila Torres", "Vila das Torres", "Vila Hauer", "Vila Oficinas", "Vila Guaíra", "Vila Osternack", "Vila São Pedro", "Vila Audi", "Vila Parolin", "Jardim Gabineto", "Jardim Itatiaia", "Jardim da Ordem", "Jardim Kosmos", "Jardim Alvorada", "CIC Central", "Pinheirinho Velho", "Sítio Cercado Velho", "Umbará de Baixo", "Umbará de Cima", "Capão Raso Velho", "Carmo", "Hauer Velho", "Xaxim Velho", "Boqueirão Alto", "Boqueirão Velho", "Cajuru Alto", "Uberaba Velho", "Uberaba de Cima", "Jardim das Torres", "Vila Prado", "Bairro Alto Norte", "Bairro Alto Velho", "Tingui Velho", "Boa Vista Norte", "Orleans Velho", "São Braz Alto", "Santa Felicidade Norte", "Portão Velho"
 ];
 
@@ -50,93 +179,89 @@ export const CIDADES: string[] = [
   "Curitiba", "São José dos Pinhais", "Pinhais", "Colombo", "Araucária", "Almirante Tamandaré", "Campo Largo", "Campo Magro", "Fazenda Rio Grande", "Quatro Barras", "Campina Grande do Sul", "Mandirituba", "Balsa Nova", "Rio Branco do Sul", "Itaperuçu", "Tijucas do Sul"
 ];
 
+export const GENERAL_FAQS: FAQItem[] = [
+  {
+    question: "Quem é a Desentupidora ADP / ADP Engenharia Hidráulica em Curitiba?",
+    answer: "A Desentupidora ADP (operada pela ADP Engenharia Hidráulica) é uma empresa curitibana especializada em serviços de desentupidora, encanador profissional, caça-vazamento digital com geofone, atendimento 24 horas, manutenção de colunas prediais e emissão de laudos técnicos para Sanepar e seguradoras."
+  },
+  {
+    question: "Como funciona a detecção de vazamento com Geofone sem quebrar?",
+    answer: "O Geofone Digital Ultrassônico capta as frequências de ruído geradas pelo atrito da água sob pressão vazando na tubulação. O técnico especialista mapeia o traçado dos canos e identifica com precisão milimétrica o ponto exato da fuga d'água, evitando quebrar pisos e paredes à toa."
+  },
+  {
+    question: "Como solicitar o Laudo Técnico para contestar a conta alta na Sanepar?",
+    answer: "Após localizarmos e realizarmos o conserto do vazamento oculto no ramal de água tratada, nossos engenheiros/técnicos emitem o Laudo Oficial de Estanqueidade detalhando o reparo e a leitura do hidrômetro. Com este documento em mãos, o cliente dá entrada na Sanepar para requerer o recálculo e desconto na taxa de esgoto."
+  },
+  {
+    question: "Qual o prazo de atendimento emergencial em Curitiba e CIC?",
+    answer: "Trabalhamos com plantão técnico 24 horas em toda a capital e região metropolitana. Nossa base no CIC permite rápido deslocamento para bairros vizinhos e saídas volantes prontas para atender emergências residenciais, comerciais e condomínios."
+  },
+  {
+    question: "Quais são os serviços hidráulicos realizados?",
+    answer: "Realizamos caça-vazamento eletrônico, desentupimento mecânico e hidrojateamento de esgoto, limpeza de caixa de gordura, limpeza e desinfecção de caixa d'água, troca de válvulas Hydra/Docol, substituição de registros gerais, reparo em tubulações de PVC/PPR/Cobre e inspeção interna por vídeo com microcâmera HD."
+  },
+  {
+    question: "Os serviços de encanador têm garantia?",
+    answer: "Sim! Todos os nossos serviços contam com garantia legal e contratual por escrito de até 90 dias, além de emissão de nota fiscal e laudo técnico quando solicitado."
+  },
+  {
+    question: "Como solicitar um orçamento de encanador em Curitiba?",
+    answer: "Você pode solicitar um atendimento imediato enviando mensagem no WhatsApp (41) 98517-1966 ou ligando para o telefone fixo (41) 3345-1194. Descreva o problema ou envie foto/vídeo para avaliação prévia rápida."
+  }
+];
+
 export const getLocalizedFAQ = (locationOrService: string): FAQItem[] => {
   const isService = MAIN_SERVICES.some(s => s.id === locationOrService || s.title.toLowerCase().includes(locationOrService.toLowerCase()));
   
-  const baseFaqs = [
-    { 
-      question: `Quanto custa o serviço de ${locationOrService} em Curitiba?`, 
-      answer: `O valor para **${locationOrService}** inicia em R$ 50 para a visita técnica de diagnóstico. O orçamento final depende da complexidade detectada via Geofone ou Vídeo Inspeção. Garantimos o melhor custo-benefício da região.` 
-    },
-    { 
-      question: `A ADP Engenharia atende ${locationOrService} hoje?`, 
-      answer: `Sim! Operamos com plantão tático 24 horas para todos os chamados de **${locationOrService}**. Nossa equipe está pronta para sair agora mesmo com equipamentos digitais de última geração.` 
-    },
-    { 
-      question: `Qual a garantia para ${locationOrService}?`, 
-      answer: `Oferecemos garantia total de até 90 dias para serviços de desentupimento e laudos técnicos permanentes para processos de redução de conta junto à Sanepar em casos de **${locationOrService}**.` 
-    }
-  ];
-
-  const prefixos = ["Preço de", "Como funciona", "Melhor", "Urgência em", "Problema com", "Quanto custa", "Empresa de", "Especialista em"];
-  const variacoes = ["com garantia", "24 horas", "sem quebrar", "em condomínios", "em empresas", "rápido e limpo", "com geofone", "com tecnologia alemã"];
-  
-  const contextSubject = isService ? locationOrService : `encanador no ${locationOrService}`;
-
-  const generated: FAQItem[] = [...baseFaqs];
-
-  for (let i = 0; i < 550; i++) {
-    const p = prefixos[i % prefixos.length];
-    const v = variacoes[i % variacoes.length];
-    
-    generated.push({
-      question: `${p} ${contextSubject} ${v}?`,
-      answer: `Nossa solução de **${contextSubject}** foca em eficiência e custo reduzido. Atendemos Curitiba e RMC com técnicos certificados que dominam a técnica de ${v}, garantindo que o seu problema hidráulico seja resolvido na primeira visita.`
-    });
+  if (isService) {
+    const srv = MAIN_SERVICES.find(s => s.id === locationOrService || s.title.toLowerCase().includes(locationOrService.toLowerCase()));
+    const srvName = srv ? srv.title : locationOrService;
+    return [
+      {
+        question: `Como funciona o serviço de ${srvName} em Curitiba?`,
+        answer: `Nosso serviço de **${srvName}** utiliza ferramentas de precisão e engenharia especializada. Atendemos residências, comércios e condomínios em todos os bairros de Curitiba com garantia e execução ágil sem quebras desnecessárias.`
+      },
+      {
+        question: `Qual o tempo de garantia para ${srvName}?`,
+        answer: `Oferecemos garantia documentada de até 90 dias para serviços executados de **${srvName}**, além de suporte pós-atendimento e emissão de laudo técnico oficial quando aplicável.`
+      },
+      {
+        question: `Como solicitar orçamento para ${srvName}?`,
+        answer: `Basta entrar em contato pelo WhatsApp **(41) 98517-1966** ou telefone **(41) 3345-1194**. Nossa equipe de plantão 24h atende imediatamente com direcionamento técnico e agendamento rápido.`
+      },
+      {
+        question: `A empresa atende emergências de ${srvName} aos finais de semana?`,
+        answer: `Sim! O plantão para **${srvName}** funciona 24 horas por dia, 7 dias por semana, inclusive aos sábados, domingos e feriados em Curitiba e Região Metropolitana.`
+      }
+    ];
   }
 
-  return generated;
+  return [
+    {
+      question: `A Desentupidora ADP atende encanador e caça-vazamento no bairro/região ${locationOrService}?`,
+      answer: `Sim! Prestamos serviços completos de encanador, caça-vazamento digital com geofone e desentupimento 24h em **${locationOrService}** e imediações, com atendimento residencial, predial e comercial.`
+    },
+    {
+      question: `Quanto tempo leva o atendimento de encanador em ${locationOrService}?`,
+      answer: `Com unidades volantes estrategicamente distribuídas por Curitiba e proximidade das vias rápidas, nosso tempo de resposta para **${locationOrService}** é ágil e otimizado para emergências hidráulicas.`
+    },
+    {
+      question: `Quais serviços hidráulicos estão disponíveis em ${locationOrService}?`,
+      answer: `Disponibilizamos caça-vazamento acústico sem quebra, desentupimento de esgoto/pias/ralos, laudo técnico para a Sanepar, limpeza de caixa de gordura e caixa d'água, reparo de válvulas e registros em **${locationOrService}**.`
+    },
+    {
+      question: `Como chamar um encanador urgente em ${locationOrService}?`,
+      answer: `Acione nosso plantão 24h via WhatsApp **(41) 98517-1966** ou ligue **(41) 3345-1194**. Uma equipe técnica será acionada com todo o equipamento necessário para resolver o seu problema na primeira visita.`
+    }
+  ];
 };
 
 export const PLUMBING_TIPS = [
-  "Nunca jogue óleo de cozinha na pia; ele solidifica e causa obstruções graves.",
-  "Limpe as calhas antes do período de chuvas para evitar refluxo pluvial.",
-  "Verifique o relógio de água antes de dormir; se mexer sem uso, há vazamento.",
-  "Não use soda cáustica; ela pode 'empedrar' o esgoto e corroer canos de PVC.",
-  "O mau cheiro no ralo pode ser falta de água no fecho hídrico do sifão.",
-  "Troque o anel de vedação do vaso sanitário a cada 2 anos para evitar infiltrações.",
-  "Mantenha a tampa da caixa de gordura sempre bem vedada contra insetos.",
-  "Vazamentos em descargas podem desperdiçar até 100 litros de água por dia.",
-  "Cabelos no ralo do chuveiro são os maiores causadores de entupimento doméstico.",
-  "A limpeza da caixa d'água deve ser feita a cada 6 meses obrigatoriamente.",
-  "Use telas de proteção nos ralos para impedir a entrada de detritos e baratas.",
-  "Sons de batidas nos canos (golpe de aríete) indicam excesso de pressão na rede.",
-  "Se a conta de água subiu sem motivo, o culpado pode ser um vazamento oculto.",
-  "Nunca descarte lenços umedecidos no vaso; eles não se dissolvem como papel.",
-  "A borra de café na pia cria uma massa que obstrui a passagem da água.",
-  "Verifique se as raízes de árvores próximas não estão invadindo a rede de esgoto.",
-  "Um gotejamento simples pode desperdiçar 45 litros de água tratada por dia.",
-  "A manutenção preventiva custa 70% menos que um reparo emergencial de quebra.",
-  "Em apartamentos, vazamentos no teto geralmente são responsabilidade do vizinho acima.",
-  "O hidrojateamento é a única forma de limpar as paredes internas dos canos de gordura.",
-  "Canos de ferro antigos devem ser substituídos por PVC ou PPR para evitar ferrugem.",
-  "A válvula Hydra precisa de manutenção se começar a demorar para fechar.",
-  "Manchas de mofo na parede são sinais claros de infiltração por micro-vazamento.",
-  "Ao viajar, feche o registro geral para evitar surpresas com canos estourados.",
-  "Ralos sifonados impedem que os gases do esgoto entrem na sua residência.",
-  "Evite usar arames para desentupir; você pode perfurar a tubulação.",
-  "O Geofone localiza vazamentos por som, sem precisar quebrar azulejos.",
-  "Limpeza de fossa deve ser feita por empresas com certificação ambiental.",
-  "Borbulhas no vaso quando você solta a água indicam obstrução no respiro do esgoto.",
-  "Água demorando a descer na pia? É o primeiro sinal de entupimento parcial.",
-  "Use água quente (não fervendo) e detergente para manter a gordura fluida nos canos.",
-  "O registro de pressão do chuveiro não deve ser apertado com força excessiva.",
-  "Infiltrações na base da parede podem vir do solo ou de canos de alimentação.",
-  "Teste do balde: se colocar água e ela descer devagar, o problema é estrutural.",
-  "A Sanepar dá desconto na tarifa de esgoto se houver laudo de vazamento oculto.",
-  "Vazamentos em piscinas podem ser detectados com corantes específicos.",
-  "Tubulações de água quente exigem isolamento térmico para economizar energia.",
-  "O desentupimento técnico com mola rotativa preserva as curvas do cano.",
-  "Caixas de gordura de plástico são mais fáceis de limpar que as de concreto.",
-  "Não ligue a água pluvial na rede de esgoto; isso causa transbordamento nas ruas.",
-  "Verifique a boia da caixa d'água; se travar, a água vai vazar pelo ladrão.",
-  "O laudo técnico da ADP é aceito por todas as seguradoras de imóveis.",
-  "Vazamentos em colunas de prédios exigem intervenção imediata da administração.",
-  "Sempre exija nota fiscal e certificado de garantia do serviço hidráulico.",
-  "Equipamentos de vídeo-inspeção mostram o estado real do seu esgoto.",
-  "O cloro na caixa d'água deve ser dosado corretamente para não corroer metais.",
-  "Pias de cozinha industrial exigem caixas de gordura de alta capacidade.",
-  "A pressão excessiva da rua pode ser controlada com válvulas redutoras.",
-  "O 'azul de metileno' ajuda a encontrar vazamentos em caixas acopladas.",
-  "A ADP Engenharia é especialista em diagnósticos complexos em Curitiba."
+  "Nunca descarte óleo de cozinha na pia; a gordura solidifica e causa obstruções graves na rede.",
+  "Verifique o hidrômetro à noite antes de dormir; se os ponteiros girarem sem água em uso, há vazamento oculto.",
+  "Evite o uso de soda cáustica ou arames; eles podem corroer conexões de PVC e perfurar canos.",
+  "O mau cheiro constante em ralos decorre comumente do ressecamento do fecho hídrico no sifão.",
+  "Limpeza semestral de caixas d'água garante a potabilidade e previne incrustações nas tubulações.",
+  "Um pequeno gotejamento na torneira ou na descarga pode desperdiçar mais de 45 litros de água por dia.",
+  "A Sanepar concede desconto na tarifa de esgoto mediante apresentação de Laudo Técnico comprovando conserto de vazamento oculto."
 ];

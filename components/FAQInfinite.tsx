@@ -1,205 +1,112 @@
+import React, { useState, useMemo } from 'react';
+import { FAQItem } from '../types';
+import { GENERAL_FAQS } from '../constants';
 
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { getLocalizedFAQ, CONTACT_INFO } from '../constants';
+const EXTENDED_FAQS: FAQItem[] = [
+  ...GENERAL_FAQS,
+  {
+    question: "O que fazer se o hidrômetro continuar girando com todas as torneiras fechadas?",
+    answer: "Isso é sinal inequívoco de vazamento oculto. Feche o registro do cavalete para estancar a perda de água e chame imediatamente a equipe da Desentupidora ADP para localizar a fuga com o Geofone Digital."
+  },
+  {
+    question: "Quanto custa o serviço de caça-vazamento em Curitiba?",
+    answer: "O valor da inspeção técnica depende do porte do imóvel (casa térrea, sobrado, comércio ou condomínio) e da extensão da rede hidráulica. Fazemos avaliação prévia transparente via WhatsApp com orçamento sem surpresas."
+  },
+  {
+    question: "Como é feita a desobstrução de canos sem danificar o PVC?",
+    answer: "Utilizamos máquinas elétricas rotativas dotadas de ponteiras especiais que removem gordura, raízes e detritos preservando a integridade das conexões e curvas da tubulação."
+  },
+  {
+    question: "Vocês atendem condomínios comerciais e residenciais com nota fiscal?",
+    answer: "Sim! Emitimos Nota Fiscal de Serviço, laudos técnicos com ART/responsabilidade técnica e contratos de manutenção preventiva periódica para condomínios em toda a Grande Curitiba."
+  },
+  {
+    question: "Qual a diferença entre esgoto pluvial e esgoto sanitário?",
+    answer: "A rede pluvial destina-se exclusivamente à água da chuva (calhas e ralos externos). A rede sanitária recebe dejetos de pias, vasos sanitários e chuveiros. A ligação incorreta pode gerar refluxos e multas pela Sanepar."
+  }
+];
 
-interface Props {
-  locationName?: string;
-}
-
-const FAQInfinite: React.FC<Props> = ({ locationName = 'Curitiba' }) => {
+const FAQInfinite: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-  const [visibleCount, setVisibleCount] = useState(24);
-  const listRef = useRef<HTMLDivElement>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // Gera as 550 perguntas focadas 100% no local atual
-  const localFaqs = useMemo(() => getLocalizedFAQ(locationName), [locationName]);
-
-  const filteredFaqs = useMemo(() => {
-    if (!searchTerm) return localFaqs;
-    return localFaqs.filter(faq => 
-      faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredItems = useMemo(() => {
+    if (!searchTerm.trim()) return EXTENDED_FAQS;
+    const term = searchTerm.toLowerCase();
+    return EXTENDED_FAQS.filter(
+      item => item.question.toLowerCase().includes(term) || item.answer.toLowerCase().includes(term)
     );
-  }, [localFaqs, searchTerm]);
-
-  // Efeito de Scroll Infinito
-  useEffect(() => {
-    const handleScroll = () => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 800) {
-        setVisibleCount(prev => Math.min(prev + 24, filteredFaqs.length));
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [filteredFaqs.length]);
-
-  const openPopup = (idx: number) => {
-    setSelectedIdx(idx);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closePopup = () => {
-    setSelectedIdx(null);
-    document.body.style.overflow = 'unset';
-  };
-
-  const navigate = (dir: 'prev' | 'next') => {
-    if (selectedIdx === null) return;
-    const newIdx = dir === 'next' ? selectedIdx + 1 : selectedIdx - 1;
-    if (newIdx >= 0 && newIdx < filteredFaqs.length) {
-      setSelectedIdx(newIdx);
-    }
-  };
+  }, [searchTerm]);
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="text-accent font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">SEO Hidráulico Localizado</span>
-          <h2 className="text-4xl md:text-6xl font-black text-primary tracking-tighter uppercase italic mb-6">
-            Dúvidas no <span className="text-accent">{locationName}</span>
+    <section className="py-12 bg-white border-t border-slate-200">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        
+        <div className="text-center mb-8 space-y-2">
+          <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
+            Central de Dúvidas Hidráulicas
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Base de Conhecimento: Encanamento, Sanepar e Vazamentos
           </h2>
-          <p className="text-gray-500 font-medium text-lg max-w-2xl mx-auto italic">
-            Nossa IA técnica gerou uma base com 550 respostas exclusivas para o atendimento no **{locationName}**.
+          <p className="text-xs sm:text-sm text-slate-600">
+            Pesquise sobre problemas hidráulicos específicos, laudos e atendimento em Curitiba.
           </p>
-          
-          {/* Search Bar Premium */}
-          <div className="mt-10 max-w-xl mx-auto relative group">
-            <input 
-              type="text" 
-              placeholder={`O que você busca no ${locationName}?`}
-              className="w-full px-8 py-5 rounded-full bg-gray-50 border border-gray-100 outline-none focus:ring-4 focus:ring-accent/20 transition-all font-bold text-primary shadow-sm"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-300 group-hover:text-accent transition-colors">
-              <i className="fas fa-search text-xl"></i>
+        </div>
+
+        {/* Search input */}
+        <div className="mb-6 relative">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <i className="fa-solid fa-magnifying-glass text-sm"></i>
+          </div>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Pesquisar por: Sanepar, Geofone, Vaso entupido, Registro, CIC..."
+            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+          />
+        </div>
+
+        {/* Results */}
+        <div className="space-y-3">
+          {filteredItems.length === 0 ? (
+            <div className="text-center py-8 text-slate-500 text-sm">
+              Nenhuma pergunta encontrada para "{searchTerm}". <br />
+              <span className="text-blue-600 font-semibold">Tire sua dúvida diretamente com nossos técnicos no WhatsApp 24h!</span>
             </div>
-          </div>
+          ) : (
+            filteredItems.map((item, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div 
+                  key={index} 
+                  className="border border-slate-200 rounded-xl overflow-hidden shadow-sm"
+                >
+                  <button
+                    type="button"
+                    className={`w-full text-left p-4 flex justify-between items-center gap-3 transition-colors ${
+                      isOpen ? 'bg-slate-900 text-white' : 'bg-white text-slate-800 hover:bg-slate-50'
+                    }`}
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                  >
+                    <span className="font-bold text-xs sm:text-sm">
+                      {item.question}
+                    </span>
+                    <i className={`fa-solid fa-chevron-down text-xs transition-transform ${isOpen ? 'rotate-180 text-yellow-400' : 'text-slate-400'}`}></i>
+                  </button>
+                  {isOpen && (
+                    <div className="p-4 bg-slate-50 text-xs sm:text-sm text-slate-700 border-t border-slate-200 leading-relaxed">
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          )}
         </div>
 
-        {/* Accordion Grid with "Bottom-Up" Reveal */}
-        <div ref={listRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredFaqs.slice(0, visibleCount).map((faq, idx) => (
-            <button
-              key={idx}
-              onClick={() => openPopup(idx)}
-              className="group p-6 bg-gray-50 rounded-2xl border border-transparent hover:border-accent hover:bg-white transition-all text-left flex justify-between items-center animate-reveal-up"
-              style={{ animationDelay: `${(idx % 24) * 0.03}s` }}
-            >
-              <div className="pr-4 overflow-hidden">
-                <span className="font-black text-primary uppercase italic tracking-tight text-[11px] block truncate group-hover:text-accent">
-                  {faq.question}
-                </span>
-                <span className="text-[8px] text-gray-400 font-bold uppercase tracking-widest mt-1 block">Unidade {locationName}</span>
-              </div>
-              <i className="fas fa-chevron-right text-accent group-hover:translate-x-1 transition-transform"></i>
-            </button>
-          ))}
-        </div>
-
-        {/* Visual Indicator of Infinity */}
-        {visibleCount < filteredFaqs.length && (
-          <div className="mt-16 text-center">
-             <div className="inline-flex flex-col items-center gap-3 text-accent/30">
-                <i className="fas fa-angles-down animate-bounce text-2xl"></i>
-                <span className="text-[9px] font-black uppercase tracking-[0.4em]">Base de dados infinita em carregamento</span>
-             </div>
-          </div>
-        )}
       </div>
-
-      {/* Answer Modal with Flip Navigation */}
-      {selectedIdx !== null && (
-        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 md:p-10">
-          <div className="absolute inset-0 bg-primary/98 backdrop-blur-2xl" onClick={closePopup}></div>
-          <div className="relative bg-white w-full max-w-3xl rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-full animate-modal-enter">
-            
-            {/* Modal Header */}
-            <div className="p-10 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-               <div>
-                 <span className="text-[10px] font-black text-accent uppercase tracking-[0.3em]">Protocolo Técnico {selectedIdx + 1}/550</span>
-                 <h3 className="text-xl md:text-3xl font-black text-primary italic leading-tight mt-3 uppercase tracking-tighter">
-                   {filteredFaqs[selectedIdx].question}
-                 </h3>
-               </div>
-               <button onClick={closePopup} className="text-gray-300 hover:text-urgent text-4xl transition-colors p-2">
-                 <i className="fas fa-xmark"></i>
-               </button>
-            </div>
-
-            {/* Modal Content - Resposta Ultra Focada */}
-            <div className="p-10 md:p-16 overflow-y-auto text-gray-600 leading-relaxed font-medium">
-              <div className="prose prose-lg max-w-none">
-                <p className="text-xl md:text-2xl mb-10 text-gray-800">
-                  {filteredFaqs[selectedIdx].answer.split('**').map((part, i) => (
-                    i % 2 === 1 ? <strong key={i} className="text-primary font-black underline decoration-accent/30 decoration-4">{part}</strong> : part
-                  ))}
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-                <div className="p-6 bg-accent/10 rounded-3xl border border-accent/20 flex gap-4 items-center">
-                  <i className="fas fa-truck-fast text-accent text-2xl"></i>
-                  <span className="text-[10px] text-primary font-black uppercase tracking-widest italic">Saída imediata para o {locationName}</span>
-                </div>
-                <div className="p-6 bg-primary/5 rounded-3xl border border-primary/10 flex gap-4 items-center">
-                  <i className="fas fa-shield-check text-primary text-2xl"></i>
-                  <span className="text-[10px] text-primary font-black uppercase tracking-widest italic">Garantia oficial ADP Engenharia</span>
-                </div>
-              </div>
-
-              <a 
-                href={CONTACT_INFO.whatsappLink}
-                target="_blank"
-                className="w-full bg-primary text-white py-8 rounded-[2rem] font-black uppercase italic tracking-[0.2em] text-center block shadow-2xl hover:bg-accent hover:text-primary transition-all active:scale-95 text-lg"
-              >
-                Atendimento Imediato no {locationName}
-              </a>
-            </div>
-
-            {/* Modal Navigation - "Folhear" as Perguntas */}
-            <div className="p-8 bg-gray-50 border-t border-gray-100 flex justify-between gap-6">
-              <button 
-                onClick={() => navigate('prev')}
-                disabled={selectedIdx === 0}
-                className={`flex-1 py-5 rounded-2xl font-black uppercase text-[10px] tracking-widest border transition-all flex items-center justify-center gap-3 ${
-                  selectedIdx === 0 ? 'opacity-20 cursor-not-allowed border-gray-200' : 'border-primary/10 bg-white hover:bg-primary hover:text-white shadow-sm'
-                }`}
-              >
-                <i className="fas fa-arrow-left"></i> Anterior
-              </button>
-              <button 
-                onClick={() => navigate('next')}
-                disabled={selectedIdx === filteredFaqs.length - 1}
-                className={`flex-1 py-5 rounded-2xl font-black uppercase text-[10px] tracking-widest border transition-all flex items-center justify-center gap-3 ${
-                  selectedIdx === filteredFaqs.length - 1 ? 'opacity-20 cursor-not-allowed border-gray-200' : 'border-primary/10 bg-white hover:bg-primary hover:text-white shadow-sm'
-                }`}
-              >
-                Próxima <i className="fas fa-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <style>{`
-        @keyframes reveal-up {
-          from { opacity: 0; transform: translateY(60px) scale(0.95); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .animate-reveal-up {
-          animation: reveal-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-        }
-        @keyframes modal-enter {
-          from { opacity: 0; transform: translateY(100px) scale(0.9); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .animate-modal-enter {
-          animation: modal-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-      `}</style>
     </section>
   );
 };

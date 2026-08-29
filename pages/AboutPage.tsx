@@ -1,79 +1,127 @@
-
 import React, { useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
-import SafeImage from '../components/SafeImage';
+import TrustBar from '../components/TrustBar';
+import ContactForm from '../components/ContactForm';
 
 const AboutPage: React.FC = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
-    document.title = "Sobre a ADP Engenharia | Liderança Hidráulica em Curitiba";
+    document.title = "Sobre a Desentupidora ADP | ADP Engenharia Hidráulica em Curitiba";
+    
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', 'Conheça a Desentupidora ADP e ADP Engenharia Hidráulica. Mais de uma década de experiência em caça-vazamento digital, desentupimento 24h e emissão de laudos técnicos em Curitiba.');
   }, []);
 
   return (
-    <div className="bg-white min-h-screen">
-      <section className="bg-primary text-white pt-32 pb-20 md:pt-48 md:pb-32 relative overflow-hidden">
-        <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-accent/10 rounded-full blur-[100px]"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase italic">Nossa <span className="text-accent">Engenharia</span></h1>
-          <p className="text-lg md:text-3xl text-white/50 font-light max-w-3xl leading-tight">
-            Mais do que encanadores, somos solucionadores de infraestrutura urbana em Curitiba.
+    <div className="bg-white">
+      
+      {/* Header Banner */}
+      <section className="bg-slate-900 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+          <span className="text-xs font-bold uppercase tracking-wider text-yellow-400">
+            Nossa História & Compromisso
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-white tracking-tight leading-tight">
+            Sobre a Desentupidora ADP / ADP Engenharia
+          </h1>
+          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Excelência técnica em diagnósticos hidráulicos não invasivos e soluções definitivas para Curitiba e Região Metropolitana.
           </p>
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-20">
-            <div className="lg:w-1/2">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-accent/20 rounded-[3rem] blur-2xl"></div>
-                <SafeImage 
-                  src="https://images.unsplash.com/photo-1581244276891-997b6a550267?auto=format&fit=crop&w=1200&q=80" 
-                  alt="Técnico ADP Especialista" 
-                  className="relative z-10 rounded-[3rem] shadow-2xl border-8 border-white w-full h-auto min-h-[400px] object-cover"
-                />
+      {/* Trust Strip */}
+      <TrustBar />
+
+      {/* Narrative Section */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-8 text-left">
+          
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Especialistas em Diagnóstico Hidráulico de Precisão
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              A <strong className="text-slate-900">{CONTACT_INFO.brandName}</strong> (operada pela {CONTACT_INFO.companyName}) nasceu da necessidade de modernizar a prestação de serviços hidráulicos em Curitiba. Abandonamos o método arcaico de quebrar pisos e paredes por adivinhação, adotando equipamentos eletrônicos de última geração.
+            </p>
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              Nossa equipe técnica atua equipada com <strong className="text-slate-900">Geofones Digitais Ultrassônicos</strong>, câmeras termográficas de alta resolução e microcâmeras robotizadas para vídeo inspeção de tubulações. Localizamos com precisão milimétrica a origem exata do vazamento, seja em redes de água fria, água quente, esgoto ou ramais subterrâneos.
+            </p>
+          </div>
+
+          {/* Core Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-lg">
+                <i className="fa-solid fa-bullseye"></i>
               </div>
-            </div>
-            <div className="lg:w-1/2 space-y-8">
-              <span className="text-accent font-black tracking-[0.4em] text-[10px] uppercase block">Desde o Coração de Curitiba</span>
-              <h2 className="text-3xl md:text-5xl font-black text-primary tracking-tighter leading-none uppercase italic">Tecnologia que <br /> <span className="text-secondary">preserva o imóvel.</span></h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                A ADP Engenharia nasceu da necessidade de um serviço hidráulico que respeitasse a estrutura dos imóveis. Em Curitiba, onde o clima e o solo exigem precisão, nos tornamos referência em **Caça Vazamentos Digital**.
+              <h3 className="font-bold text-sm text-slate-900">Precisão Acústica</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Localização sem quebra-quebra desnecessário, protegendo o patrimônio do cliente.
               </p>
-              <div className="grid grid-cols-2 gap-6">
-                 <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100">
-                    <span className="text-4xl font-black text-primary block mb-2">24h</span>
-                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Disponibilidade Total</span>
-                 </div>
-                 <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100">
-                    <span className="text-4xl font-black text-primary block mb-2">+10k</span>
-                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Atendimentos Realizados</span>
-                 </div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-lg">
+                <i className="fa-solid fa-file-signature"></i>
               </div>
-              <a 
-                href={CONTACT_INFO.whatsappLink}
-                target="_blank"
-                className="inline-block bg-primary text-white font-black px-12 py-5 rounded-2xl shadow-xl hover:bg-accent hover:text-primary transition-all uppercase tracking-widest text-[11px] italic"
-              >
-                Fale com nossa Engenharia
-              </a>
+              <h3 className="font-bold text-sm text-slate-900">Conformidade Sanepar</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Laudos técnicos periciais para solicitação de desconto na tarifa de esgoto.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-lg">
+                <i className="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <h3 className="font-bold text-sm text-slate-900">Plantão 24h Real</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Unidades volantes com saída rápida em todos os 75 bairros e RMC.
+              </p>
             </div>
           </div>
+
+          {/* Official Entity NAP */}
+          <div className="p-6 rounded-2xl bg-slate-900 text-white space-y-3">
+            <h3 className="text-base font-bold text-yellow-400 uppercase tracking-wider">
+              Informações Oficiais da Empresa
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
+              <div>
+                <span className="text-slate-400 block">Razão Social / Marca:</span>
+                <span className="font-semibold text-white">{CONTACT_INFO.brandName} / {CONTACT_INFO.companyName}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block">Sede Operacional:</span>
+                <span className="font-semibold text-white">{CONTACT_INFO.address}, {CONTACT_INFO.neighborhood}</span>
+                <span className="block text-slate-400">Curitiba - PR, CEP {CONTACT_INFO.cep}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block">Contato Telefônico:</span>
+                <span className="font-semibold text-white">{CONTACT_INFO.phone}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 block">WhatsApp de Plantão:</span>
+                <span className="font-semibold text-white">{CONTACT_INFO.whatsapp}</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <section className="py-24 bg-primary text-white overflow-hidden relative">
-         <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 skew-x-12 translate-x-32"></div>
-         <div className="container mx-auto px-4 relative z-10 text-center">
-            <h3 className="text-3xl md:text-6xl font-black mb-12 tracking-tighter uppercase italic">Onde a ADP está agora?</h3>
-            <p className="text-white/40 text-lg mb-12 max-w-2xl mx-auto font-light">Nossas unidades móveis estão espalhadas em pontos estratégicos como CIC, Batel, Portão e Santa Felicidade para garantir o menor tempo de resposta da cidade.</p>
-            <div className="flex flex-wrap justify-center gap-4 opacity-50">
-               {["EQUIPAMENTOS HD", "LAUDOS DIGITAIS", "GARANTIA EM CONTRATO", "ENGENHEIROS DE CAMPO"].map((tag, i) => (
-                 <span key={i} className="px-6 py-2 border border-white/20 rounded-full text-[10px] font-black uppercase tracking-widest">{tag}</span>
-               ))}
-            </div>
-         </div>
+      {/* Contact Form Section */}
+      <section className="py-12 md:py-16 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <ContactForm />
+        </div>
       </section>
+
     </div>
   );
 };

@@ -2,9 +2,10 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-    <title>ADP Engenharia Hidráulica | Encanador 24h Curitiba & CIC</title>
-    <meta name="description" content="Encanador 24h em Curitiba. Especialista em Caça-Vazamentos Digital e Desentupimento. Atendimento imediato no CIC e todas as vilas. Orçamento Grátis!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desentupidora ADP | Encanador em Curitiba 24 Horas & Caça-Vazamentos</title>
+    <meta name="description" content="Serviço de desentupidora e encanador 24h em Curitiba e Região Metropolitana. Especialista em caça-vazamento digital com geofone, desentupimento técnico e laudo oficial para Sanepar.">
+    <meta name="keywords" content="desentupidora curitiba, encanador curitiba, encanador 24 horas curitiba, caca vazamentos curitiba, desentupidora adp, laudo sanepar curitiba">
     <meta name="google-site-verification" content="VD-D5-aPWajKPEDPx-pg9XV1AjuP7BKV0G0wFsupGTs" />
     <meta name="msvalidate.01" content="274D1FA5C55C0D2283EAE94551589DFC" />
     <link rel="canonical" href="https://www.encanador.servicosnobairro.com.br/" />
@@ -12,102 +13,71 @@
     <link rel="shortcut icon" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#051125" />
+    <meta name="theme-color" content="#071426" />
     
-    <!-- Tailwind CSS -->
+    <!-- Open Graph / Meta Social -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:title" content="Desentupidora ADP | Encanador em Curitiba 24 Horas & Caça-Vazamentos" />
+    <meta property="og:description" content="Desentupidora e encanador 24 horas em Curitiba. Caça-vazamento digital com geofone, desentupimento e laudo técnico Sanepar. Atendimento rápido em todos os bairros." />
+    <meta property="og:url" content="https://www.encanador.servicosnobairro.com.br/" />
+    <meta property="og:site_name" content="Desentupidora ADP - Curitiba" />
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: '#051125',
-              secondary: '#1e3c72',
-              accent: '#ffeb3b',
-              urgent: '#e74c3c'
+              brand: {
+                dark: '#071426',
+                navy: '#0d233e',
+                blue: '#1d4ed8',
+                accent: '#facc15',
+                green: '#16a34a',
+                slate: '#f1f5f9'
+              }
             },
             fontFamily: {
-              sans: ['Poppins', 'sans-serif'],
-            },
-            animation: {
-              'infinite-scroll': 'infinite-scroll 40s linear infinite',
-              'float': 'float 6s ease-in-out infinite',
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'shimmer': 'shimmer 2.5s infinite',
-            },
-            keyframes: {
-              'infinite-scroll': {
-                from: { transform: 'translateY(0)' },
-                to: { transform: 'translateY(-50%)' },
-              },
-              'float': {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
-              },
-              'shimmer': {
-                '0%': { 'background-position': '-200% 0' },
-                '100%': { 'background-position': '200% 0' },
-              }
+              sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
             }
           }
         }
       }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-      body { font-family: 'Poppins', sans-serif; overflow-x: hidden; width: 100%; }
-      
-      .text-glow { text-shadow: 0 0 20px rgba(255, 235, 59, 0.4); }
-      .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px border rgba(255, 255, 255, 0.05); }
-      
-      .infinite-ticker-container {
-        height: 60px;
-        overflow: hidden;
-        position: relative;
+      *, *::before, *::after {
+        box-sizing: border-box;
       }
-      
-      @media (max-width: 640px) {
-        .infinite-ticker-container { height: 40px; }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
       }
-
-      .btn-shimmer {
-        background: linear-gradient(90deg, #ffeb3b 0%, #fff9c4 50%, #ffeb3b 100%);
-        background-size: 200% 100%;
-        animation: shimmer 3s infinite linear;
+      body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        background-color: #ffffff;
+        overflow-x: hidden;
+        width: 100%;
+        line-height: 1.6;
       }
-
-      /* Fallback para ícones caso demorem a carregar */
-      .fas, .fab, .far {
-        display: inline-block;
-        font-style: normal;
-        font-variant: normal;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
+      ::selection {
+        background-color: #facc15;
+        color: #071426;
       }
     </style>
-
-    <script type="importmap">
-{
-  "imports": {
-    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
-    "react-dom": "https://esm.sh/react-dom@^19.2.3",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1",
-    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/"
-  }
-}
-</script>
-    <script type="module" src="./index.tsx"></script>
-  <link rel="stylesheet" href="/index.css">
-</head>
-  <body class="bg-white antialiased">
+  </head>
+  <body class="bg-white antialiased text-slate-800">
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

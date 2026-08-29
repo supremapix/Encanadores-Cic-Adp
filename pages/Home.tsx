@@ -1,139 +1,358 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
-import ResponseTimeTracker from '../components/ResponseTimeTracker';
 import TrustBar from '../components/TrustBar';
+import ResponseTimeTracker from '../components/ResponseTimeTracker';
 import VideoSection from '../components/VideoSection';
+import FAQ from '../components/FAQ';
 import FAQInfinite from '../components/FAQInfinite';
-import FloatingTips from '../components/FloatingTips';
-import SafeImage from '../components/SafeImage';
-import { MAIN_SERVICES, BAIRROS, CONTACT_INFO, IMAGES } from '../constants';
+import ContactForm from '../components/ContactForm';
+import { MAIN_SERVICES, CONTACT_INFO, GENERAL_FAQS, BAIRROS, CIDADES } from '../constants';
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    document.title = "Encanador em Curitiba 24 Horas | Caça-Vazamento Digital e Desentupimento";
+    
+    // Schema JSON-LD LocalBusiness & PlumbingService
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'schema-home';
+    script.innerHTML = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "PlumbingService",
+          "@id": "https://www.encanador.servicosnobairro.com.br/#organization",
+          "name": "Desentupidora ADP",
+          "alternateName": "Desentupidora ADP e Encanador Curitiba 24 Horas",
+          "url": "https://www.encanador.servicosnobairro.com.br/",
+          "telephone": "+554133451194",
+          "priceRange": "$$",
+          "image": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua Luiz Maltaca, 36",
+            "addressLocality": "Curitiba",
+            "addressRegion": "PR",
+            "postalCode": "81310-060",
+            "addressCountry": "BR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -25.5138495,
+            "longitude": -49.3364239
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+              ],
+              "opens": "00:00",
+              "closes": "23:59"
+            }
+          ],
+          "areaServed": [
+            { "@type": "City", "name": "Curitiba" },
+            { "@type": "City", "name": "São José dos Pinhais" },
+            { "@type": "City", "name": "Pinhais" },
+            { "@type": "City", "name": "Colombo" },
+            { "@type": "City", "name": "Araucária" },
+            { "@type": "City", "name": "Fazenda Rio Grande" },
+            { "@type": "City", "name": "Campo Largo" }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços Hidráulicos",
+            "itemListElement": MAIN_SERVICES.map(srv => ({
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": srv.title,
+                "description": srv.description
+              }
+            }))
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.encanador.servicosnobairro.com.br/#faq",
+          "mainEntity": GENERAL_FAQS.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }
+      ]
+    });
+
+    const oldScript = document.getElementById('schema-home');
+    if (oldScript) oldScript.remove();
+    document.head.appendChild(script);
+
+    return () => {
+      const el = document.getElementById('schema-home');
+      if (el) el.remove();
+    };
+  }, []);
+
   return (
-    <div className="overflow-x-hidden bg-white">
+    <div className="bg-white">
+      {/* 1. Hero Section */}
       <Hero />
-      
-      {/* Botão de Tecnologia de Tempo de Resposta */}
+
+      {/* 2. Trust Bar Strip */}
+      <TrustBar />
+
+      {/* 3. Direct Answer / AIO Semantic Summary Block */}
+      <section className="py-12 md:py-16 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Left Narrative Column */}
+            <div className="lg:col-span-7 space-y-4 text-left">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
+                Engenharia Hidráulica Especializada
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
+                Serviço de Encanador Profissional, Caça-Vazamentos e Desentupimento em Curitiba
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                A <strong className="text-slate-900 font-semibold">{CONTACT_INFO.brandName}</strong> (operada pela {CONTACT_INFO.companyName}) resolve problemas hidráulicos complexos em residências, edifícios residenciais e comerciais, lojas e indústrias em toda Curitiba e Região Metropolitana.
+              </p>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Utilizamos <strong className="text-slate-900 font-semibold">Geofones Digitais Ultrassônicos</strong> e termografia para mapear com exatidão onde está o vazamento oculto no piso, parede ou tubulações subterrâneas, evitando obras desnecessárias e quebra generalizada de pisos.
+              </p>
+              
+              <div className="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-slate-700">
+                <span className="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200">
+                  <i className="fa-solid fa-check text-green-600 mr-1.5"></i>Laudo Técnico para Sanepar
+                </span>
+                <span className="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200">
+                  <i className="fa-solid fa-check text-green-600 mr-1.5"></i>Garantia Escrita de 90 Dias
+                </span>
+                <span className="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200">
+                  <i className="fa-solid fa-check text-green-600 mr-1.5"></i>Plantão Noturno & Feriados
+                </span>
+              </div>
+            </div>
+
+            {/* Right Fast Facts Card */}
+            <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-3">
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide border-b border-slate-200 pb-2">
+                Resumo Operacional para Clientes
+              </h3>
+              <dl className="space-y-2 text-xs">
+                <div>
+                  <dt className="text-slate-500 font-medium">Empresa:</dt>
+                  <dd className="text-slate-900 font-semibold">{CONTACT_INFO.brandName} / {CONTACT_INFO.companyName}</dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500 font-medium">Base Operacional:</dt>
+                  <dd className="text-slate-900 font-semibold">{CONTACT_INFO.address}, {CONTACT_INFO.neighborhood} - Curitiba/PR</dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500 font-medium">Horário de Funcionamento:</dt>
+                  <dd className="text-slate-900 font-semibold">24 Horas (Plantão contínuo todos os dias)</dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500 font-medium">Equipamento de Precisão:</dt>
+                  <dd className="text-slate-900 font-semibold">Geofone Digital, Microcâmera HD, Hidrojato e Máquinas K-500</dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500 font-medium">Canais Oficiais:</dt>
+                  <dd className="text-slate-900 font-semibold flex items-center gap-3 pt-1">
+                    <a href={CONTACT_INFO.phoneLink} className="text-blue-700 hover:underline">
+                      <i className="fa-solid fa-phone mr-1"></i>{CONTACT_INFO.phone}
+                    </a>
+                    <a href={CONTACT_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" className="text-green-700 hover:underline">
+                      <i className="fa-brands fa-whatsapp mr-1"></i>WhatsApp 24h
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Services Grid */}
+      <section className="py-12 md:py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
+              Soluções Completas
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Principais Serviços de Encanador em Curitiba
+            </h2>
+            <p className="text-sm text-slate-600">
+              Atendimento técnico com diagnóstico preciso, maquinário elétrico rotativo e peças de primeira linha.
+            </p>
+          </div>
+
+          {/* 3-Column Service Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {MAIN_SERVICES.map((service) => (
+              <div 
+                key={service.id}
+                className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-xl">
+                    <i className={`fas ${service.icon}`}></i>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-slate-900 leading-snug">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {service.applications && (
+                    <ul className="space-y-1.5 pt-2 border-t border-slate-100">
+                      {service.applications.slice(0, 3).map((app, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-xs text-slate-700">
+                          <i className="fa-solid fa-angle-right text-blue-600 text-[10px]"></i>
+                          <span>{app}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+
+                <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <Link 
+                    to={`/servico/${service.id}`}
+                    className="text-xs font-bold text-blue-700 hover:text-blue-900 transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Ver detalhes</span>
+                    <i className="fa-solid fa-arrow-right text-[10px]"></i>
+                  </Link>
+
+                  <a 
+                    href={CONTACT_INFO.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-bold text-green-700 hover:text-green-800 transition-colors inline-flex items-center gap-1"
+                  >
+                    <i className="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Orçamento</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. Response Time Tracker */}
       <ResponseTimeTracker />
 
-      <TrustBar />
-      
-      {/* Authority Section */}
-      <section className="py-24 md:py-32">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20">
-            <div className="lg:w-1/2 order-2 lg:order-1">
-               <span className="text-secondary font-black tracking-[0.3em] text-[10px] uppercase mb-6 block">Credibilidade Técnica</span>
-               <h2 className="text-4xl md:text-6xl font-black text-primary mb-10 tracking-tighter leading-none">Proteja seu imóvel com <br /><span className="text-secondary italic">Engenharia Digital.</span></h2>
-               <p className="text-xl text-gray-600 leading-relaxed font-light mb-10">
-                 A ADP Engenharia localiza vazamentos invisíveis com precisão cirúrgica em Curitiba e CIC. Valores a partir de <strong>R$ 50</strong>.
-               </p>
-               <div className="flex items-center gap-6 p-6 bg-blue-50/50 rounded-3xl border border-blue-100">
-                  <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
-                    <i className="fas fa-certificate text-3xl"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-black text-primary text-lg tracking-tight mb-1">Empresa Certificada</h4>
-                    <p className="text-xs text-gray-500 font-medium italic">Laudos oficiais aceitos por Seguradoras e Sanepar.</p>
-                  </div>
-               </div>
-            </div>
-            <div className="lg:w-1/2 relative order-1 lg:order-2">
-               <div className="relative z-10 rounded-[3.5rem] overflow-hidden shadow-2xl border-8 border-white aspect-square">
-                  <SafeImage 
-                    src={IMAGES[1].url} 
-                    alt="Diagnóstico Digital ADP" 
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  />
-               </div>
-               <div className="absolute -bottom-10 -right-6 bg-accent text-primary p-10 rounded-[3rem] shadow-2xl z-20 animate-bounce-slow text-center">
-                  <span className="block text-4xl font-black leading-none">R$ 50</span>
-                  <span className="block text-[8px] font-black uppercase tracking-widest opacity-50">A PARTIR DE</span>
-               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section id="servicos" className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-20 max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-black text-primary tracking-tighter mb-6 uppercase italic">Especialidades</h2>
-            <p className="text-gray-500 text-lg">Tecnologia avançada para quem não pode perder tempo nem dinheiro.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {MAIN_SERVICES.map((service) => (
-              <Link 
-                key={service.id} 
-                to={`/servico/${service.id}`}
-                className="bg-white rounded-[3rem] p-12 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-4 group border border-gray-100"
-              >
-                <div className="w-20 h-20 bg-primary/5 rounded-[2rem] flex items-center justify-center mb-10 group-hover:bg-primary transition-colors">
-                  <i className={`fas ${service.icon} text-3xl text-primary group-hover:text-accent`}></i>
-                </div>
-                <h3 className="text-2xl font-black text-gray-800 mb-6 group-hover:text-primary transition-colors italic">{service.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-10 font-medium opacity-80">{service.description}</p>
-                <div className="pt-8 border-t border-gray-50 flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-accent group-hover:text-primary">
-                   <span>Consultar Especialista</span>
-                   <i className="fas fa-arrow-right"></i>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* 6. Video / Technology Section */}
       <VideoSection />
 
-      {/* Infinite FAQ Section */}
-      <FAQInfinite />
-
-      {/* High-End CTA */}
-      <section className="py-32 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <SafeImage src={IMAGES[0].url} alt="Fundo" className="w-full h-full object-cover" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-5xl md:text-[clamp(3rem,8vw,8rem)] font-black text-white mb-10 leading-none tracking-tighter uppercase italic">
-            RESOLUÇÃO <span className="text-accent">DEFINITIVA.</span>
-          </h2>
-          <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-             <a href={CONTACT_INFO.whatsappLink} className="bg-accent text-primary px-16 py-8 rounded-3xl font-black text-2xl shadow-2xl hover:scale-105 transition-transform uppercase italic">
-               Chamar Agora R$ 50*
-             </a>
-             <div className="text-left text-white/50 text-xs uppercase tracking-widest font-black italic">
-                *Valor referente a visita técnica <br /> e avaliação preliminar digital.
-             </div>
+      {/* 7. Comprehensive Coverage (Bairros & Cidades Links for SEO) */}
+      <section className="py-12 md:py-16 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
+              Cobertura Local em Curitiba & RMC
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Atendimento 24h em Todos os Bairros e Cidades Vizinhas
+            </h2>
+            <p className="text-sm text-slate-600">
+              Equipes móveis para rápida intervenção em emergências hidráulicas residenciais, condomínios e indústrias.
+            </p>
           </div>
-        </div>
-      </section>
 
-      <section id="bairros" className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <h2 className="text-4xl font-black text-primary tracking-tighter italic uppercase">Rede Curitiba</h2>
-            <Link to="/sitemap" className="text-[10px] font-black uppercase tracking-[0.2em] text-accent bg-primary px-6 py-3 rounded-xl">MAPA COMPLETO</Link>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {BAIRROS.slice(0, 18).map((bairro, idx) => (
-              <Link 
-                key={idx} 
-                to={`/bairro/${bairro.toLowerCase().replace(/ /g, '-')}`}
-                className="p-6 bg-gray-50 rounded-[2rem] border border-transparent hover:border-accent hover:bg-white transition-all text-center group"
+          {/* Bairros Grid */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3 flex items-center gap-2">
+                <i className="fa-solid fa-map-pin text-blue-700"></i>
+                <span>Bairros Atendidos em Curitiba:</span>
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {BAIRROS.slice(0, 45).map((bairro, idx) => {
+                  const slug = bairro.toLowerCase()
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+                  return (
+                    <Link
+                      key={idx}
+                      to={`/bairro/${slug}`}
+                      className="text-xs bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 px-3 py-1.5 rounded-lg border border-slate-200 transition-colors"
+                    >
+                      Encanador {bairro}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Cidades Grid */}
+            <div className="pt-4 border-t border-slate-100">
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3 flex items-center gap-2">
+                <i className="fa-solid fa-city text-blue-700"></i>
+                <span>Cidades da Região Metropolitana de Curitiba:</span>
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {CIDADES.map((cidade, idx) => {
+                  const slug = cidade.toLowerCase()
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+                  return (
+                    <Link
+                      key={idx}
+                      to={`/cidade/${slug}`}
+                      className="text-xs bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition-colors font-medium"
+                    >
+                      Encanador em {cidade}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="text-center pt-2">
+              <Link
+                to="/sitemap"
+                className="text-xs font-bold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1 hover:underline"
               >
-                <span className="text-[10px] font-black text-gray-400 group-hover:text-primary tracking-widest uppercase">{bairro}</span>
+                <span>Ver lista completa de todos os bairros e vilas de Curitiba</span>
+                <i className="fa-solid fa-arrow-right text-[10px]"></i>
               </Link>
-            ))}
+            </div>
           </div>
+
         </div>
       </section>
 
-      {/* Floating System Component */}
-      <FloatingTips />
+      {/* 8. Contact Form Section */}
+      <section className="py-12 md:py-16 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <ContactForm />
+        </div>
+      </section>
+
+      {/* 9. FAQ Accordion */}
+      <FAQ items={GENERAL_FAQS} />
+
+      {/* 10. Searchable Knowledge Base */}
+      <FAQInfinite />
     </div>
   );
 };

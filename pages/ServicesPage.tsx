@@ -1,87 +1,116 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MAIN_SERVICES, CONTACT_INFO } from '../constants';
-import FAQ from '../components/FAQ';
-import SafeImage from '../components/SafeImage';
+import ContactForm from '../components/ContactForm';
+import TrustBar from '../components/TrustBar';
 
 const ServicesPage: React.FC = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
-    document.title = "Serviços Especializados de Engenharia Hidráulica | ADP Curitiba";
+    document.title = "Serviços de Encanador em Curitiba | Caça-Vazamento, Desentupidora & Laudos";
+    
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', 'Catálogo completo de serviços de encanador em Curitiba. Caça-vazamento digital com geofone, desentupimento 24h, laudos técnicos para Sanepar e manutenção hidráulica.');
   }, []);
 
   return (
-    <div className="bg-white min-h-screen">
-      <section className="bg-primary text-white pt-32 pb-20 md:pt-48 md:pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <SafeImage src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1920&q=80" alt="Background Engenharia" className="w-full h-full object-cover" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <span className="text-accent font-black tracking-[0.4em] text-[10px] uppercase mb-4 block">Portfólio Técnico</span>
-          <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase italic">Nossas <span className="text-accent">Soluções</span></h1>
-          <p className="text-lg md:text-2xl text-white/50 font-light max-w-2xl mx-auto">
-            Da detecção digital ao reparo estrutural. Tecnologia de ponta para a saúde hidráulica do seu imóvel.
+    <div className="bg-white">
+      
+      {/* Header Banner */}
+      <section className="bg-slate-900 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+          <span className="text-xs font-bold uppercase tracking-wider text-yellow-400">
+            Catálogo de Serviços Hidráulicos
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-white tracking-tight leading-tight">
+            Serviços Especializados de Encanador em Curitiba
+          </h1>
+          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Engenharia e tecnologia não invasiva para soluções definitivas em vazamentos, desentupimentos e manutenções hidráulicas.
           </p>
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      {/* Trust Strip */}
+      <TrustBar />
+
+      {/* Services List */}
+      <section className="py-12 md:py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {MAIN_SERVICES.map((service) => (
-              <div key={service.id} className="group bg-gray-50 rounded-[3rem] p-12 border border-transparent hover:border-accent hover:bg-white hover:shadow-2xl transition-all duration-500">
-                <div className="w-20 h-20 bg-primary text-accent rounded-3xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
-                  <i className={`fas ${service.icon} text-3xl`}></i>
+              <div 
+                key={service.id}
+                className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-xl">
+                    <i className={`fas ${service.icon}`}></i>
+                  </div>
+                  
+                  <h2 className="text-lg font-bold text-slate-900 leading-snug">
+                    {service.title}
+                  </h2>
+                  
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {service.applications && (
+                    <div className="pt-2 border-t border-slate-100">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-1.5">
+                        Indicações:
+                      </span>
+                      <ul className="space-y-1">
+                        {service.applications.map((app, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-xs text-slate-700">
+                            <i className="fa-solid fa-check text-green-600 text-[10px]"></i>
+                            <span>{app}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
-                <h2 className="text-2xl font-black text-primary mb-6 uppercase tracking-tight italic">{service.title}</h2>
-                <p className="text-gray-500 font-medium mb-10 leading-relaxed">{service.description}</p>
-                <Link 
-                  to={`/servico/${service.id}`}
-                  className="inline-flex items-center gap-3 text-primary font-black text-[10px] uppercase tracking-widest border-b-2 border-accent pb-1 hover:gap-5 transition-all"
-                >
-                  Saiba mais <i className="fas fa-arrow-right text-[8px]"></i>
-                </Link>
+
+                <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <Link 
+                    to={`/servico/${service.id}`}
+                    className="text-xs font-bold text-blue-700 hover:text-blue-900 transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Saiba mais</span>
+                    <i className="fa-solid fa-arrow-right text-[10px]"></i>
+                  </Link>
+
+                  <a 
+                    href={CONTACT_INFO.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-bold text-green-700 hover:text-green-800 transition-colors inline-flex items-center gap-1"
+                  >
+                    <i className="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Orçamento</span>
+                  </a>
+                </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-             <h2 className="text-3xl md:text-5xl font-black text-primary mb-6 tracking-tighter uppercase italic">Por que escolher a ADP?</h2>
-             <p className="text-gray-500">Aliamos o conhecimento da engenharia civil com equipamentos digitais de última geração.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-             <div className="p-10 bg-white rounded-3xl shadow-sm border border-transparent hover:border-accent transition-all group">
-                <i className="fas fa-microscope text-4xl text-accent mb-6 group-hover:scale-110 transition-transform"></i>
-                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter italic">Diagnóstico Digital</h3>
-                <p className="text-sm text-gray-500">Localizamos vazamentos sem o método "tentativa e erro".</p>
-             </div>
-             <div className="p-10 bg-white rounded-3xl shadow-sm border border-transparent hover:border-accent transition-all group">
-                <i className="fas fa-file-signature text-4xl text-accent mb-6 group-hover:scale-110 transition-transform"></i>
-                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter italic">Laudos Oficiais</h3>
-                <p className="text-sm text-gray-500">Documentação técnica para Sanepar e Seguradoras.</p>
-             </div>
-             <div className="p-10 bg-white rounded-3xl shadow-sm border border-transparent hover:border-accent transition-all group">
-                <i className="fas fa-history text-4xl text-accent mb-6 group-hover:scale-110 transition-transform"></i>
-                <h3 className="font-black text-primary mb-4 uppercase tracking-tighter italic">Pronta Resposta</h3>
-                <p className="text-sm text-gray-500">Unidades móveis 24h em todos os bairros de Curitiba.</p>
-             </div>
-          </div>
+      {/* Contact Section */}
+      <section className="py-12 md:py-16 bg-white border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <ContactForm />
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <FAQ items={[
-            { question: "Vocês atendem prédios comerciais?", answer: "Sim, somos especialistas em manutenção preventiva e corretiva para condomínios, indústrias e prédios comerciais em toda Curitiba." },
-            { question: "O serviço de desentupimento tem garantia?", answer: "Sim, oferecemos garantia total de 90 dias em todos os serviços de desobstrução técnica." }
-          ]} />
-        </div>
-      </section>
     </div>
   );
 };

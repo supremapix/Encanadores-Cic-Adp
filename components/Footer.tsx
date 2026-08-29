@@ -30,16 +30,17 @@ const POPULAR_CITIES = [
 const Footer: React.FC = () => {
   return (
     <footer className="relative bg-slate-950 text-slate-400 text-xs border-t border-slate-800 overflow-hidden">
-      {/* Background Image & Overlay */}
+      {/* Background Image & Evident Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-20"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-50"
         style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
       >
-        <div className="absolute inset-0 bg-slate-950/80"></div>
+        <div className="absolute inset-0 bg-slate-950/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/80"></div>
       </div>
       
       {/* Top CTA Banner */}
-      <div className="relative bg-slate-900/90 border-b border-slate-800 py-8 backdrop-blur-xs z-10">
+      <div className="relative bg-slate-900/80 border-b border-slate-800 py-8 backdrop-blur-xs z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <h3 className="text-base sm:text-lg font-bold text-white">

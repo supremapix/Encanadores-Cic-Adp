@@ -4,13 +4,14 @@ import { CONTACT_INFO, THEME_BACKGROUNDS } from '../constants';
 const Hero: React.FC = () => {
   return (
     <section className="relative bg-slate-950 text-white pt-24 pb-14 md:pt-32 md:pb-16 overflow-hidden border-b border-slate-800">
-      {/* Background Image & Overlay */}
+      {/* Background Image & Evident Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
         style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-900/85"></div>
-        <div className="absolute inset-0 bg-slate-950/40"></div>
+        <div className="absolute inset-0 bg-slate-950/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/60 to-slate-900/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

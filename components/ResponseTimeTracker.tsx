@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO, THEME_BACKGROUNDS } from '../constants';
 
 const ADP_COORDS = { lat: -25.5138495, lng: -49.3364239 }; // Rua Luiz Maltaca, 36 - CIC
 
@@ -66,10 +66,17 @@ const ResponseTimeTracker: React.FC = () => {
   return (
     <section className="py-8 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="bg-slate-900 text-white rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-md flex flex-col md:flex-row items-center justify-between gap-5">
+        <div className="relative overflow-hidden bg-slate-950 text-white rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-lg flex flex-col md:flex-row items-center justify-between gap-5">
+          {/* Background Image & Overlay */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-40"
+            style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
+          >
+            <div className="absolute inset-0 bg-slate-950/70"></div>
+          </div>
           
           {/* Left Info */}
-          <div className="space-y-1.5 text-center md:text-left">
+          <div className="relative z-10 space-y-1.5 text-center md:text-left">
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-yellow-400">
               <i className="fa-solid fa-route"></i>
               <span>Radar de Proximidade em Curitiba</span>
@@ -83,7 +90,7 @@ const ResponseTimeTracker: React.FC = () => {
           </div>
 
           {/* Action / Result */}
-          <div className="flex-shrink-0 w-full md:w-auto text-center">
+          <div className="relative z-10 flex-shrink-0 w-full md:w-auto text-center">
             {status === 'idle' && (
               <button
                 onClick={startTracking}

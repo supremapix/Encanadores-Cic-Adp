@@ -13,6 +13,7 @@ import {
 import FAQ from '../components/FAQ';
 import ContactForm from '../components/ContactForm';
 import ResponseTimeTracker from '../components/ResponseTimeTracker';
+import VideoSection from '../components/VideoSection';
 import NotFound from './NotFound';
 
 interface DynamicPageProps {
@@ -210,13 +211,13 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
       
       {/* 1. Dynamic Page Hero */}
       <section className="relative bg-slate-950 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800 overflow-hidden">
-        {/* Background Image & Overlay */}
+        {/* Background Image & Evident Overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
           style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
         >
-          <div className="absolute inset-0 bg-slate-950/90"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/50"></div>
+          <div className="absolute inset-0 bg-slate-950/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-slate-950/60"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-4 relative z-10">
@@ -376,10 +377,10 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
             <div className="lg:col-span-4 space-y-6">
               <div className="relative overflow-hidden bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 space-y-4 shadow-lg text-left">
                 <div 
-                  className="absolute inset-0 bg-cover bg-center pointer-events-none"
+                  className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-40"
                   style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
                 >
-                  <div className="absolute inset-0 bg-slate-950/90"></div>
+                  <div className="absolute inset-0 bg-slate-950/75"></div>
                 </div>
 
                 <div className="relative z-10 space-y-4">
@@ -448,14 +449,17 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
       {/* 3. Response Time Radar */}
       <ResponseTimeTracker />
 
-      {/* 4. Localized FAQs */}
+      {/* 4. Demonstration Video Section */}
+      <VideoSection />
+
+      {/* 5. Localized FAQs */}
       <FAQ 
         items={faqs} 
         title={`Perguntas Frequentes sobre Encanador em ${title}`} 
         subtitle={`Dúvidas sobre atendimento emergencial, geofone e laudo Sanepar na região de ${title}.`}
       />
 
-      {/* 5. Contact Form */}
+      {/* 6. Contact Form */}
       <section className="py-12 md:py-16 bg-slate-50 border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <ContactForm />

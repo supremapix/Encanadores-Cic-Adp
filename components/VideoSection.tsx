@@ -6,10 +6,11 @@ const VideoSection: React.FC = () => {
     <section className="relative py-12 md:py-16 bg-slate-950 text-white border-t border-b border-slate-800 overflow-hidden">
       {/* Background Image & Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-25"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-50"
         style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
       >
-        <div className="absolute inset-0 bg-slate-950/85"></div>
+        <div className="absolute inset-0 bg-slate-950/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-transparent to-slate-950/80"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -32,10 +33,10 @@ const VideoSection: React.FC = () => {
           
           {/* Video Player Box */}
           <div className="lg:col-span-7">
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-xl bg-slate-950 border border-slate-800">
+            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-slate-950 border border-slate-700/80 ring-1 ring-white/10">
               <iframe
-                src="https://www.youtube-nocookie.com/embed/5F_76F9_rB8?rel=0&modestbranding=1"
-                title="Detecção de Vazamentos com Geofone Eletrônico - Desentupidora ADP Curitiba"
+                src="https://www.youtube-nocookie.com/embed/jJ0WJqgXZ3k?rel=0&modestbranding=1&autoplay=0"
+                title="Detecção de Vazamentos e Desentupimento Técnico - Desentupidora ADP Curitiba"
                 className="w-full h-full object-cover"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

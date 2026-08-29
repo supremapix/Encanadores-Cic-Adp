@@ -9,12 +9,13 @@ const NotFound: React.FC = () => {
 
   return (
     <div className="relative min-h-[80vh] bg-slate-950 text-white flex items-center justify-center px-4 py-24 overflow-hidden">
-      {/* Background Image & Overlay */}
+      {/* Background Image & Evident Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
         style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
       >
-        <div className="absolute inset-0 bg-slate-950/90"></div>
+        <div className="absolute inset-0 bg-slate-950/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-slate-950/60"></div>
       </div>
 
       <div className="max-w-lg w-full text-center space-y-6 relative z-10">

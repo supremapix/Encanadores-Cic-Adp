@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { CONTACT_INFO, THEME_BACKGROUNDS } from '../constants';
 import TrustBar from '../components/TrustBar';
 import ContactForm from '../components/ContactForm';
+import VideoSection from '../components/VideoSection';
 
 const AboutPage: React.FC = () => {
   useEffect(() => {
@@ -21,13 +22,13 @@ const AboutPage: React.FC = () => {
       
       {/* Header Banner / Hero */}
       <section className="relative bg-slate-950 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800 overflow-hidden">
-        {/* Background Image & Overlay */}
+        {/* Background Image & Evident Overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
           style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
         >
-          <div className="absolute inset-0 bg-slate-950/90"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/50"></div>
+          <div className="absolute inset-0 bg-slate-950/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-slate-950/60"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3 relative z-10">
@@ -37,7 +38,7 @@ const AboutPage: React.FC = () => {
           <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-white tracking-tight leading-tight">
             Sobre a Desentupidora ADP / ADP Engenharia
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-200 max-w-2xl mx-auto leading-relaxed">
             Excelência técnica em diagnósticos hidráulicos não invasivos e soluções definitivas para Curitiba e Região Metropolitana.
           </p>
         </div>
@@ -98,10 +99,10 @@ const AboutPage: React.FC = () => {
           {/* Official Entity NAP Section with Section Background */}
           <div className="relative overflow-hidden rounded-2xl p-6 sm:p-8 text-white border border-slate-800 shadow-xl">
             <div 
-              className="absolute inset-0 bg-cover bg-center pointer-events-none"
+              className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-50"
               style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
             >
-              <div className="absolute inset-0 bg-slate-950/90"></div>
+              <div className="absolute inset-0 bg-slate-950/75"></div>
             </div>
             
             <div className="relative z-10 space-y-3">
@@ -132,6 +133,9 @@ const AboutPage: React.FC = () => {
 
         </div>
       </section>
+
+      {/* Video Demonstration Section */}
+      <VideoSection />
 
       {/* Contact Form Section */}
       <section className="py-12 md:py-16 bg-slate-50 border-t border-slate-200">

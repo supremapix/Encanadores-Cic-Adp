@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO, THEME_BACKGROUNDS } from '../constants';
 import TrustBar from '../components/TrustBar';
 import ContactForm from '../components/ContactForm';
 
@@ -19,9 +19,18 @@ const AboutPage: React.FC = () => {
   return (
     <div className="bg-white">
       
-      {/* Header Banner */}
-      <section className="bg-slate-900 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+      {/* Header Banner / Hero */}
+      <section className="relative bg-slate-950 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800 overflow-hidden">
+        {/* Background Image & Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+          style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
+        >
+          <div className="absolute inset-0 bg-slate-950/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/50"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3 relative z-10">
           <span className="text-xs font-bold uppercase tracking-wider text-yellow-400">
             Nossa História & Compromisso
           </span>
@@ -86,28 +95,37 @@ const AboutPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Official Entity NAP */}
-          <div className="p-6 rounded-2xl bg-slate-900 text-white space-y-3">
-            <h3 className="text-base font-bold text-yellow-400 uppercase tracking-wider">
-              Informações Oficiais da Empresa
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
-              <div>
-                <span className="text-slate-400 block">Razão Social / Marca:</span>
-                <span className="font-semibold text-white">{CONTACT_INFO.brandName} / {CONTACT_INFO.companyName}</span>
-              </div>
-              <div>
-                <span className="text-slate-400 block">Sede Operacional:</span>
-                <span className="font-semibold text-white">{CONTACT_INFO.address}, {CONTACT_INFO.neighborhood}</span>
-                <span className="block text-slate-400">Curitiba - PR, CEP {CONTACT_INFO.cep}</span>
-              </div>
-              <div>
-                <span className="text-slate-400 block">Contato Telefônico:</span>
-                <span className="font-semibold text-white">{CONTACT_INFO.phone}</span>
-              </div>
-              <div>
-                <span className="text-slate-400 block">WhatsApp de Plantão:</span>
-                <span className="font-semibold text-white">{CONTACT_INFO.whatsapp}</span>
+          {/* Official Entity NAP Section with Section Background */}
+          <div className="relative overflow-hidden rounded-2xl p-6 sm:p-8 text-white border border-slate-800 shadow-xl">
+            <div 
+              className="absolute inset-0 bg-cover bg-center pointer-events-none"
+              style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
+            >
+              <div className="absolute inset-0 bg-slate-950/90"></div>
+            </div>
+            
+            <div className="relative z-10 space-y-3">
+              <h3 className="text-base font-bold text-yellow-400 uppercase tracking-wider">
+                Informações Oficiais da Empresa
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
+                <div>
+                  <span className="text-slate-400 block">Razão Social / Marca:</span>
+                  <span className="font-semibold text-white">{CONTACT_INFO.brandName} / {CONTACT_INFO.companyName}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block">Sede Operacional:</span>
+                  <span className="font-semibold text-white">{CONTACT_INFO.address}, {CONTACT_INFO.neighborhood}</span>
+                  <span className="block text-slate-400">Curitiba - PR, CEP {CONTACT_INFO.cep}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block">Contato Telefônico:</span>
+                  <span className="font-semibold text-white">{CONTACT_INFO.phone}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400 block">WhatsApp de Plantão:</span>
+                  <span className="font-semibold text-white">{CONTACT_INFO.whatsapp}</span>
+                </div>
               </div>
             </div>
           </div>

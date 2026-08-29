@@ -7,7 +7,8 @@ import {
   NEIGHBORHOOD_GRAPH, 
   CITY_GRAPH,
   BAIRROS,
-  CIDADES 
+  CIDADES,
+  THEME_BACKGROUNDS
 } from '../constants';
 import FAQ from '../components/FAQ';
 import ContactForm from '../components/ContactForm';
@@ -208,8 +209,17 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
     <div className="bg-white">
       
       {/* 1. Dynamic Page Hero */}
-      <section className="bg-slate-900 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-4">
+      <section className="relative bg-slate-950 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800 overflow-hidden">
+        {/* Background Image & Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+          style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
+        >
+          <div className="absolute inset-0 bg-slate-950/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/50"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-4 relative z-10">
           
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-2 text-xs text-slate-400">
@@ -364,53 +374,62 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
 
             {/* Sidebar Contact / Quick Callout */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 space-y-4 shadow-lg text-left">
-                <div className="flex items-center gap-2 text-yellow-400 font-bold text-xs uppercase tracking-wider">
-                  <i className="fa-solid fa-shield-halved"></i>
-                  <span>Garantia de Qualidade</span>
+              <div className="relative overflow-hidden bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 space-y-4 shadow-lg text-left">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center pointer-events-none"
+                  style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
+                >
+                  <div className="absolute inset-0 bg-slate-950/90"></div>
                 </div>
 
-                <h3 className="text-base font-bold text-white leading-snug">
-                  Atendimento Técnico em {title}
-                </h3>
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center gap-2 text-yellow-400 font-bold text-xs uppercase tracking-wider">
+                    <i className="fa-solid fa-shield-halved"></i>
+                    <span>Garantia de Qualidade</span>
+                  </div>
 
-                <ul className="space-y-2 text-xs text-slate-300">
-                  <li className="flex items-center gap-2">
-                    <i className="fa-solid fa-check text-green-400"></i>
-                    <span>Técnicos certificados e uniformizados</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <i className="fa-solid fa-check text-green-400"></i>
-                    <span>Garantia de 90 dias por escrito</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <i className="fa-solid fa-check text-green-400"></i>
-                    <span>Pagamento facilitado no cartão</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <i className="fa-solid fa-check text-green-400"></i>
-                    <span>Atendimento 24h sem taxa abusiva</span>
-                  </li>
-                </ul>
+                  <h3 className="text-base font-bold text-white leading-snug">
+                    Atendimento Técnico em {title}
+                  </h3>
 
-                <div className="pt-2 border-t border-slate-800 space-y-2">
-                  <a
-                    href={CONTACT_INFO.whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-3 px-4 rounded-xl transition-all shadow-sm"
-                  >
-                    <i className="fa-brands fa-whatsapp text-base"></i>
-                    <span>Chamar Plantão em {title}</span>
-                  </a>
+                  <ul className="space-y-2 text-xs text-slate-300">
+                    <li className="flex items-center gap-2">
+                      <i className="fa-solid fa-check text-green-400"></i>
+                      <span>Técnicos certificados e uniformizados</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <i className="fa-solid fa-check text-green-400"></i>
+                      <span>Garantia de 90 dias por escrito</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <i className="fa-solid fa-check text-green-400"></i>
+                      <span>Pagamento facilitado no cartão</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <i className="fa-solid fa-check text-green-400"></i>
+                      <span>Atendimento 24h sem taxa abusiva</span>
+                    </li>
+                  </ul>
 
-                  <a
-                    href={CONTACT_INFO.phoneLink}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 px-4 rounded-xl border border-slate-700 transition-colors"
-                  >
-                    <i className="fa-solid fa-phone text-yellow-400"></i>
-                    <span>{CONTACT_INFO.phone}</span>
-                  </a>
+                  <div className="pt-2 border-t border-slate-800 space-y-2">
+                    <a
+                      href={CONTACT_INFO.whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-3 px-4 rounded-xl transition-all shadow-sm"
+                    >
+                      <i className="fa-brands fa-whatsapp text-base"></i>
+                      <span>Chamar Plantão em {title}</span>
+                    </a>
+
+                    <a
+                      href={CONTACT_INFO.phoneLink}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 px-4 rounded-xl border border-slate-700 transition-colors"
+                    >
+                      <i className="fa-solid fa-phone text-yellow-400"></i>
+                      <span>{CONTACT_INFO.phone}</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 

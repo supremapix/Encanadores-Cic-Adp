@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO, THEME_BACKGROUNDS } from '../constants';
 
 const NotFound: React.FC = () => {
   useEffect(() => {
@@ -8,11 +8,19 @@ const NotFound: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-[80vh] bg-slate-900 text-white flex items-center justify-center px-4 py-24">
-      <div className="max-w-lg w-full text-center space-y-6">
+    <div className="relative min-h-[80vh] bg-slate-950 text-white flex items-center justify-center px-4 py-24 overflow-hidden">
+      {/* Background Image & Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+        style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
+      >
+        <div className="absolute inset-0 bg-slate-950/90"></div>
+      </div>
+
+      <div className="max-w-lg w-full text-center space-y-6 relative z-10">
         
         {/* Visual Badge */}
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-slate-800 border border-slate-700 text-yellow-400 text-3xl shadow-lg">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-slate-800/90 border border-slate-700 text-yellow-400 text-3xl shadow-lg">
           <i className="fa-solid fa-triangle-exclamation"></i>
         </div>
 

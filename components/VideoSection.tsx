@@ -1,10 +1,18 @@
 import React from 'react';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO, THEME_BACKGROUNDS } from '../constants';
 
 const VideoSection: React.FC = () => {
   return (
-    <section className="py-12 md:py-16 bg-slate-900 text-white border-t border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-12 md:py-16 bg-slate-950 text-white border-t border-b border-slate-800 overflow-hidden">
+      {/* Background Image & Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-25"
+        style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
+      >
+        <div className="absolute inset-0 bg-slate-950/85"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">

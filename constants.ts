@@ -19,6 +19,11 @@ export const CONTACT_INFO = {
   canonicalDomain: "https://www.encanador.servicosnobairro.com.br"
 };
 
+export const THEME_BACKGROUNDS = {
+  hero: "https://blog.depocasa.com.br/wp-content/uploads/2023/09/imagem_2023-09-27_155225329-1024x678.png",
+  sectionAndFooter: "https://blog.depocasa.com.br/wp-content/uploads/2023/09/shutterstock_2291907983-1024x683.jpg"
+};
+
 export const TRUST_BADGES = [
   { icon: 'fa-microscope', title: 'Geofone Digital Ultrassônico', desc: 'Detecção milimétrica sem quebra-quebra' },
   { icon: 'fa-file-signature', title: 'Laudo Oficial Sanepar', desc: 'Para contestação e desconto na fatura' },

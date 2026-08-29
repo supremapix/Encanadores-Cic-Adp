@@ -1,11 +1,17 @@
 import React from 'react';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO, THEME_BACKGROUNDS } from '../constants';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative bg-slate-900 text-white pt-24 pb-14 md:pt-32 md:pb-16 overflow-hidden border-b border-slate-800">
-      {/* Background Subtle Gradient */}
-      <div className="absolute inset-0 bg-radial-at-top from-blue-900/20 via-slate-900 to-slate-900 pointer-events-none"></div>
+    <section className="relative bg-slate-950 text-white pt-24 pb-14 md:pt-32 md:pb-16 overflow-hidden border-b border-slate-800">
+      {/* Background Image & Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+        style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-900/85"></div>
+        <div className="absolute inset-0 bg-slate-950/40"></div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">

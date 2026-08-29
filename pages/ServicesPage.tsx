@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { MAIN_SERVICES, CONTACT_INFO } from '../constants';
+import { MAIN_SERVICES, CONTACT_INFO, THEME_BACKGROUNDS } from '../constants';
 import ContactForm from '../components/ContactForm';
 import TrustBar from '../components/TrustBar';
 
@@ -20,9 +20,18 @@ const ServicesPage: React.FC = () => {
   return (
     <div className="bg-white">
       
-      {/* Header Banner */}
-      <section className="bg-slate-900 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+      {/* Header Banner / Hero */}
+      <section className="relative bg-slate-950 text-white pt-24 pb-12 md:pt-32 md:pb-16 border-b border-slate-800 overflow-hidden">
+        {/* Background Image & Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+          style={{ backgroundImage: `url(${THEME_BACKGROUNDS.hero})` }}
+        >
+          <div className="absolute inset-0 bg-slate-950/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/50"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3 relative z-10">
           <span className="text-xs font-bold uppercase tracking-wider text-yellow-400">
             Catálogo de Serviços Hidráulicos
           </span>

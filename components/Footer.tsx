@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CONTACT_INFO, MAIN_SERVICES } from '../constants';
+import { CONTACT_INFO, MAIN_SERVICES, THEME_BACKGROUNDS } from '../constants';
 import PremiumLogo from './PremiumLogo';
 
 const POPULAR_NEIGHBORHOODS = [
@@ -29,10 +29,17 @@ const POPULAR_CITIES = [
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-950 text-slate-400 text-xs border-t border-slate-800">
+    <footer className="relative bg-slate-950 text-slate-400 text-xs border-t border-slate-800 overflow-hidden">
+      {/* Background Image & Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none opacity-20"
+        style={{ backgroundImage: `url(${THEME_BACKGROUNDS.sectionAndFooter})` }}
+      >
+        <div className="absolute inset-0 bg-slate-950/80"></div>
+      </div>
       
       {/* Top CTA Banner */}
-      <div className="bg-slate-900 border-b border-slate-800 py-8">
+      <div className="relative bg-slate-900/90 border-b border-slate-800 py-8 backdrop-blur-xs z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <h3 className="text-base sm:text-lg font-bold text-white">
@@ -45,7 +52,7 @@ const Footer: React.FC = () => {
           <div className="flex items-center gap-3">
             <a 
               href={CONTACT_INFO.phoneLink}
-              className="px-4 py-2.5 rounded-lg bg-slate-800 text-white font-semibold hover:bg-slate-700 transition-colors border border-slate-700 flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-slate-800 text-white font-semibold hover:bg-slate-700 transition-colors border border-slate-700 flex items-center gap-2 shadow-sm"
             >
               <i className="fa-solid fa-phone text-yellow-400"></i>
               <span>{CONTACT_INFO.phone}</span>
@@ -54,7 +61,7 @@ const Footer: React.FC = () => {
               href={CONTACT_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold transition-colors flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold transition-colors flex items-center gap-2 shadow-sm"
             >
               <i className="fa-brands fa-whatsapp text-base"></i>
               <span>WhatsApp 24h</span>
@@ -64,7 +71,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer 4 Columns */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Column 1: Company / Identity */}

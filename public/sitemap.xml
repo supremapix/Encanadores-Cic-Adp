@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.encanador.servicosnobairro.com.br/</loc><lastmod>2026-04-24</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/servicos</loc><lastmod>2026-04-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/sobre</loc><priority>0.7</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/</loc><lastmod>2026-04-24</lastmod><priority>1.0</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/servicos</loc><priority>0.8</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/sobre</loc><priority>0.6</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/contato</loc><priority>0.8</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/sitemap</loc><priority>0.5</priority></url>
-
-  <!-- SERVIÇOS -->
+  <url><loc>https://www.encanador.servicosnobairro.com.br/sitemap</loc><priority>0.6</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/servico/caca-vazamento-digital</loc><priority>0.9</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/servico/desentupidora-24h</loc><priority>0.9</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/servico/limpeza-caixa-gordura</loc><priority>0.9</priority></url>
@@ -16,9 +14,7 @@
   <url><loc>https://www.encanador.servicosnobairro.com.br/servico/limpeza-caixa-dagua</loc><priority>0.9</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/servico/desentupimento-vaso-sanitario</loc><priority>0.9</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/servico/manutencao-hidraulica-predial</loc><priority>0.9</priority></url>
-
-  <!-- CIDADES -->
-  <url><loc>https://www.encanador.servicosnobairro.com.br/cidade/curitiba</loc><priority>0.8</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/cidade/curitiba</loc><priority>0.7</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/cidade/sao-jose-dos-pinhais</loc><priority>0.7</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/cidade/pinhais</loc><priority>0.7</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/cidade/colombo</loc><priority>0.7</priority></url>
@@ -34,8 +30,6 @@
   <url><loc>https://www.encanador.servicosnobairro.com.br/cidade/rio-branco-do-sul</loc><priority>0.7</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/cidade/itaperucu</loc><priority>0.7</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/cidade/tijucas-do-sul</loc><priority>0.7</priority></url>
-
-  <!-- BAIRROS OFICIAIS CURITIBA -->
   <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/abranches</loc><priority>0.6</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/agua-verde</loc><priority>0.6</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/ahu</loc><priority>0.6</priority></url>
@@ -111,59 +105,57 @@
   <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-izabel</loc><priority>0.6</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vista-alegre</loc><priority>0.6</priority></url>
   <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/xaxim</loc><priority>0.6</priority></url>
-
-  <!-- BAIRROS NÃO OFICIAIS / VILAS -->
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-sandra</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-verde</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-nossa-senhora-da-luz</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vitoria-regia</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/caiua</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/sabara</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/gabineto</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/itatiaia</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/santa-helena</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/conquista</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/barigui</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/osvaldo-cruz</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/atenas</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/neoville</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-pantanal</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-torres</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-das-torres</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-hauer</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-oficinas</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-guaira</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-osternack</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-sao-pedro</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-audi</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-parolin</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-gabineto</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-itatiaia</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-da-ordem</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-kosmos</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-alvorada</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/cic-central</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/pinheirinho-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/sitio-cercado-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/umbara-de-baixo</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/umbara-de-cima</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/capao-raso-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/carmo</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/hauer-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/xaxim-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/boqueirao-alto</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/boqueirao-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/cajuru-alto</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/uberaba-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/uberaba-de-cima</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-das-torres</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-prado</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/bairro-alto-norte</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/bairro-alto-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/tingui-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/boa-vista-norte</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/orleans-velho</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/sao-braz-alto</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/santa-felicidade-norte</loc><priority>0.5</priority></url>
-  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/portao-velho</loc><priority>0.5</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-sandra</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-verde</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-nossa-senhora-da-luz</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vitoria-regia</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/caiua</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/sabara</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/gabineto</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/itatiaia</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/santa-helena</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/conquista</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/barigui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/osvaldo-cruz</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/atenas</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/neoville</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-pantanal</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-torres</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-das-torres</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-hauer</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-oficinas</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-guaira</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-osternack</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-sao-pedro</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-audi</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-parolin</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-gabineto</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-itatiaia</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-da-ordem</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-kosmos</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-alvorada</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/cic-central</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/pinheirinho-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/sitio-cercado-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/umbara-de-baixo</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/umbara-de-cima</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/capao-raso-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/carmo</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/hauer-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/xaxim-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/boqueirao-alto</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/boqueirao-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/cajuru-alto</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/uberaba-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/uberaba-de-cima</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/jardim-das-torres</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/vila-prado</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/bairro-alto-norte</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/bairro-alto-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/tingui-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/boa-vista-norte</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/orleans-velho</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/sao-braz-alto</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/santa-felicidade-norte</loc><priority>0.6</priority></url>
+  <url><loc>https://www.encanador.servicosnobairro.com.br/bairro/portao-velho</loc><priority>0.6</priority></url>
 </urlset>

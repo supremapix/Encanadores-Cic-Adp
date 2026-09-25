@@ -24,7 +24,7 @@ const ScrollToTop: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen bg-white">
         <Header />
@@ -51,7 +51,7 @@ const App: React.FC = () => {
         <FixedButtons />
         <FloatingTips />
       </div>
-    </Router>
+    </>
   );
 };
 

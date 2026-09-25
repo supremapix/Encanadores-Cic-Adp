@@ -21,3 +21,12 @@ export interface ImageData {
   url: string;
   alt: string;
 }
+
+declare global {
+  interface Window {
+    aistudio?: {
+      hasSelectedApiKey?: () => Promise<boolean>;
+      openSelectKey?: () => Promise<void>;
+    };
+  }
+}

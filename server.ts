@@ -4,20 +4,20 @@ import express, { Request, Response, NextFunction } from 'express';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const isProd = process.env.NODE_ENV === 'production' || fs.existsSync(path.resolve(process.cwd(), 'dist'));
+const isProd = process.env.NODE_ENV === 'production';
 
 async function createServer() {
   if (!isProd) {
     // Development mode with Vite middleware
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true, port: 3000 },
+      server: { middlewareMode: true },
       appType: 'custom'
     });
 
     app.use(vite.middlewares);
 
-    app.use('*', async (req: Request, res: Response, next: NextFunction) => {
+    app.use(async (req: Request, res: Response, next: NextFunction) => {
       const url = req.originalUrl;
       try {
         let template = fs.readFileSync(path.resolve(process.cwd(), 'index.html'), 'utf-8');

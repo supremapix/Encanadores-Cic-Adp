@@ -60,6 +60,14 @@ function renderPage(route: string, meta: RouteMeta): string {
     html = html.replace(/<meta property="og:url"[^>]*>/s, `<meta property="og:url" content="${meta.canonical}" />`);
   }
 
+  // Replace Twitter Tags
+  if (html.includes('<meta name="twitter:title"')) {
+    html = html.replace(/<meta name="twitter:title"[^>]*>/s, `<meta name="twitter:title" content="${meta.title.replace(/"/g, '&quot;')}" />`);
+  }
+  if (html.includes('<meta name="twitter:description"')) {
+    html = html.replace(/<meta name="twitter:description"[^>]*>/s, `<meta name="twitter:description" content="${meta.description.replace(/"/g, '&quot;')}" />`);
+  }
+
   // Inject JSON-LD Schema
   const schemaScript = `\n    <script type="application/ld+json" id="route-schema">\n${JSON.stringify(meta.schemaJson, null, 2)}\n    </script>`;
   html = html.replace('</head>', `${schemaScript}\n</head>`);

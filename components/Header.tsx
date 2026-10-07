@@ -20,15 +20,20 @@ const Header: React.FC = () => {
     setIsServicesExpanded(false);
   }, [location.pathname]);
 
-  // Lock scroll when menu is open
+  // Lock scroll when menu is open & notify floating actions
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.setAttribute('data-mobile-menu-open', 'true');
+      window.dispatchEvent(new CustomEvent('adp-mobile-menu-toggle', { detail: { isOpen: true } }));
     } else {
       document.body.style.overflow = '';
+      document.body.removeAttribute('data-mobile-menu-open');
+      window.dispatchEvent(new CustomEvent('adp-mobile-menu-toggle', { detail: { isOpen: false } }));
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.removeAttribute('data-mobile-menu-open');
     };
   }, [isMenuOpen]);
 

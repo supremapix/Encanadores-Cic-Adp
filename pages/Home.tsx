@@ -7,7 +7,7 @@ import VideoSection from '../components/VideoSection';
 import FAQ from '../components/FAQ';
 import FAQInfinite from '../components/FAQInfinite';
 import ContactForm from '../components/ContactForm';
-import { MAIN_SERVICES, CONTACT_INFO, GENERAL_FAQS, BAIRROS, CIDADES } from '../constants';
+import { MAIN_SERVICES, CONTACT_INFO, GENERAL_FAQS } from '../constants';
 
 const PipeSectionDivider: React.FC = () => {
   return (
@@ -372,96 +372,7 @@ const Home: React.FC = () => {
       {/* Pipe Divider with register */}
       <PipeSectionDivider />
 
-      {/* 7. Comprehensive Coverage (Bairros & Cidades Links for SEO) */}
-      <section className="py-16 bg-brand-light border-b border-brand-accent/25 relative overflow-hidden">
-        <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <div className="text-left max-w-3xl mb-10 space-y-2">
-            <span className="text-xs font-black uppercase tracking-wider text-brand-accent font-display">
-              Atendimento Geográfico Completo
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-dark">
-              Atendimento 24h em Todos os Bairros e Cidades Vizinhas
-            </h2>
-            <p className="text-base text-slate-700">
-              Dispomos de veículos volantes e equipes de pronto-atendimento posicionadas para respostas rápidas.
-            </p>
-          </div>
-
-          {/* Bairros Grid */}
-          <div className="space-y-8">
-            <div className="text-left">
-              <h3 className="text-base font-display font-black text-brand-dark uppercase tracking-wider mb-4 flex items-center gap-2">
-                <i className="fa-solid fa-map-pin text-brand-accent"></i>
-                <span>Bairros Atendidos em Curitiba:</span>
-              </h3>
-              
-              {/* Cascade of Bairro links (No synthetic links, all mapped to /bairro/:slug) */}
-              <div className="flex flex-wrap gap-2">
-                {BAIRROS.slice(0, 45).map((bairro, idx) => {
-                  const slug = bairro.toLowerCase()
-                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/(^-|-$)/g, '');
-                  return (
-                    <Link
-                      key={idx}
-                      to={`/bairro/${slug}`}
-                      className="text-xs bg-brand-slate hover:bg-brand-accent text-slate-700 hover:text-brand-light px-3.5 py-2 rounded-lg border border-brand-accent/15 transition-all font-bold shadow-2xs"
-                    >
-                      Encanador {bairro}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Cidades Grid */}
-            <div className="pt-6 border-t border-brand-accent/15 text-left">
-              <h3 className="text-base font-display font-black text-brand-dark uppercase tracking-wider mb-4 flex items-center gap-2">
-                <i className="fa-solid fa-city text-brand-accent"></i>
-                <span>Cidades da Região Metropolitana (RMC):</span>
-              </h3>
-              
-              <div className="flex flex-wrap gap-2">
-                {CIDADES.map((cidade, idx) => {
-                  const slug = cidade.toLowerCase()
-                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/(^-|-$)/g, '');
-                  return (
-                    <Link
-                      key={idx}
-                      to={`/cidade/${slug}`}
-                      className="text-xs bg-brand-navy hover:bg-brand-accent text-white px-3.5 py-2 rounded-lg transition-all font-black tracking-wide shadow-sm"
-                    >
-                      Encanador em {cidade}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="text-center pt-4 font-display font-black">
-              <Link
-                to="/sitemap"
-                className="text-base text-brand-blue hover:text-brand-dark inline-flex items-center gap-1.5 hover:underline"
-              >
-                <span>Ver lista completa de todos os bairros, vilas e RMC</span>
-                <i className="fa-solid fa-arrow-right text-xs"></i>
-              </Link>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Pipe Divider with register */}
-      <PipeSectionDivider />
-
-      {/* 8. Contact Form Section */}
+      {/* 7. Contact Form Section */}
       <section className="py-16 bg-brand-slate relative overflow-hidden border-b border-brand-accent/15">
         <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">

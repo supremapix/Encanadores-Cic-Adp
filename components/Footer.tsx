@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO, MAIN_SERVICES } from '../constants';
 import PremiumLogo from './PremiumLogo';
+import { SupremaCredit } from './SupremaCredit';
 
 const POPULAR_NEIGHBORHOODS = [
   { name: 'CIC (Cidade Industrial)', slug: 'cidade-industrial-cic' },
@@ -289,7 +290,7 @@ const Footer: React.FC = () => {
           {/* Column 4: Contact & NAP */}
           <div className="space-y-3">
             <h4 className="text-base font-display font-black text-white uppercase tracking-wider border-b border-brand-accent/20 pb-1.5">
-              Dados da Empresa (NAP)
+              Onde estamos
             </h4>
             <div className="space-y-3 text-slate-300">
               <div>
@@ -324,8 +325,6 @@ const Footer: React.FC = () => {
         <div className="mt-12 pt-6 border-t border-brand-navy flex flex-col md:flex-row items-center justify-between gap-4 text-slate-400 text-xs text-center md:text-left">
           <div>
             &copy; {new Date().getFullYear()} {CONTACT_INFO.brandName} • {CONTACT_INFO.companyName}. Todos os direitos reservados.
-            <br />
-            Dados comerciais verificados e autorizados em Curitiba e Região Metropolitana.
           </div>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
             <Link to="/sobre" className="hover:text-brand-yellow underline">Quem Somos</Link>
@@ -335,10 +334,28 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* 5. LETREIRO FINAL WITH LOGO cutout text to create strong memory visual */}
-        <div className="text-[12vw] sm:text-[10vw] font-display font-black tracking-tighter text-brand-navy/15 uppercase select-none text-center leading-none mt-10 -mb-4 tracking-widest block font-display">
-          DESENTUPIDORA ADP
+        {/* 5. LETREIRO FINAL: Copper Outline (#C8783A, -webkit-text-stroke 1.5px) with rising water fill animation */}
+        <div className="w-full overflow-hidden mt-10 pt-4">
+          <span 
+            className="w-full text-center block select-none uppercase font-display font-black leading-none tracking-wider"
+            style={{
+              fontSize: 'clamp(48px, 18vw, 220px)',
+              WebkitTextStroke: '1.5px #C8783A',
+              color: 'transparent',
+              backgroundImage: 'linear-gradient(to top, rgba(81, 168, 217, 0.6) 0%, rgba(81, 168, 217, 0.6) 50%, transparent 50.1%, transparent 100%)',
+              backgroundSize: '100% 200%',
+              backgroundPosition: footerInView ? '0 100%' : '0 0',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              transition: 'background-position 2.5s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+          >
+            DESENTUPIDORA ADP
+          </span>
         </div>
+
+        {/* 6. Crédito de Desenvolvimento */}
+        <SupremaCredit />
 
       </div>
     </footer>

@@ -146,7 +146,7 @@ const Home: React.FC = () => {
                 Serviço de Encanador Profissional, Caça-Vazamentos e Desentupimento em Curitiba
               </h2>
               <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
-                A <strong className="text-brand-dark font-extrabold">{CONTACT_INFO.brandName}</strong> (operada legalmente pela {CONTACT_INFO.companyName}) é uma empresa curitibana com dados comerciais verificados e autorizados. Resolvemos problemas de encanamentos complexos em residências, condomínios, prédios residenciais e industriais em Curitiba e Região Metropolitana.
+                A Desentupidora ADP (operada pela ADP Engenharia Hidráulica) resolve problemas hidráulicos complexos em residências, edifícios residenciais e comerciais, lojas e indústrias em toda Curitiba e Região Metropolitana.
               </p>
               <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
                 Nossos encanadores especialistas atuam com <strong className="text-brand-dark font-extrabold">Geofone Digital Ultrassônico</strong> e sensores térmicos para mapear e localizar exatamente onde está o vazamento por baixo da alvenaria ou piso, impedindo o "quebra-quebra" generalizado em seu patrimônio.
@@ -181,7 +181,7 @@ const Home: React.FC = () => {
                   <dd className="text-slate-300 text-xs">{CONTACT_INFO.companyName}</dd>
                 </div>
                 <div>
-                  <dt className="text-slate-300 text-xs uppercase font-black tracking-wider">Sede Operacional Física (NAP):</dt>
+                  <dt className="text-slate-300 text-xs uppercase font-black tracking-wider">Endereço:</dt>
                   <dd className="text-white font-bold">{CONTACT_INFO.address}, {CONTACT_INFO.neighborhood}</dd>
                   <dd className="text-slate-300 text-xs">{CONTACT_INFO.city} - {CONTACT_INFO.state}, CEP {CONTACT_INFO.cep}</dd>
                 </div>
@@ -327,7 +327,7 @@ const Home: React.FC = () => {
                       
                       <div className="relative z-10 space-y-3">
                         <span className="text-[10px] font-mono text-brand-accent tracking-widest uppercase block border-b border-brand-accent/15 pb-1">
-                          PLUMBING_SPEC // ITEM_{editorialNumber}
+                          Como fazemos
                         </span>
                         
                         <div className="space-y-1 text-xs text-slate-700 leading-relaxed">

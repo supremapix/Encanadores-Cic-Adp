@@ -192,7 +192,7 @@ const Header: React.FC = () => {
               className="w-full flex items-center justify-center gap-3 h-16 rounded-xl bg-brand-yellow text-brand-dark font-black text-lg shadow-md border-2 border-brand-light active:bg-brand-yellow/90"
             >
               <i className="fa-solid fa-phone text-xl"></i>
-              <span>📞 Ligar agora {CONTACT_INFO.phone}</span>
+              <span>Ligar agora {CONTACT_INFO.phone}</span>
             </a>
             
             <a 

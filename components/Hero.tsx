@@ -145,20 +145,45 @@ const Hero: React.FC = () => {
         }
       `}</style>
 
-      {/* Animated Plumbing Pipe running across background */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0">
+      {/* Mobile Plumbing Pipe: positioned strictly along the side margin, max 0.30 opacity, never crossing H1 or paragraph */}
+      <div className="md:hidden absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+        <svg className="w-full h-full" viewBox="0 0 400 800" preserveAspectRatio="none" fill="none">
+          {/* Copper pipe hugging the right border */}
+          <path 
+            d="M 390,0 L 390,320 Q 390,350 360,350 L 340,350 Q 310,350 310,390 L 310,800" 
+            stroke="#C8783A" 
+            strokeWidth="6" 
+            strokeLinecap="round" 
+            opacity="0.30"
+          />
+          <circle cx="390" cy="320" r="6" fill="#B35F24" stroke="#F5C518" strokeWidth="1.5" opacity="0.35" />
+          {isWaterFlowing && (
+            <path 
+              d="M 390,0 L 390,320 Q 390,350 360,350 L 340,350 Q 310,350 310,390 L 310,800" 
+              stroke="#51A8D9" 
+              strokeWidth="3" 
+              strokeLinecap="round" 
+              className="animate-water-flow"
+              opacity="0.30"
+            />
+          )}
+        </svg>
+      </div>
+
+      {/* Desktop Plumbing Pipe: running across background with max 0.35 opacity behind text */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none select-none z-0">
         <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none">
           {/* Copper Pipe base */}
           <path 
             d="M -50,150 Q 200,80 500,200 T 1000,100 T 1500,250" 
             stroke="#C8783A" 
-            strokeWidth="10" 
+            strokeWidth="8" 
             strokeLinecap="round" 
-            opacity="0.8"
+            opacity="0.35"
           />
           {/* Copper joints / elbows (visual markers) */}
-          <circle cx="500" cy="200" r="10" fill="#B35F24" stroke="#F5C518" strokeWidth="2" />
-          <circle cx="1000" cy="100" r="10" fill="#B35F24" stroke="#F5C518" strokeWidth="2" />
+          <circle cx="500" cy="200" r="9" fill="#B35F24" stroke="#F5C518" strokeWidth="2" opacity="0.35" />
+          <circle cx="1000" cy="100" r="9" fill="#B35F24" stroke="#F5C518" strokeWidth="2" opacity="0.35" />
 
           {/* Water flowing inside */}
           {isWaterFlowing && (
@@ -168,7 +193,7 @@ const Hero: React.FC = () => {
               strokeWidth="4" 
               strokeLinecap="round" 
               className="animate-water-flow"
-              opacity="0.9"
+              opacity="0.35"
             />
           )}
         </svg>

@@ -97,3 +97,10 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #0B2A3C;
 }
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}
+

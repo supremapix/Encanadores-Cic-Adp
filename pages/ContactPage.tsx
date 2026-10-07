@@ -57,7 +57,7 @@ const ContactPage: React.FC = () => {
               
               <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-5 shadow-sm">
                 <h2 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">
-                  Informações de Contato (NAP)
+                  Onde estamos
                 </h2>
 
                 <div className="space-y-4 text-xs sm:text-sm">

@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-dark: #071426;
-  --color-brand-navy: #0d233e;
-  --color-brand-blue: #1d4ed8;
-  --color-brand-accent: #facc15;
-  --color-brand-green: #16a34a;
-  --color-brand-slate: #f1f5f9;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-brand-dark: #0B2A3C;
+  --color-brand-navy: #0F3A52;
+  --color-brand-blue: #1C5D80;
+  --color-brand-accent: #C8783A;
+  --color-brand-yellow: #F5C518;
+  --color-brand-green: #25D366;
+  --color-brand-light: #F7F3EC;
+  --color-brand-slate: #EFECE6;
+  --font-sans: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
 }
 
 *, *::before, *::after {
@@ -18,14 +21,79 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #1e293b;
-  background-color: #ffffff;
+  background-color: #F7F3EC;
   overflow-x: hidden;
   width: 100%;
   line-height: 1.6;
 }
 ::selection {
-  background-color: #facc15;
-  color: #071426;
+  background-color: #F5C518;
+  color: #0B2A3C;
+}
+
+/* Base custom classes for visual styles */
+.font-display {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+/* Blueprint design accents */
+.blueprint-grid {
+  background-size: 24px 24px;
+  background-image: linear-gradient(to right, rgba(200, 120, 58, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(200, 120, 58, 0.04) 1px, transparent 1px);
+}
+
+.blueprint-grid-dark {
+  background-size: 24px 24px;
+  background-image: linear-gradient(to right, rgba(200, 120, 58, 0.07) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(200, 120, 58, 0.07) 1px, transparent 1px);
+}
+
+@keyframes flowWater {
+  0% {
+    stroke-dashoffset: 40;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-water-flow {
+  stroke-dasharray: 20 10;
+  animation: flowWater 1.5s linear infinite;
+}
+
+@keyframes dropdown-water {
+  0% {
+    transform: translateY(-20px) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(400px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.drop-water {
+  animation: dropdown-water 4s linear infinite;
+}
+
+/* Custom scrollbar matching brand */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F3EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8783A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0B2A3C;
 }

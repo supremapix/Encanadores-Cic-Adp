@@ -3,22 +3,27 @@ import { TRUST_BADGES } from '../constants';
 
 const TrustBar: React.FC = () => {
   return (
-    <div className="bg-slate-50 border-b border-slate-200/80 py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    <div className="bg-brand-slate border-b-2 border-brand-accent/20 py-6 relative overflow-hidden">
+      {/* Blueprint grid subtle accent */}
+      <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {TRUST_BADGES.map((badge, idx) => (
             <div 
               key={idx} 
-              className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200/60 shadow-sm"
+              className="flex items-center gap-3.5 p-4 bg-white rounded-xl border border-brand-accent/15 shadow-sm hover:shadow-md transition-all"
             >
-              <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center flex-shrink-0 text-base">
+              {/* Copper colored line-stroke icons, no blue squares */}
+              <div className="w-12 h-12 rounded-lg border-2 border-brand-accent/35 text-brand-accent flex items-center justify-center flex-shrink-0 text-lg bg-brand-light/40">
                 <i className={`fas ${badge.icon}`}></i>
               </div>
-              <div className="min-w-0">
-                <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-snug truncate">
+              
+              <div className="min-w-0 text-left">
+                <h4 className="text-sm font-display font-black text-brand-dark leading-snug truncate">
                   {badge.title}
                 </h4>
-                <p className="text-[11px] text-slate-500 leading-tight truncate">
+                <p className="text-xs text-slate-600 leading-tight mt-0.5 font-medium">
                   {badge.desc}
                 </p>
               </div>

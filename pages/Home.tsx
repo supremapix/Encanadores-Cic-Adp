@@ -9,11 +9,33 @@ import FAQInfinite from '../components/FAQInfinite';
 import ContactForm from '../components/ContactForm';
 import { MAIN_SERVICES, CONTACT_INFO, GENERAL_FAQS, BAIRROS, CIDADES } from '../constants';
 
+const PipeSectionDivider: React.FC = () => {
+  return (
+    <div className="relative h-12 w-full bg-brand-light flex items-center justify-center select-none pointer-events-none z-10">
+      <svg className="w-40 h-full text-brand-accent" viewBox="0 0 160 48" fill="none">
+        {/* Left pipe */}
+        <line x1="0" y1="24" x2="60" y2="24" stroke="currentColor" strokeWidth="6" />
+        {/* Elbow / joint */}
+        <rect x="60" y="14" width="16" height="20" rx="3" fill="currentColor" stroke="#F5C518" strokeWidth="2" />
+        {/* Connection dial / ring */}
+        <circle cx="68" cy="24" r="3" fill="#0B2A3C" />
+        {/* Gauge / pressure indicator */}
+        <circle cx="80" cy="20" r="8" stroke="currentColor" strokeWidth="2" fill="#0B2A3C" />
+        <line x1="80" y1="20" x2="84" y2="15" stroke="#F5C518" strokeWidth="2" />
+        {/* Elbow / joint */}
+        <rect x="84" y="14" width="16" height="20" rx="3" fill="currentColor" stroke="#F5C518" strokeWidth="2" />
+        {/* Right pipe */}
+        <line x1="100" y1="24" x2="160" y2="24" stroke="currentColor" strokeWidth="6" />
+      </svg>
+    </div>
+  );
+};
+
 const Home: React.FC = () => {
   useEffect(() => {
     document.title = "Encanador em Curitiba 24 Horas | Caça-Vazamento Digital e Desentupimento";
     
-    // Schema JSON-LD LocalBusiness & PlumbingService
+    // Schema JSON-LD LocalBusiness & PlumbingService (Exactly ONE unified block for LocalBusiness/PlumbingService as requested)
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.id = 'schema-home';
@@ -100,76 +122,87 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white">
-      {/* 1. Hero Section */}
+    <div className="bg-brand-light font-sans">
+      {/* 1. Hero Section with animation */}
       <Hero />
 
       {/* 2. Trust Bar Strip */}
       <TrustBar />
 
-      {/* 3. Direct Answer / AIO Semantic Summary Block */}
-      <section className="py-12 md:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      {/* 3. Direct Answer / AIO Semantic Summary Block (Blueprint theme) */}
+      <section className="py-16 bg-brand-light border-b border-brand-accent/25 relative overflow-hidden">
+        {/* Blueprint grid subtle background */}
+        <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
             {/* Left Narrative Column */}
-            <div className="lg:col-span-7 space-y-4 text-left">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
-                Engenharia Hidráulica Especializada
+            <div className="lg:col-span-7 space-y-5 text-left">
+              <span className="text-xs font-black uppercase tracking-wider text-brand-accent font-display">
+                Engenharia Hidráulica Autorizada Curitibana
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
+              <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-dark tracking-tight leading-tight">
                 Serviço de Encanador Profissional, Caça-Vazamentos e Desentupimento em Curitiba
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                A <strong className="text-slate-900 font-semibold">{CONTACT_INFO.brandName}</strong> (operada pela {CONTACT_INFO.companyName}) resolve problemas hidráulicos complexos em residências, edifícios residenciais e comerciais, lojas e indústrias em toda Curitiba e Região Metropolitana.
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+                A <strong className="text-brand-dark font-extrabold">{CONTACT_INFO.brandName}</strong> (operada legalmente pela {CONTACT_INFO.companyName}) é uma empresa curitibana com dados comerciais verificados e autorizados. Resolvemos problemas de encanamentos complexos em residências, condomínios, prédios residenciais e industriais em Curitiba e Região Metropolitana.
               </p>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                Utilizamos <strong className="text-slate-900 font-semibold">Geofones Digitais Ultrassônicos</strong> e termografia para mapear com exatidão onde está o vazamento oculto no piso, parede ou tubulações subterrâneas, evitando obras desnecessárias e quebra generalizada de pisos.
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+                Nossos encanadores especialistas atuam com <strong className="text-brand-dark font-extrabold">Geofone Digital Ultrassônico</strong> e sensores térmicos para mapear e localizar exatamente onde está o vazamento por baixo da alvenaria ou piso, impedindo o "quebra-quebra" generalizado em seu patrimônio.
               </p>
               
-              <div className="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-slate-700">
-                <span className="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200">
-                  <i className="fa-solid fa-check text-green-600 mr-1.5"></i>Laudo Técnico para Sanepar
+              <div className="pt-2 flex flex-wrap gap-2 text-xs font-black text-brand-dark font-display">
+                <span className="px-3.5 py-2 rounded-lg bg-brand-slate border-2 border-brand-accent/25 flex items-center">
+                  <i className="fa-solid fa-check text-brand-green mr-2 text-sm"></i>Laudo Técnico para Sanepar
                 </span>
-                <span className="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200">
-                  <i className="fa-solid fa-check text-green-600 mr-1.5"></i>Garantia Escrita de 90 Dias
+                <span className="px-3.5 py-2 rounded-lg bg-brand-slate border-2 border-brand-accent/25 flex items-center">
+                  <i className="fa-solid fa-check text-brand-green mr-2 text-sm"></i>Garantia Escrita de 90 Dias
                 </span>
-                <span className="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200">
-                  <i className="fa-solid fa-check text-green-600 mr-1.5"></i>Plantão Noturno & Feriados
+                <span className="px-3.5 py-2 rounded-lg bg-brand-slate border-2 border-brand-accent/25 flex items-center">
+                  <i className="fa-solid fa-check text-brand-green mr-2 text-sm"></i>Plantão Real 24h & Feriados
                 </span>
               </div>
             </div>
 
-            {/* Right Fast Facts Card */}
-            <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-3">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide border-b border-slate-200 pb-2">
-                Resumo Operacional para Clientes
+            {/* Right Fast Facts Card - Fully Verified Commercial Data */}
+            <div className="lg:col-span-5 bg-brand-navy text-white rounded-xl p-6 border-2 border-brand-accent shadow-xl space-y-4 text-left relative overflow-hidden">
+              <div className="absolute inset-0 blueprint-grid-dark opacity-15 pointer-events-none"></div>
+              
+              <h3 className="text-sm font-black text-brand-yellow uppercase tracking-widest border-b border-brand-accent/30 pb-2.5 font-display flex items-center gap-2">
+                <i className="fa-solid fa-shield-check"></i>
+                <span>Dados Comerciais Confirmados</span>
               </h3>
-              <dl className="space-y-2 text-xs">
+              
+              <dl className="space-y-3.5 text-sm">
                 <div>
-                  <dt className="text-slate-500 font-medium">Empresa:</dt>
-                  <dd className="text-slate-900 font-semibold">{CONTACT_INFO.brandName} / {CONTACT_INFO.companyName}</dd>
+                  <dt className="text-slate-300 text-xs uppercase font-black tracking-wider">Empresa Registrada:</dt>
+                  <dd className="text-white font-extrabold text-base">{CONTACT_INFO.brandName}</dd>
+                  <dd className="text-slate-300 text-xs">{CONTACT_INFO.companyName}</dd>
                 </div>
                 <div>
-                  <dt className="text-slate-500 font-medium">Base Operacional:</dt>
-                  <dd className="text-slate-900 font-semibold">{CONTACT_INFO.address}, {CONTACT_INFO.neighborhood} - Curitiba/PR</dd>
+                  <dt className="text-slate-300 text-xs uppercase font-black tracking-wider">Sede Operacional Física (NAP):</dt>
+                  <dd className="text-white font-bold">{CONTACT_INFO.address}, {CONTACT_INFO.neighborhood}</dd>
+                  <dd className="text-slate-300 text-xs">{CONTACT_INFO.city} - {CONTACT_INFO.state}, CEP {CONTACT_INFO.cep}</dd>
                 </div>
                 <div>
-                  <dt className="text-slate-500 font-medium">Horário de Funcionamento:</dt>
-                  <dd className="text-slate-900 font-semibold">24 Horas (Plantão contínuo todos os dias)</dd>
+                  <dt className="text-slate-300 text-xs uppercase font-black tracking-wider">Funcionamento Técnico:</dt>
+                  <dd className="text-brand-yellow font-black">Plantão 24 Horas permanente todos os dias</dd>
                 </div>
                 <div>
-                  <dt className="text-slate-500 font-medium">Equipamento de Precisão:</dt>
-                  <dd className="text-slate-900 font-semibold">Geofone Digital, Microcâmera HD, Hidrojato e Máquinas K-500</dd>
+                  <dt className="text-slate-300 text-xs uppercase font-black tracking-wider">Equipamentos de Diagnóstico:</dt>
+                  <dd className="text-slate-200">Geofone Digital, Sonda Guia de Microcâmera, Máquinas Rotativas K-500</dd>
                 </div>
-                <div>
-                  <dt className="text-slate-500 font-medium">Canais Oficiais:</dt>
-                  <dd className="text-slate-900 font-semibold flex items-center gap-3 pt-1">
-                    <a href={CONTACT_INFO.phoneLink} className="text-blue-700 hover:underline">
-                      <i className="fa-solid fa-phone mr-1"></i>{CONTACT_INFO.phone}
+                <div className="pt-2 border-t border-brand-accent/20">
+                  <dt className="text-slate-400 text-[10px] uppercase font-black tracking-wider">Contato Verificado:</dt>
+                  <dd className="flex flex-wrap items-center gap-4 pt-1 font-bold">
+                    <a href={CONTACT_INFO.phoneLink} className="text-brand-yellow hover:underline flex items-center gap-1.5 font-mono">
+                      <i className="fa-solid fa-phone"></i>
+                      <span>{CONTACT_INFO.phone}</span>
                     </a>
-                    <a href={CONTACT_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" className="text-green-700 hover:underline">
-                      <i className="fa-brands fa-whatsapp mr-1"></i>WhatsApp 24h
+                    <a href={CONTACT_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" className="text-brand-green hover:underline flex items-center gap-1.5 font-mono">
+                      <i className="fa-brands fa-whatsapp"></i>
+                      <span>WhatsApp 24h</span>
                     </a>
                   </dd>
                 </div>
@@ -180,79 +213,155 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. Services Grid */}
-      <section className="py-12 md:py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Pipe Divider with register */}
+      <PipeSectionDivider />
+
+      {/* 4. Services Section (Alternating Editorial timeline layout connected by SVG pipe line) */}
+      <section className="py-16 bg-brand-light relative overflow-hidden">
+        {/* Subtle background plant layout dimensions */}
+        <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
-              Soluções Completas
+          <div className="text-left max-w-3xl mb-12 space-y-2">
+            <span className="text-xs font-black uppercase tracking-wider text-brand-accent font-display">
+              Portfólio de Alta Qualidade
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-dark">
               Principais Serviços de Encanador em Curitiba
             </h2>
-            <p className="text-sm text-slate-600">
-              Atendimento técnico com diagnóstico preciso, maquinário elétrico rotativo e peças de primeira linha.
+            <p className="text-base text-slate-700 font-sans">
+              Cada serviço é prestado com tecnologia não invasiva, maquinário moderno e garantia em contrato.
             </p>
           </div>
 
-          {/* 3-Column Service Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MAIN_SERVICES.map((service) => (
-              <div 
-                key={service.id}
-                className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
-              >
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-xl">
-                    <i className={`fas ${service.icon}`}></i>
-                  </div>
-                  
-                  <h3 className="text-lg font-bold text-slate-900 leading-snug">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  {service.applications && (
-                    <ul className="space-y-1.5 pt-2 border-t border-slate-100">
-                      {service.applications.slice(0, 3).map((app, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-xs text-slate-700">
-                          <i className="fa-solid fa-angle-right text-blue-600 text-[10px]"></i>
-                          <span>{app}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-
-                <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
-                  <Link 
-                    to={`/servico/${service.id}`}
-                    className="text-xs font-bold text-blue-700 hover:text-blue-900 transition-colors inline-flex items-center gap-1"
-                  >
-                    <span>Ver detalhes</span>
-                    <i className="fa-solid fa-arrow-right text-[10px]"></i>
-                  </Link>
-
-                  <a 
-                    href={CONTACT_INFO.whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-bold text-green-700 hover:text-green-800 transition-colors inline-flex items-center gap-1"
-                  >
-                    <i className="fa-brands fa-whatsapp text-sm"></i>
-                    <span>Orçamento</span>
-                  </a>
-                </div>
+          {/* Alternating Editorial timeline connected by SVG pipe line */}
+          <div className="relative max-w-5xl mx-auto space-y-16">
+            
+            {/* Horizontal-to-Vertical connection joints (simulation of real plumbing) */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-2.5 transform -translate-x-1/2 hidden md:block select-none pointer-events-none z-0 bg-brand-accent/20 rounded">
+              <div className="h-full w-full bg-gradient-to-b from-brand-accent/60 via-brand-accent/30 to-brand-accent/50 relative">
+                {/* Fluid water inside vertical pipe */}
+                <div className="absolute inset-0 w-full bg-gradient-to-b from-sky-400 via-sky-300 to-sky-400/20 animate-water-flow opacity-70"></div>
               </div>
-            ))}
+            </div>
+
+            {/* Mobile pipe line */}
+            <div className="absolute left-6 top-0 bottom-0 w-1.5 select-none pointer-events-none z-0 bg-brand-accent/20 md:hidden rounded"></div>
+
+            {MAIN_SERVICES.map((service, idx) => {
+              const isEven = idx % 2 === 0;
+              const editorialNumber = String(idx + 1).padStart(2, '0');
+              
+              return (
+                <div 
+                  key={service.id}
+                  className={`relative flex flex-col md:flex-row items-stretch gap-8 md:gap-16 z-10 ${
+                    isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
+                >
+                  
+                  {/* Left content block */}
+                  <div className="w-full md:w-1/2 text-left space-y-4">
+                    <div className="flex items-center gap-4">
+                      {/* Big copper editorial number */}
+                      <span className="text-4xl sm:text-5xl font-display font-black text-brand-accent">
+                        {editorialNumber}
+                      </span>
+                      {/* Clean line stroke icon cor cobre */}
+                      <div className="w-12 h-12 rounded-lg border-2 border-brand-accent flex items-center justify-center text-brand-accent text-xl bg-brand-slate shadow-sm">
+                        <i className={`fas ${service.icon}`}></i>
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl sm:text-2xl font-display font-black text-brand-dark">
+                      {service.title}
+                    </h3>
+                    
+                    <p className="text-base text-slate-700 leading-relaxed font-sans">
+                      {service.description}
+                    </p>
+
+                    {service.applications && (
+                      <div className="pt-3 border-t border-brand-accent/15">
+                        <span className="text-xs uppercase tracking-wider text-brand-accent font-black font-display block mb-1.5">
+                          Aplicações Hidráulicas:
+                        </span>
+                        <ul className="space-y-1.5">
+                          {service.applications.slice(0, 3).map((app, appIdx) => (
+                            <li key={appIdx} className="flex items-start gap-2.5 text-sm text-slate-700 leading-snug">
+                              <i className="fa-solid fa-angle-right text-brand-accent mt-1 text-xs flex-shrink-0"></i>
+                              <span>{app}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div className="pt-4 flex items-center gap-6 font-display font-black">
+                      <Link 
+                        to={`/servico/${service.id}`}
+                        className="text-sm text-brand-blue hover:text-brand-dark hover:underline transition-all inline-flex items-center gap-1.5"
+                      >
+                        <span>Ver detalhes do serviço</span>
+                        <i className="fa-solid fa-arrow-right text-[10px]"></i>
+                      </Link>
+
+                      <a 
+                        href={CONTACT_INFO.whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-brand-green hover:text-green-700 transition-colors inline-flex items-center gap-1.5"
+                      >
+                        <i className="fa-brands fa-whatsapp text-base"></i>
+                        <span>Pedir Orçamento</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right Spacing / Blueprint Connection Joint */}
+                  <div className="w-full md:w-1/2 flex items-center justify-center">
+                    <div className="w-full p-5 bg-brand-slate rounded-lg border-2 border-brand-accent/25 shadow-md relative overflow-hidden text-left space-y-4">
+                      {/* Blueprint grid accent inside card */}
+                      <div className="absolute inset-0 blueprint-grid opacity-45 pointer-events-none"></div>
+                      
+                      <div className="relative z-10 space-y-3">
+                        <span className="text-[10px] font-mono text-brand-accent tracking-widest uppercase block border-b border-brand-accent/15 pb-1">
+                          PLUMBING_SPEC // ITEM_{editorialNumber}
+                        </span>
+                        
+                        <div className="space-y-1 text-xs text-slate-700 leading-relaxed">
+                          <p className="font-extrabold text-brand-dark">Método e Tecnologia Aplicada:</p>
+                          <p>
+                            {service.id === 'caca-vazamento-digital' && 'Mapeamento acústico com Geofone Ultrassônico profissional e varredura de termografia infravermelha.'}
+                            {service.id === 'desentupidora-24h' && 'Roto-Rooter mecânico rotativo com espirais flexíveis de liga para desobstrução e raspagem de tubulações de PVC.'}
+                            {service.id === 'laudo-tecnico-sanepar' && 'Emissão de laudo técnico oficial de estanqueidade assinado por responsável técnico credenciado.'}
+                            {(!['caca-vazamento-digital', 'desentupidora-24h', 'laudo-tecnico-sanepar'].includes(service.id)) && 'Maquinário de desobstrução mecânica ou higienização hidrostática com descarte regulamentado.'}
+                          </p>
+                        </div>
+
+                        <div className="p-3 bg-brand-dark/5 rounded border border-brand-accent/10 flex items-center justify-between">
+                          <div className="text-[11px] text-slate-500 font-bold">Garantia Comercial:</div>
+                          <div className="text-xs font-black text-brand-accent">90 Dias por Escrito</div>
+                        </div>
+
+                        <div className="text-xs text-slate-500 italic">
+                          *Visitas imediatas sem quebra desnecessária de revestimentos em Curitiba.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              );
+            })}
           </div>
 
         </div>
       </section>
+
+      {/* Pipe Divider with register */}
+      <PipeSectionDivider />
 
       {/* 5. Response Time Tracker */}
       <ResponseTimeTracker />
@@ -260,29 +369,36 @@ const Home: React.FC = () => {
       {/* 6. Video / Technology Section */}
       <VideoSection />
 
+      {/* Pipe Divider with register */}
+      <PipeSectionDivider />
+
       {/* 7. Comprehensive Coverage (Bairros & Cidades Links for SEO) */}
-      <section className="py-12 md:py-16 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-brand-light border-b border-brand-accent/25 relative overflow-hidden">
+        <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
-              Cobertura Local em Curitiba & RMC
+          <div className="text-left max-w-3xl mb-10 space-y-2">
+            <span className="text-xs font-black uppercase tracking-wider text-brand-accent font-display">
+              Atendimento Geográfico Completo
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-brand-dark">
               Atendimento 24h em Todos os Bairros e Cidades Vizinhas
             </h2>
-            <p className="text-sm text-slate-600">
-              Equipes móveis para rápida intervenção em emergências hidráulicas residenciais, condomínios e indústrias.
+            <p className="text-base text-slate-700">
+              Dispomos de veículos volantes e equipes de pronto-atendimento posicionadas para respostas rápidas.
             </p>
           </div>
 
           {/* Bairros Grid */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3 flex items-center gap-2">
-                <i className="fa-solid fa-map-pin text-blue-700"></i>
+          <div className="space-y-8">
+            <div className="text-left">
+              <h3 className="text-base font-display font-black text-brand-dark uppercase tracking-wider mb-4 flex items-center gap-2">
+                <i className="fa-solid fa-map-pin text-brand-accent"></i>
                 <span>Bairros Atendidos em Curitiba:</span>
               </h3>
+              
+              {/* Cascade of Bairro links (No synthetic links, all mapped to /bairro/:slug) */}
               <div className="flex flex-wrap gap-2">
                 {BAIRROS.slice(0, 45).map((bairro, idx) => {
                   const slug = bairro.toLowerCase()
@@ -293,7 +409,7 @@ const Home: React.FC = () => {
                     <Link
                       key={idx}
                       to={`/bairro/${slug}`}
-                      className="text-xs bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 px-3 py-1.5 rounded-lg border border-slate-200 transition-colors"
+                      className="text-xs bg-brand-slate hover:bg-brand-accent text-slate-700 hover:text-brand-light px-3.5 py-2 rounded-lg border border-brand-accent/15 transition-all font-bold shadow-2xs"
                     >
                       Encanador {bairro}
                     </Link>
@@ -303,11 +419,12 @@ const Home: React.FC = () => {
             </div>
 
             {/* Cidades Grid */}
-            <div className="pt-4 border-t border-slate-100">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3 flex items-center gap-2">
-                <i className="fa-solid fa-city text-blue-700"></i>
-                <span>Cidades da Região Metropolitana de Curitiba:</span>
+            <div className="pt-6 border-t border-brand-accent/15 text-left">
+              <h3 className="text-base font-display font-black text-brand-dark uppercase tracking-wider mb-4 flex items-center gap-2">
+                <i className="fa-solid fa-city text-brand-accent"></i>
+                <span>Cidades da Região Metropolitana (RMC):</span>
               </h3>
+              
               <div className="flex flex-wrap gap-2">
                 {CIDADES.map((cidade, idx) => {
                   const slug = cidade.toLowerCase()
@@ -318,7 +435,7 @@ const Home: React.FC = () => {
                     <Link
                       key={idx}
                       to={`/cidade/${slug}`}
-                      className="text-xs bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg transition-colors font-medium"
+                      className="text-xs bg-brand-navy hover:bg-brand-accent text-white px-3.5 py-2 rounded-lg transition-all font-black tracking-wide shadow-sm"
                     >
                       Encanador em {cidade}
                     </Link>
@@ -327,13 +444,13 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            <div className="text-center pt-2">
+            <div className="text-center pt-4 font-display font-black">
               <Link
                 to="/sitemap"
-                className="text-xs font-bold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1 hover:underline"
+                className="text-base text-brand-blue hover:text-brand-dark inline-flex items-center gap-1.5 hover:underline"
               >
-                <span>Ver lista completa de todos os bairros e vilas de Curitiba</span>
-                <i className="fa-solid fa-arrow-right text-[10px]"></i>
+                <span>Ver lista completa de todos os bairros, vilas e RMC</span>
+                <i className="fa-solid fa-arrow-right text-xs"></i>
               </Link>
             </div>
           </div>
@@ -341,14 +458,21 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Pipe Divider with register */}
+      <PipeSectionDivider />
+
       {/* 8. Contact Form Section */}
-      <section className="py-12 md:py-16 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <section className="py-16 bg-brand-slate relative overflow-hidden border-b border-brand-accent/15">
+        <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           <ContactForm />
         </div>
       </section>
 
-      {/* 9. FAQ Accordion */}
+      {/* Pipe Divider with register */}
+      <PipeSectionDivider />
+
+      {/* 9. FAQ Accordion with register spin on open */}
       <FAQ items={GENERAL_FAQS} />
 
       {/* 10. Searchable Knowledge Base */}

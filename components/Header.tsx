@@ -1,175 +1,334 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO, MAIN_SERVICES } from '../constants';
 import PremiumLogo from './PremiumLogo';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesExpanded, setIsServicesExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsServicesExpanded(false);
   }, [location.pathname]);
 
+  // Lock scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
+  // Escape key handler
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Simple explanations for senior accessibility
+  const simpleServiceExplanations: Record<string, string> = {
+    'caca-vazamento-digital': 'Caça-Vazamento: Encontramos o vazamento oculto com aparelho de som especial sem quebrar nada.',
+    'desentupidora-24h': 'Desentupidora 24h: Desentupimos ralos, pias, esgotos e canos com máquinas modernas.',
+    'limpeza-caixa-gordura': 'Caixa de Gordura: Limpamos para tirar a sujeira pesada, evitar entupimento na pia e mau cheiro.',
+    'hidrojateamento-pressao': 'Hidrojateamento: Limpeza pesada com jato forte de água para desobstruir canos grandes.',
+    'video-inspecao-esgoto': 'Vídeo Inspeção: Colocamos uma câmera dentro do cano para ver por onde está entupido ou quebrado.',
+    'laudo-tecnico-sanepar': 'Laudo Sanepar: Fornecemos o papel oficial para você pedir desconto na conta de água após o reparo.',
+    'limpeza-caixa-dagua': 'Caixa d\'Água: Lavamos e desinfetamos sua caixa d\'água para manter a sua saúde em dia.',
+    'desentupimento-vaso-sanitario': 'Vaso Sanitário: Desentupimos a privada de forma rápida, muito limpa e sem riscar a louça.',
+    'manutencao-hidraulica-predial': 'Consertos Hidráulicos: Trocamos torneiras, válvulas de descarga, registros e encanamentos.',
+  };
+
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-200 ${
-        scrolled 
-          ? 'bg-slate-900/95 backdrop-blur-md shadow-md py-3 border-b border-slate-800' 
-          : 'bg-slate-900 py-3.5 border-b border-slate-800/80'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center" aria-label="Desentupidora ADP - Encanador e Caça-Vazamentos em Curitiba">
-          <PremiumLogo size="md" theme="light" />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-7">
-          <Link 
-            to="/" 
-            className={`text-sm font-semibold transition-colors ${location.pathname === '/' ? 'text-yellow-400' : 'text-slate-200 hover:text-white'}`}
-          >
-            Início
+    <>
+      <header 
+        className={`fixed top-0 left-0 right-0 w-full z-40 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-brand-dark/95 backdrop-blur-md shadow-lg py-2 border-b border-brand-accent/30' 
+            : 'bg-brand-dark py-3.5 border-b border-brand-navy/60'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          
+          {/* Logo with clean wordmark */}
+          <Link to="/" className="flex items-center" aria-label="Desentupidora ADP - Página Inicial">
+            <PremiumLogo size="md" theme="light" />
           </Link>
-          <Link 
-            to="/servicos" 
-            className={`text-sm font-semibold transition-colors ${location.pathname.startsWith('/servico') ? 'text-yellow-400' : 'text-slate-200 hover:text-white'}`}
-          >
-            Serviços
-          </Link>
-          <Link 
-            to="/sobre" 
-            className={`text-sm font-semibold transition-colors ${location.pathname === '/sobre' ? 'text-yellow-400' : 'text-slate-200 hover:text-white'}`}
-          >
-            Sobre Nós
-          </Link>
-          <Link 
-            to="/contato" 
-            className={`text-sm font-semibold transition-colors ${location.pathname === '/contato' ? 'text-yellow-400' : 'text-slate-200 hover:text-white'}`}
-          >
-            Contato
-          </Link>
-          <Link 
-            to="/sitemap" 
-            className={`text-sm font-semibold transition-colors ${location.pathname === '/sitemap' ? 'text-yellow-400' : 'text-slate-200 hover:text-white'}`}
-          >
-            Bairros & RMC
-          </Link>
-        </nav>
 
-        {/* Right CTA / Contact on Desktop */}
-        <div className="hidden lg:flex items-center gap-4">
-          <a 
-            href={CONTACT_INFO.phoneLink}
-            className="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/80 border border-slate-700/60"
-            title="Ligar para Central Telefônica"
-          >
-            <i className="fa-solid fa-phone text-yellow-400 text-xs"></i>
-            <span>{CONTACT_INFO.phone}</span>
-          </a>
-
-          <a 
-            href={CONTACT_INFO.whatsappLink} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg shadow-sm transition-transform active:scale-95"
-          >
-            <i className="fa-brands fa-whatsapp text-sm"></i>
-            <span>Plantão 24h</span>
-          </a>
-        </div>
-
-        {/* Mobile Quick Action & Hamburger */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <a 
-            href={CONTACT_INFO.whatsappLink}
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="bg-green-600 text-white px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-sm"
-            aria-label="WhatsApp Plantão 24h"
-          >
-            <i className="fa-brands fa-whatsapp text-sm"></i>
-            <span>24h</span>
-          </a>
-
-          <button 
-            type="button"
-            className="p-2 text-slate-200 hover:text-white focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg bg-slate-800/80"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
-            aria-expanded={isMenuOpen}
-          >
-            <i className={`fa-solid ${isMenuOpen ? 'fa-xmark' : 'fa-bars'} text-lg`}></i>
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Drawer Menu */}
-      {isMenuOpen && (
-        <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 space-y-3 animate-fadeIn">
-          <div className="flex flex-col space-y-2 pt-2 border-t border-slate-800">
+          {/* Desktop Navigation - 3 Zone Top Bar Contract */}
+          <nav className="hidden lg:flex items-center gap-8">
             <Link 
               to="/" 
-              className={`px-3 py-2.5 rounded-md text-sm font-semibold ${location.pathname === '/' ? 'bg-slate-800 text-yellow-400' : 'text-slate-200 hover:bg-slate-800/60'}`}
+              className={`text-base font-bold tracking-wide transition-all border-b-2 py-1 ${
+                location.pathname === '/' 
+                  ? 'text-brand-yellow border-brand-yellow' 
+                  : 'text-brand-light border-transparent hover:text-brand-yellow hover:border-brand-yellow'
+              }`}
             >
-              <i className="fa-solid fa-house mr-2 text-xs text-yellow-400"></i> Início
+              Início
             </Link>
             <Link 
               to="/servicos" 
-              className={`px-3 py-2.5 rounded-md text-sm font-semibold ${location.pathname.startsWith('/servico') ? 'bg-slate-800 text-yellow-400' : 'text-slate-200 hover:bg-slate-800/60'}`}
+              className={`text-base font-bold tracking-wide transition-all border-b-2 py-1 ${
+                location.pathname.startsWith('/servico') || location.pathname === '/servicos'
+                  ? 'text-brand-yellow border-brand-yellow' 
+                  : 'text-brand-light border-transparent hover:text-brand-yellow hover:border-brand-yellow'
+              }`}
             >
-              <i className="fa-solid fa-wrench mr-2 text-xs text-yellow-400"></i> Serviços Hidráulicos
+              Serviços
             </Link>
             <Link 
               to="/sobre" 
-              className={`px-3 py-2.5 rounded-md text-sm font-semibold ${location.pathname === '/sobre' ? 'bg-slate-800 text-yellow-400' : 'text-slate-200 hover:bg-slate-800/60'}`}
+              className={`text-base font-bold tracking-wide transition-all border-b-2 py-1 ${
+                location.pathname === '/sobre' 
+                  ? 'text-brand-yellow border-brand-yellow' 
+                  : 'text-brand-light border-transparent hover:text-brand-yellow hover:border-brand-yellow'
+              }`}
             >
-              <i className="fa-solid fa-shield-halved mr-2 text-xs text-yellow-400"></i> Sobre a ADP Engenharia
+              Quem Somos
             </Link>
             <Link 
               to="/contato" 
-              className={`px-3 py-2.5 rounded-md text-sm font-semibold ${location.pathname === '/contato' ? 'bg-slate-800 text-yellow-400' : 'text-slate-200 hover:bg-slate-800/60'}`}
+              className={`text-base font-bold tracking-wide transition-all border-b-2 py-1 ${
+                location.pathname === '/contato' 
+                  ? 'text-brand-yellow border-brand-yellow' 
+                  : 'text-brand-light border-transparent hover:text-brand-yellow hover:border-brand-yellow'
+              }`}
             >
-              <i className="fa-solid fa-envelope mr-2 text-xs text-yellow-400"></i> Contato & Localização
+              Falar Conosco
             </Link>
             <Link 
               to="/sitemap" 
-              className={`px-3 py-2.5 rounded-md text-sm font-semibold ${location.pathname === '/sitemap' ? 'bg-slate-800 text-yellow-400' : 'text-slate-200 hover:bg-slate-800/60'}`}
+              className={`text-base font-bold tracking-wide transition-all border-b-2 py-1 ${
+                location.pathname === '/sitemap' 
+                  ? 'text-brand-yellow border-brand-yellow' 
+                  : 'text-brand-light border-transparent hover:text-brand-yellow hover:border-brand-yellow'
+              }`}
             >
-              <i className="fa-solid fa-location-dot mr-2 text-xs text-yellow-400"></i> Cobertura por Bairros e Cidades
+              Bairros Atendidos
             </Link>
-          </div>
+          </nav>
 
-          <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
+          {/* Right Action Zone on Desktop */}
+          <div className="hidden lg:flex items-center gap-4">
             <a 
               href={CONTACT_INFO.phoneLink}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-slate-800 text-slate-200 text-sm font-semibold border border-slate-700"
+              className="text-sm font-bold text-brand-light hover:text-brand-yellow flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-navy/60 border border-brand-accent/40 transition-colors"
+              title="Ligar para Central Telefônica"
             >
-              <i className="fa-solid fa-phone text-yellow-400"></i>
-              Ligar para {CONTACT_INFO.phone}
+              <i className="fa-solid fa-phone text-brand-yellow"></i>
+              <span>{CONTACT_INFO.phone}</span>
             </a>
+
+            <a 
+              href={CONTACT_INFO.whatsappLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-brand-green hover:bg-green-600 text-white font-bold text-sm px-5 py-2.5 rounded-lg shadow-md hover:scale-105 active:scale-95 transition-all"
+            >
+              <i className="fa-brands fa-whatsapp text-lg"></i>
+              <span>Falar no WhatsApp (24h)</span>
+            </a>
+          </div>
+
+          {/* Mobile Senior Menu Button (Touch area >= 56px, contains text "MENU") */}
+          <div className="flex items-center lg:hidden">
+            <button 
+              type="button"
+              className="px-3 py-2 text-brand-light hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow min-w-[56px] min-h-[56px] flex items-center gap-2 rounded-xl bg-brand-navy border border-brand-accent/40 active:scale-95 transition-all"
+              onClick={() => setIsMenuOpen(true)}
+              aria-label="Abrir Menu Principal"
+              aria-expanded="false"
+            >
+              <i className="fa-solid fa-bars text-lg"></i>
+              <span className="text-sm font-black tracking-widest">MENU</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Drawer Menu - Opens FULL SCREEN with curtains sliding down */}
+      {isMenuOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-brand-dark flex flex-col overflow-y-auto animate-[slideDown_300ms_cubic-bezier(0.16,1,0.3,1)_forwards]"
+          style={{ animationFillMode: 'forwards' }}
+        >
+          {/* Header Zone in Full Screen Drawer */}
+          <div className="flex items-center justify-between p-4 border-b border-brand-accent/30 bg-brand-dark/95">
+            <PremiumLogo size="sm" theme="light" />
+            
+            {/* Close Button ("✕ FECHAR" in large text) */}
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="px-4 py-2 bg-brand-accent hover:bg-brand-accent/80 text-brand-light font-black tracking-wider text-sm rounded-lg flex items-center gap-2 focus:ring-2 focus:ring-brand-yellow min-w-[56px] min-h-[56px]"
+              aria-label="Fechar Menu"
+            >
+              <i className="fa-solid fa-xmark text-lg"></i>
+              <span>FECHAR</span>
+            </button>
+          </div>
+
+          {/* Two HUGE high-contrast buttons at the TOP of the menu for seniors */}
+          <div className="p-4 grid grid-cols-1 gap-3 border-b border-brand-accent/20 bg-brand-navy/30">
+            <a 
+              href={CONTACT_INFO.phoneLink}
+              className="w-full flex items-center justify-center gap-3 h-16 rounded-xl bg-brand-yellow text-brand-dark font-black text-lg shadow-md border-2 border-brand-light active:bg-brand-yellow/90"
+            >
+              <i className="fa-solid fa-phone text-xl"></i>
+              <span>📞 Ligar agora {CONTACT_INFO.phone}</span>
+            </a>
+            
             <a 
               href={CONTACT_INFO.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-bold shadow-sm"
+              className="w-full flex items-center justify-center gap-3 h-16 rounded-xl bg-brand-green text-white font-black text-lg shadow-md border-2 border-green-300 active:bg-green-700"
             >
-              <i className="fa-brands fa-whatsapp text-lg"></i>
-              Chamar no WhatsApp (Plantão 24h)
+              <i className="fa-brands fa-whatsapp text-2xl"></i>
+              <span>WhatsApp — Falar com encanador</span>
             </a>
+          </div>
+
+          {/* Links list in giant size (22px text, 64px height each) with subtext */}
+          <div className="flex-1 p-4 space-y-2">
+            
+            {/* INÍCIO */}
+            <Link 
+              to="/" 
+              className="flex items-center gap-4 px-4 h-16 rounded-xl text-brand-light hover:bg-brand-navy border-b border-brand-navy/40"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div className="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-yellow">
+                <i className="fa-solid fa-house text-lg"></i>
+              </div>
+              <div className="text-left">
+                <span className="text-xl font-extrabold block text-white leading-tight">Início</span>
+                <span className="text-[11px] text-slate-300 block">Ir para a página principal</span>
+              </div>
+            </Link>
+
+            {/* SERVIÇOS - Accordion */}
+            <div className="border-b border-brand-navy/40">
+              <button 
+                onClick={() => setIsServicesExpanded(!isServicesExpanded)}
+                className="w-full flex items-center justify-between px-4 h-16 rounded-xl text-brand-light hover:bg-brand-navy text-left"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-yellow">
+                    <i className="fa-solid fa-screwdriver-wrench text-lg"></i>
+                  </div>
+                  <div>
+                    <span className="text-xl font-extrabold block text-white leading-tight">Serviços</span>
+                    <span className="text-[11px] text-slate-300 block">Veja o que nós fazemos</span>
+                  </div>
+                </div>
+                <i className={`fa-solid ${isServicesExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} text-brand-yellow text-lg`}></i>
+              </button>
+
+              {/* Accordion Content with simple phrases */}
+              {isServicesExpanded && (
+                <div className="px-4 py-2 bg-brand-navy/40 rounded-xl space-y-3 mt-1 mb-3">
+                  {MAIN_SERVICES.map((srv) => (
+                    <Link
+                      key={srv.id}
+                      to={`/servico/${srv.id}`}
+                      className="block p-3 rounded-lg hover:bg-brand-navy/80 text-left"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <span className="text-base font-extrabold text-brand-yellow block">
+                        {srv.title}
+                      </span>
+                      <span className="text-xs text-slate-200 block mt-0.5 leading-snug">
+                        {simpleServiceExplanations[srv.id] || srv.description}
+                      </span>
+                    </Link>
+                  ))}
+                  <div className="pt-2">
+                    <Link
+                      to="/servicos"
+                      className="block text-center py-2 bg-brand-accent/20 rounded-lg text-brand-yellow text-sm font-extrabold"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Ver página completa de todos os serviços &rarr;
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* QUEM SOMOS */}
+            <Link 
+              to="/sobre" 
+              className="flex items-center gap-4 px-4 h-16 rounded-xl text-brand-light hover:bg-brand-navy border-b border-brand-navy/40"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div className="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-yellow">
+                <i className="fa-solid fa-user-tie text-lg"></i>
+              </div>
+              <div className="text-left">
+                <span className="text-xl font-extrabold block text-white leading-tight">Quem Somos</span>
+                <span className="text-[11px] text-slate-300 block">Nossa história e garantia</span>
+              </div>
+            </Link>
+
+            {/* FALAR CONOSCO */}
+            <Link 
+              to="/contato" 
+              className="flex items-center gap-4 px-4 h-16 rounded-xl text-brand-light hover:bg-brand-navy border-b border-brand-navy/40"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div className="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-yellow">
+                <i className="fa-solid fa-envelope text-lg"></i>
+              </div>
+              <div className="text-left">
+                <span className="text-xl font-extrabold block text-white leading-tight">Contato</span>
+                <span className="text-[11px] text-slate-300 block">Endereço, telefone e WhatsApp</span>
+              </div>
+            </Link>
+
+            {/* BAIRROS ATENDIDOS */}
+            <Link 
+              to="/sitemap" 
+              className="flex items-center gap-4 px-4 h-16 rounded-xl text-brand-light hover:bg-brand-navy"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div className="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-yellow">
+                <i className="fa-solid fa-map-location-dot text-lg"></i>
+              </div>
+              <div className="text-left">
+                <span className="text-xl font-extrabold block text-white leading-tight">Bairros Atendidos</span>
+                <span className="text-[11px] text-slate-300 block">Atendemos Curitiba e toda RMC</span>
+              </div>
+            </Link>
+
+          </div>
+
+          {/* Footer of Mobile Drawer */}
+          <div className="p-4 bg-brand-navy/60 border-t border-brand-accent/20 text-center text-xs text-slate-400">
+            <p className="font-extrabold text-white text-sm mb-1">{CONTACT_INFO.companyName}</p>
+            <p>{CONTACT_INFO.address} - {CONTACT_INFO.neighborhood}</p>
+            <p>Curitiba - PR | Plantão 24h Permanente</p>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
 

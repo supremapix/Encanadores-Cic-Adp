@@ -5,17 +5,6 @@ import ContactForm from '../components/ContactForm';
 import VideoSection from '../components/VideoSection';
 
 const AboutPage: React.FC = () => {
-  useEffect(() => {
-    document.title = "Sobre a Desentupidora ADP | ADP Engenharia Hidráulica em Curitiba";
-    
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', 'Conheça a Desentupidora ADP e ADP Engenharia Hidráulica. Mais de uma década de experiência em caça-vazamento digital, desentupimento 24h e emissão de laudos técnicos em Curitiba.');
-  }, []);
 
   return (
     <div className="bg-white">

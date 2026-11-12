@@ -55,11 +55,7 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
   }, [type, slug]);
 
   // Se não encontrar o item correspondente, retorna 404
-  if (!currentItem) {
-    return <NotFound />;
-  }
-
-  const title = currentItem.title;
+  const title = currentItem?.title || "";
   const canonicalUrl = `${CONTACT_INFO.canonicalDomain}/${type}/${slug}`;
 
   // Vizinhos no grafo geográfico
@@ -71,8 +67,8 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
           const s = b.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
           return s === nSlug;
         });
-        return { slug: nSlug, name: found || nSlug };
-      });
+        return found ? { slug: nSlug, name: found } : null;
+      }).filter(Boolean);
     }
     if (type === 'cidade') {
       const neighbors = CITY_GRAPH[slug] || ["curitiba", "sao-jose-dos-pinhais", "pinhais"];
@@ -81,130 +77,15 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
           const s = c.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
           return s === nSlug;
         });
-        return { slug: nSlug, name: found || nSlug };
-      });
+        return found ? { slug: nSlug, name: found } : null;
+      }).filter(Boolean);
     }
     return [];
   }, [type, slug]);
 
   const faqs = useMemo(() => getLocalizedFAQ(title), [title]);
+  if (!currentItem) return <NotFound />;
 
-  useEffect(() => {
-    // SEO Titles & Meta Description
-    let pageTitle = "";
-    let pageDesc = "";
-
-    if (type === 'bairro') {
-      pageTitle = `Encanador no ${title} Curitiba 24 Horas | Caça-Vazamento & Desentupimento`;
-      pageDesc = `Serviço de encanador 24h no bairro ${title} em Curitiba. Localização de vazamentos com geofone digital sem quebrar paredes, desentupimento e laudo Sanepar.`;
-    } else if (type === 'cidade') {
-      pageTitle = `Encanador em ${title} 24 Horas | Caça-Vazamento e Desentupidora RMC`;
-      pageDesc = `Encanador 24 horas em ${title} e região metropolitana. Caça-vazamento ultrassônico, desentupimento de esgoto/pias e laudo para Sanepar. Atendimento rápido.`;
-    } else {
-      pageTitle = `${title} em Curitiba 24 Horas | Desentupidora ADP`;
-      pageDesc = `Especialista em ${title} em Curitiba e Região Metropolitana. Diagnóstico preciso, garantia de 90 dias e atendimento emergencial 24h.`;
-    }
-
-    document.title = pageTitle;
-
-    // Atualiza Meta Description & Canonical
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', pageDesc);
-
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.setAttribute('href', canonicalUrl);
-
-    // Injeta Schema JSON-LD dinâmico
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = 'dynamic-page-schema';
-    script.innerHTML = JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "PlumbingService",
-          "@id": `${canonicalUrl}#service`,
-          "name": `Desentupidora ADP - Encanador em ${title}`,
-          "url": canonicalUrl,
-          "telephone": "+554133451194",
-          "priceRange": "$$",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Rua Luiz Maltaca, 36",
-            "addressLocality": type === 'cidade' ? title : "Curitiba",
-            "addressRegion": "PR",
-            "postalCode": "81310-060",
-            "addressCountry": "BR"
-          },
-          "areaServed": {
-            "@type": type === 'cidade' ? "City" : "AdministrativeArea",
-            "name": title
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-              "opens": "00:00",
-              "closes": "23:59"
-            }
-          ]
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Início",
-              "item": `${CONTACT_INFO.canonicalDomain}/`
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": type === 'bairro' ? "Bairros de Curitiba" : type === 'cidade' ? "Cidades RMC" : "Serviços",
-              "item": `${CONTACT_INFO.canonicalDomain}/${type === 'servico' ? 'servicos' : 'sitemap'}`
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": title,
-              "item": canonicalUrl
-            }
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": faqs.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }
-      ]
-    });
-
-    const oldScript = document.getElementById('dynamic-page-schema');
-    if (oldScript) oldScript.remove();
-    document.head.appendChild(script);
-
-    return () => {
-      const el = document.getElementById('dynamic-page-schema');
-      if (el) el.remove();
-    };
-  }, [type, title, canonicalUrl, faqs]);
 
   return (
     <div className="bg-white">

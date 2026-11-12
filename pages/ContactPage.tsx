@@ -5,17 +5,6 @@ import TrustBar from '../components/TrustBar';
 import VideoSection from '../components/VideoSection';
 
 const ContactPage: React.FC = () => {
-  useEffect(() => {
-    document.title = "Contato & Plantão 24h | Desentupidora ADP Curitiba";
-    
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', 'Entre em contato com a Desentupidora ADP / ADP Engenharia Hidráulica em Curitiba. Plantão 24h no WhatsApp (41) 98517-1966 e telefone fixo (41) 3345-1194.');
-  }, []);
 
   return (
     <div className="bg-white">

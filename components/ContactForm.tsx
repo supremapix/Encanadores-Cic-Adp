@@ -16,9 +16,9 @@ const ContactForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `*Solicitação de Orçamento - Desentupidora ADP*%0A%0A*Nome:* ${formData.name}%0A*Telefone/WhatsApp:* ${formData.phone}%0A*Bairro/Cidade:* ${formData.neighborhood}%0A*Serviço:* ${formData.service}%0A*Detalhes:* ${formData.message || 'Atendimento padrão'}`;
-    const url = `https://api.whatsapp.com/send?phone=5541985171966&text=${text}`;
-    window.open(url, '_blank');
+    const text = `*Solicitação de Orçamento - Desentupidora ADP*\n\n*Nome:* ${formData.name}\n*Telefone/WhatsApp:* ${formData.phone}\n*Bairro/Cidade:* ${formData.neighborhood}\n*Serviço:* ${formData.service}\n*Detalhes:* ${formData.message || 'Atendimento padrão'}`;
+    const url = `https://api.whatsapp.com/send?phone=5541985171966&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -38,12 +38,12 @@ const ContactForm: React.FC = () => {
       <form onSubmit={handleSubmit} className="space-y-4 max-w-xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label htmlFor="contact-name" className="block text-xs font-semibold text-slate-300 mb-1">
               Seu Nome *
             </label>
             <input 
               type="text" 
-              name="name"
+              id="contact-name" name="name"
               required
               value={formData.name}
               onChange={handleChange}
@@ -53,12 +53,12 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label htmlFor="contact-phone" className="block text-xs font-semibold text-slate-300 mb-1">
               WhatsApp / Telefone *
             </label>
             <input 
               type="tel" 
-              name="phone"
+              id="contact-phone" name="phone"
               required
               value={formData.phone}
               onChange={handleChange}
@@ -70,12 +70,12 @@ const ContactForm: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label htmlFor="contact-neighborhood" className="block text-xs font-semibold text-slate-300 mb-1">
               Bairro ou Cidade *
             </label>
             <input 
               type="text" 
-              name="neighborhood"
+              id="contact-neighborhood" name="neighborhood"
               required
               value={formData.neighborhood}
               onChange={handleChange}
@@ -85,11 +85,11 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label htmlFor="contact-service" className="block text-xs font-semibold text-slate-300 mb-1">
               Tipo de Serviço *
             </label>
             <select 
-              name="service"
+              id="contact-service" name="service"
               value={formData.service}
               onChange={handleChange}
               className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -106,11 +106,11 @@ const ContactForm: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-300 mb-1">
+          <label htmlFor="contact-message" className="block text-xs font-semibold text-slate-300 mb-1">
             Descreva o Problema (Opcional)
           </label>
           <textarea 
-            name="message"
+            id="contact-message" name="message"
             value={formData.message}
             onChange={handleChange}
             rows={2}

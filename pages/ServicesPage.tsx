@@ -6,17 +6,6 @@ import TrustBar from '../components/TrustBar';
 import VideoSection from '../components/VideoSection';
 
 const ServicesPage: React.FC = () => {
-  useEffect(() => {
-    document.title = "Serviços de Encanador em Curitiba | Caça-Vazamento, Desentupidora & Laudos";
-    
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', 'Catálogo completo de serviços de encanador em Curitiba. Caça-vazamento digital com geofone, desentupimento 24h, laudos técnicos para Sanepar e manutenção hidráulica.');
-  }, []);
 
   return (
     <div className="bg-white">

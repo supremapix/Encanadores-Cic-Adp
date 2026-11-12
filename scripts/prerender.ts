@@ -121,7 +121,7 @@ async function runPrerender() {
     }
   };
 
-  const html404 = renderPage('/404-non-existent-page', meta404);
+  const html404 = renderPage('/404-non-existent-page', meta404).replace('</head>', '<meta name="robots" content="noindex, follow"></head>');
   fs.writeFileSync(path.join(distDir, '404.html'), html404, 'utf-8');
   console.log('✅ Generated dist/404.html successfully.');
 

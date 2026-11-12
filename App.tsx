@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
+import RouteMetadata from './components/RouteMetadata';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
-import FloatingTips from './components/FloatingTips';
+import LocalContactCard from './components/LocalContactCard';
 import Home from './pages/Home';
 import DynamicPage from './pages/DynamicPage';
 import Sitemap from './pages/Sitemap';
@@ -26,10 +27,12 @@ const App: React.FC = () => {
   return (
     <>
       <ScrollToTop />
+      <RouteMetadata />
       <div className="flex flex-col min-h-screen bg-white">
+        <a href="#conteudo-principal" className="skip-link">Pular para o conteúdo</a>
         <Header />
         
-        <main className="flex-grow">
+        <main id="conteudo-principal" tabIndex={-1} className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/servicos" element={<ServicesPage />} />
@@ -45,11 +48,12 @@ const App: React.FC = () => {
             {/* 404 Fallback */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <LocalContactCard />
         </main>
         
         <Footer />
         <FloatingActions />
-        <FloatingTips />
+
       </div>
     </>
   );

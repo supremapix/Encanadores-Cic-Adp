@@ -3,17 +3,6 @@ import { Link } from 'react-router-dom';
 import { MAIN_SERVICES, BAIRROS, CIDADES, THEME_BACKGROUNDS } from '../constants';
 
 const Sitemap: React.FC = () => {
-  useEffect(() => {
-    document.title = "Mapa do Site | Desentupidora ADP Curitiba 24h";
-    
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', 'Mapa completo de navegação do site Desentupidora ADP Curitiba. Acesso a todas as páginas de serviços, bairros e cidades atendidas.');
-  }, []);
 
   const formatSlug = (text: string) => {
     return text.toLowerCase()

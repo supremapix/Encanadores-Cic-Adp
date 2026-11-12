@@ -22,3 +22,6 @@ Esta entrega não comprova pesquisa de todas as vilas populares, linhas de ônib
 Todas as nove URLs /servico/ receberam template próprio, texto por serviço com avaliação, preparação, limites e cuidados, etapas de orçamento e links para serviços relacionados. FAQ e descrição de busca removem garantia uniforme e promessa de solução imediata. Página de documentação para Sanepar explica que a análise é da concessionária e não garante abatimento. Fonte de canais: https://www.sanepar.com.br/servicos-que-facilitam-o-dia-dia (consultada em12/11/2026).
 
 Ainda não revisados integralmente: alegações históricas em outros componentes (por exemplo selo de garantia90dias e empresa autorizada), todas as denominações populares, conteúdo individual de cada localidade e fotos específicas novas. Essas afirmações não foram verificadas por este relatório.
+
+## Base oficial de Curitiba validada
+Baixado em12/11/2026 o arquivo https://www.ippuc.org.br/geodownloads/SHAPES_SIRGAS/DIVISA_DE_BAIRROS_SIRGAS.zip. DBF contém75 registros, campoNOME e NM_REGIONA; edição setembro2024. Dados derivados em data/officialNeighborhoods.ts. URLs antigas preservadas; Cidade Industrial (CIC) mapeada ao registro municipal. As demais denominações do diretório não são apresentadas como bairros oficiais, sem concluir inexistência. Isto não valida cobertura comercial nem toda vila popular.

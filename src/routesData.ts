@@ -166,7 +166,7 @@ export const getRouteMetadata = (pathname: string): RouteMeta | null => {
     if (!service) return null;
 
     const title = `${service.title} em Curitiba 24 Horas | Desentupidora ADP`;
-    const description = `Especialista em ${service.title} em Curitiba e Região Metropolitana. Diagnóstico preciso, garantia de 90 dias e atendimento emergencial 24h.`;
+    const description = `Especialista em ${service.title} em Curitiba e Região Metropolitana. Veja como solicitar avaliação, preparar o local e consultar disponibilidade e orçamento com a ADP.`;
     const canonical = `${DOMAIN}/servico/${slug}`;
     const faqs = getLocalizedFAQ(service.title);
 

@@ -222,22 +222,9 @@ export const getLocalizedFAQ = (locationOrService: string): FAQItem[] => {
     const srv = MAIN_SERVICES.find(s => s.id === locationOrService || s.title.toLowerCase().includes(locationOrService.toLowerCase()));
     const srvName = srv ? srv.title : locationOrService;
     return [
-      {
-        question: `Como funciona o serviço de ${srvName} em Curitiba?`,
-        answer: `Nosso serviço de **${srvName}** utiliza ferramentas de precisão e engenharia especializada. Atendemos residências, comércios e condomínios em todos os bairros de Curitiba com garantia e execução ágil sem quebras desnecessárias.`
-      },
-      {
-        question: `Qual o tempo de garantia para ${srvName}?`,
-        answer: `Oferecemos garantia documentada de até 90 dias para serviços executados de **${srvName}**, além de suporte pós-atendimento e emissão de laudo técnico oficial quando aplicável.`
-      },
-      {
-        question: `Como solicitar orçamento para ${srvName}?`,
-        answer: `Basta entrar em contato pelo WhatsApp **(41) 98517-1966** ou telefone **(41) 3345-1194**. Nossa equipe de plantão 24h atende imediatamente com direcionamento técnico e agendamento rápido.`
-      },
-      {
-        question: `A empresa atende emergências de ${srvName} aos finais de semana?`,
-        answer: `Sim! O plantão para **${srvName}** funciona 24 horas por dia, 7 dias por semana, inclusive aos sábados, domingos e feriados em Curitiba e Região Metropolitana.`
-      }
+      {question:`Como pedir orçamento para ${srvName}?`,answer:`Informe o problema, o endereço completo e, se possível, envie fotos à ADP pelo WhatsApp (41) 98517-1966 ou telefone (41) 3345-1194. A equipe confirma disponibilidade e condições da avaliação.`},
+      {question:`O valor de ${srvName} é igual em todos os imóveis?`,answer:`Não. Acesso, extensão do trabalho, condição da instalação e materiais necessários podem alterar o escopo. Peça a descrição do serviço e as condições antes de aprovar.`},
+      {question:`O que confirmar antes de contratar ${srvName}?`,answer:`Confirme o que está incluído, previsão de atendimento, necessidade de peças, testes finais e condições de garantia e documentação aplicáveis ao serviço.`}
     ];
   }
 

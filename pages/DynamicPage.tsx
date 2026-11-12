@@ -1,3 +1,4 @@
+import ServiceDetail from '../components/ServiceDetail';
 import LocalReference from '../components/LocalReference';
 import React, { useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
@@ -86,6 +87,7 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
 
   const faqs = useMemo(() => getLocalizedFAQ(title), [title]);
   if (!currentItem) return <NotFound />;
+  if (type === "servico") return <ServiceDetail service={MAIN_SERVICES.find(s=>s.id===slug)!} />;
 
 
   return (

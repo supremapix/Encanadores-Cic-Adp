@@ -1,3 +1,4 @@
+import LocalReference from '../components/LocalReference';
 import React, { useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
@@ -161,6 +162,7 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
         </div>
       </section>
 
+      <LocalReference type={type} name={title} slug={slug} />
       {/* 2. Structured Local Information Block */}
       <section className="py-12 md:py-16 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -186,7 +188,7 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ type }) => {
               {/* Service Cards for this location */}
               <div className="space-y-3 pt-2">
                 <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
-                  Serviços Mais Solicitados em {title}:
+                  Serviços para consultar em {title}:
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">

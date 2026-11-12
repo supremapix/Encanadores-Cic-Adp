@@ -8,6 +8,9 @@ const Header: React.FC = () => {
   const [isServicesExpanded, setIsServicesExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const [largeText,setLargeText]=useState(false);
+  useEffect(()=>{try{const saved=localStorage.getItem('adp-large-text')==='true';setLargeText(saved);document.documentElement.classList.toggle('adp-large-text',saved);}catch{}},[]);
+  const toggleText=()=>{const next=!largeText;setLargeText(next);document.documentElement.classList.toggle('adp-large-text',next);try{localStorage.setItem('adp-large-text',String(next));}catch{}};
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -77,6 +80,7 @@ const Header: React.FC = () => {
             <PremiumLogo size="md" theme="light" />
           </Link>
 
+          <button type="button" onClick={toggleText} aria-pressed={largeText} className="adp-font-control">{largeText?'Letra normal':'Aumentar letra'}</button>
           {/* Desktop Navigation - 3 Zone Top Bar Contract */}
           <nav className="hidden lg:flex items-center gap-8">
             <Link 

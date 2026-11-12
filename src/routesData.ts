@@ -37,7 +37,7 @@ export const getRouteMetadata = (pathname: string): RouteMeta | null => {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "PlumbingService",
+            "@type": "Plumber",
             "@id": `${DOMAIN}/#organization`,
             "name": "Desentupidora ADP",
             "alternateName": "Desentupidora ADP e Encanador Curitiba 24 Horas",
@@ -181,7 +181,7 @@ export const getRouteMetadata = (pathname: string): RouteMeta | null => {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "PlumbingService",
+            "@type": "Plumber",
             "@id": `${canonical}#service`,
             "name": `Desentupidora ADP - ${service.title}`,
             "url": canonical,
@@ -231,7 +231,7 @@ export const getRouteMetadata = (pathname: string): RouteMeta | null => {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "PlumbingService",
+            "@type": "Plumber",
             "@id": `${canonical}#service`,
             "name": `Desentupidora ADP - Encanador em ${matchCity}`,
             "url": canonical,
@@ -262,7 +262,7 @@ export const getRouteMetadata = (pathname: string): RouteMeta | null => {
     if (!matchBairro) return null;
 
     const title = `Encanador no ${matchBairro} Curitiba 24 Horas | Caça-Vazamento & Desentupimento`;
-    const description = `Serviço de encanador 24h no bairro ${matchBairro} em Curitiba. Localização de vazamentos com geofone digital sem quebrar paredes, desentupimento e laudo Sanepar.`;
+    const description = `Serviço de encanador 24h em ${matchBairro} em Curitiba. Localização de vazamentos com geofone digital sem quebrar paredes, desentupimento e laudo Sanepar.`;
     const canonical = `${DOMAIN}/bairro/${slug}`;
     const faqs = getLocalizedFAQ(matchBairro);
 
@@ -271,15 +271,15 @@ export const getRouteMetadata = (pathname: string): RouteMeta | null => {
       title,
       description,
       canonical,
-      h1: `Encanador no bairro ${matchBairro} em Curitiba`,
+      h1: `Encanador em ${matchBairro} em Curitiba`,
       type: 'bairro',
       schemaJson: {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "PlumbingService",
+            "@type": "Plumber",
             "@id": `${canonical}#service`,
-            "name": `Desentupidora ADP - Encanador no bairro ${matchBairro}`,
+            "name": `Desentupidora ADP - Encanador em ${matchBairro}`,
             "url": canonical,
             "telephone": "+554133451194",
             "priceRange": "$$",
